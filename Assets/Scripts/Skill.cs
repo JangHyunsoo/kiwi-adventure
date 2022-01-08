@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill : MonoBehaviour
+public class Skill : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string skill_name;
+    public string command;
+    public float cool_time;
+    public Projectile projectile;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public virtual void activate(Vector3 _pos) {}
 }

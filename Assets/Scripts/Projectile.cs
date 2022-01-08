@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int _damage;
+    public double _delay_time;
+    public double _current_delay_time;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        _current_delay_time = 0d;
+        init();
     }
+    private void Update()
+    {
+        activate();
+    }
+    public virtual void init() {}
+    public virtual void activate() {}
+
 }
