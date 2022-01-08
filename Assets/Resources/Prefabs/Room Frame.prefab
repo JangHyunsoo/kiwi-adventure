@@ -620,6 +620,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9232ef0f638405847af7643634dd5afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  left_door:
+  - {fileID: 915545870692992522}
+  - {fileID: 80649361261604451}
+  right_door:
+  - {fileID: 7619659769692410662}
+  - {fileID: 2444591886570665608}
+  top_door:
+  - {fileID: 7550122790028078117}
+  - {fileID: 4101763371011567813}
+  bottom_door:
+  - {fileID: 913647585430121235}
+  - {fileID: 2951569765325456820}
 --- !u!1 &2444591886570665608
 GameObject:
   m_ObjectHideFlags: 0

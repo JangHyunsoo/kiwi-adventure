@@ -7,7 +7,7 @@ public class Stage : MonoBehaviour
 {
     [SerializeField]
     private GameObject room_frame_prefab;
-
+    
     private Transform[,] room_transforms;
     private Vector2[,] real_pos;
     private bool[,] room_exists;
@@ -19,6 +19,7 @@ public class Stage : MonoBehaviour
 
     [SerializeField]
     private int goal_count = 50;
+    [SerializeField]
     private int curr_count = 0;
 
     private void initRoomData()
@@ -41,7 +42,11 @@ public class Stage : MonoBehaviour
 
     private void createFrame(Vector2Int _pos)
     {
+        if (isExist(_pos)) return; // 수정해야함.
+
         room_transforms[_pos.x, _pos.y] = Instantiate(room_frame_prefab, real_pos[_pos.x, _pos.y], Quaternion.identity).transform;
+        room_transforms[_pos.x, _pos.y].name = _pos.x.ToString() + ", " + _pos.y.ToString();
+        room_transforms[_pos.x, _pos.y].SetParent(gameObject.transform);
         room_exists[_pos.x, _pos.y] = true;
         curr_count++;
     }
@@ -56,13 +61,11 @@ public class Stage : MonoBehaviour
         while(queue.Count != 0)
         {
             nowPos = queue.Dequeue();
-            Debug.Log(nowPos);
             createFrame(nowPos);
             var canDir = getCanDirection(nowPos);
-            Debug.Log(canDir);
             if (canDir.Count == 4) nextCount = 4;
             else if (canDir.Count == 0) nextCount = 0;
-            else if (canDir.Count == 1) nextCount = Random.Range(0, 1);
+            else if (canDir.Count == 1) nextCount = 1;
             else if (canDir.Count == 2 || canDir.Count == 3) nextCount = Random.Range(1, 2);
 
             for(int i = 0; i < nextCount; i++)
@@ -76,8 +79,36 @@ public class Stage : MonoBehaviour
         }
     }
     
-    
-    
+    private void openRoomsDoor()
+    {
+       for(int y = 0; y < map_size; y++)
+        {
+            for(int x = 0; x < map_size; x++)
+            {
+                if(room_exists[x,y])
+                    openRoomDoor(new Vector2Int(x, y));
+            }
+        }
+    }
+
+    private void openRoomDoor(Vector2Int _pos)
+    {
+        Room room = room_transforms[_pos.x, _pos.y].GetComponent<Room>();
+      
+        foreach (Direction dir in Enum.GetValues(typeof(Direction)))
+        {
+            Vector2Int check_pos = _pos + Utility.direction_pos[dir];
+            if (isMap(check_pos))
+            {
+                if (room_exists[check_pos.x, check_pos.y])
+                {
+                    Debug.Log(check_pos);
+                    room.openDoor(dir);
+                }
+            } 
+        }
+    }
+
     private List<Vector2Int> getCanDirection(Vector2Int _pos)
     {
         List<Vector2Int> result = new List<Vector2Int>();
@@ -105,5 +136,6 @@ public class Stage : MonoBehaviour
     {
         initRoomData();
         createRandomRoom();
+        openRoomsDoor();
     }
 }

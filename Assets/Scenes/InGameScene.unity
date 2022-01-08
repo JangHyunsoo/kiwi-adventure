@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 1030099850}
   - component: {fileID: 1030099849}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Stage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,6 +238,7 @@ MonoBehaviour:
   room_frame_prefab: {fileID: 2439460545462122633, guid: 3ec0536b636591544ad39ffccc773618, type: 3}
   map_size: 21
   goal_count: 50
+  curr_count: 0
 --- !u!4 &1030099850
 Transform:
   m_ObjectHideFlags: 0
