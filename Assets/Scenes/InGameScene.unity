@@ -232,9 +232,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1182317646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fda22c507116af445b7ce6885da48182, type: 3}
+  m_Script: {fileID: 11500000, guid: 953f0acd547952a49ae5c36225dd1c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 11400000, guid: c21359617d693704a8bb8d7e4d71d2d5, type: 2}
 --- !u!4 &1182317648
 Transform:
   m_ObjectHideFlags: 0
@@ -275,9 +277,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1245190297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d664fdb0698f24d9730a9bc2548a70, type: 3}
+  m_Script: {fileID: 11500000, guid: 45e8e118d2738d34892903245d244c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player_prefab: {fileID: 1313755421659091322, guid: 518d490c048da7143b3bf5cc8ba18cfa, type: 3}
 --- !u!4 &1245190299
 Transform:
   m_ObjectHideFlags: 0

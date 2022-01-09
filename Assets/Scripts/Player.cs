@@ -14,9 +14,9 @@ public class Player : Entity
     }
     private void init()
     {
-        this.max_hp = 10;
-        this.current_hp = this.max_hp;
-        this._current_skill = SkillDataBase.instance.getSkill(0);
+        max_hp = 10;
+        current_hp = this.max_hp;
+        _current_skill = SkillDataBase.instance.getSkill(0);
     }
 
     public Skill getCurrentSkill()

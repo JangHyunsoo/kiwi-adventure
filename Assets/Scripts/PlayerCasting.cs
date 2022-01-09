@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCasting : MonoBehaviour
 {
     private bool _isCasting = false;
+    private bool _isReload = false;
     private Player _player;
 
     private void Start()
@@ -27,5 +28,4 @@ public class PlayerCasting : MonoBehaviour
             _player.current_skill.activate(transform.position);
         }
     }
-         
 }
