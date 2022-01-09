@@ -21,7 +21,6 @@ public class PlayerManager : MonoBehaviour
             else                    { return _instance; }
         }
     }
-
     private void Awake()
     {
         if(_instance == null)

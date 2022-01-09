@@ -102,7 +102,6 @@ public class Stage : MonoBehaviour
             {
                 if (room_exists[check_pos.x, check_pos.y])
                 {
-                    Debug.Log(check_pos);
                     room.openDoor(dir);
                 }
             } 

@@ -25,6 +25,6 @@ public class PlayerController : MonoBehaviour
     }
     private void moveToTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _target_pos, Time.deltaTime * 10f);
+        transform.position = Vector3.MoveTowards(transform.position, _target_pos, Time.deltaTime * 5f);
     }
 }
