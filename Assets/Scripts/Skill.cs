@@ -5,6 +5,7 @@ using UnityEngine;
 public class Skill : ScriptableObject
 {
     public string skill_name;
+    public Sprite skill_image;
     public string command;
     public float cool_time;
     public Projectile projectile;
