@@ -8,10 +8,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private GameObject _player_prefab;
     private GameObject _player_object;
-    private Player _player;
+    private PlayerEntity _player;
     private PlayerController _player_controller;
 
-    public Player player { get => _player; }
+    public PlayerEntity player { get => _player; }
 
     public static PlayerManager instance
     {
@@ -39,12 +39,13 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        _player_controller.movePlayer();
+        _player_controller.movePlayer(_player.player_data.speed);
     }
     private void init()
     {
         _player_object = Instantiate(_player_prefab, new Vector3(0, 0, 0), Quaternion.identity);
         _player_controller = _player_object.GetComponent<PlayerController>();
-        _player = _player_object.GetComponent<Player>();
+        _player = _player_object.GetComponent<PlayerEntity>();
+        _player_object.GetComponent<SpriteRenderer>().sprite = _player.player_data.obj_sprite;
     }
 }

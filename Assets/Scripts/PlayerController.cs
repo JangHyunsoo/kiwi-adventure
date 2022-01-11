@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector3 _mouse_pos;
-    private Vector3 _trans_pos;
-    private Vector3 _target_pos;
+    private Rigidbody2D rb_;
+    private Vector3 mouse_pos_;
+    private Vector3 trans_pos_;
+    private Vector3 target_pos_;
     
     private void Update()
     {
     }
-    public void movePlayer()
+
+    private void Awake()
+    {
+        rb_ = GetComponent<Rigidbody2D>();
+    }
+    public void movePlayer(float _speed)
     {
         if(Input.GetMouseButtonDown(1)) { calTargetPos(); }
-        moveToTarget();
+        moveToTarget(_speed);
     }
 
     private void calTargetPos()
     {
-        _mouse_pos = Input.mousePosition;
-        _trans_pos = Camera.main.ScreenToWorldPoint(_mouse_pos);
-        _target_pos = new Vector3(_trans_pos.x, _trans_pos.y, 0);
+        mouse_pos_ = Input.mousePosition;
+        trans_pos_ = Camera.main.ScreenToWorldPoint(mouse_pos_);
+        target_pos_ = new Vector3(trans_pos_.x, trans_pos_.y, 0);
     }
-    private void moveToTarget()
+    private void moveToTarget(float _speed)
     {
-        transform.position = Vector3.MoveTowards(transform.position, _target_pos, Time.deltaTime * 5f);
+        transform.position = Vector3.MoveTowards(transform.position, target_pos_, Time.deltaTime * _speed);
     }
 }

@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+
+public class EnemyDataBase : MonoBehaviour
 {
-    private static StageManager _instance;
-    public static StageManager instance
+    [SerializeField]
+    private EnemyData[] enemy_datas;
+
+    private static EnemyDataBase _instance;
+    public static EnemyDataBase instance
     {
         get
         {
@@ -25,8 +29,8 @@ public class StageManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    void Update()
+    public EnemyData getEnemy(int _no)
     {
-        
+        return enemy_datas[_no];
     }
 }
