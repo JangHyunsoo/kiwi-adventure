@@ -6,6 +6,11 @@ public enum Direction
 {
     LEFT, RIGHT, TOP, BOTTOM
 };
+public enum Enemytype
+{
+    MONSTER,
+    BOSS
+};
 
 public class Utility
 {
@@ -16,4 +21,6 @@ public class Utility
         { Direction.TOP,    new Vector2Int(0, 1) },
         { Direction.BOTTOM, new Vector2Int(0, -1) }
     };
+
 }
+
