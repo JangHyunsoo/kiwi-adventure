@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842e9b18871c6a649ad223f12e59ab65, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
+  obj_sprite_: {fileID: 21300000, guid: a4222768388903544b274936b3151494, type: 3}
   obj_name_: Slime
   level_: 1
   max_hp_: 0
