@@ -8,7 +8,6 @@ public class FireBallProjectile : Projectile
     private Vector3 _trans_pos;
     private Vector3 _target_pos;
     private Vector2 _direction;
-    
 
     public override void init()
     {
