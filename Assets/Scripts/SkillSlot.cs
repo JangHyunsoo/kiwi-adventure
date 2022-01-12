@@ -46,9 +46,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             DragSlot.instance.skill_slot = this;
             DragSlot.instance.DragSetSkill(skill_image_);
-            Vector3 nowpos = eventData.position;
-            nowpos.z = -1f;
-            DragSlot.instance.transform.position = nowpos;
+            DragSlot.instance.transform.position = eventData.position;
         }
     }
 
@@ -56,10 +54,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         if (skill_ != null)
         {
-            Vector3 nowpos = eventData.position;
-            nowpos.z = -1f;
-            DragSlot.instance.transform.position = nowpos;
-            
+            DragSlot.instance.transform.position = eventData.position;
         }
     }
 
