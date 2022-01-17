@@ -25,8 +25,23 @@ public class StageManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    void Update()
+
+    [SerializeField]
+    private GameObject[] exit_door_prefab_list_;
+
+    [SerializeField]
+    private Transform[] enter_door_tr_list_;
+
+    public GameObject getDoorPrefab(int _id)
     {
-        
+        return exit_door_prefab_list_[_id];
+    }
+    public GameObject getRandomDoorPrefab()
+    {
+        return exit_door_prefab_list_[Random.Range(0, exit_door_prefab_list_.Length)];
+    }
+    public Vector2 getEnterDoorPosition(int _id)
+    {
+        return enter_door_tr_list_[_id].position;
     }
 }

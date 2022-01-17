@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public void movePlayer(float _speed)
     {
         if(Input.GetMouseButtonDown(1)) { calTargetPos(); }
+        if(Input.GetKeyDown(KeyCode.LeftShift)) { stopMove(); }
         moveToTarget(_speed);
     }
 
@@ -29,8 +30,19 @@ public class PlayerController : MonoBehaviour
         trans_pos_ = Camera.main.ScreenToWorldPoint(mouse_pos_);
         target_pos_ = new Vector3(trans_pos_.x, trans_pos_.y, 0);
     }
+
     private void moveToTarget(float _speed)
     {
-        transform.position = Vector3.MoveTowards(transform.position, target_pos_, Time.deltaTime * _speed);
+        if (Vector2.Distance(target_pos_, transform.position) <= 0.25f) transform.position = target_pos_;
+
+        Vector2 dir = (target_pos_ - transform.position).normalized * Time.deltaTime * _speed;
+        rb_.MovePosition(rb_.position + dir);
+        
+        //transform.position = Vector3.MoveTowards(transform.position, target_pos_, Time.deltaTime * _speed);
+    }
+
+    private void stopMove()
+    {
+        target_pos_ = transform.position;
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   obj_sprite_: {fileID: 21300000, guid: ffcd1020848d5fa49ae4c7d52ebaa92a, type: 3}
   obj_name_: Kiwi
   level_: 1
-  max_hp_: 10
-  speed_: 5
+  max_hp_: 50
+  speed_: 50
   skill_list_:
   - {fileID: 11400000, guid: c21359617d693704a8bb8d7e4d71d2d5, type: 2}

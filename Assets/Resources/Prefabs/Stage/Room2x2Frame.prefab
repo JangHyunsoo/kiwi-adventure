@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6460726630631741280}
+  - component: {fileID: 7168293940193476246}
   m_Layer: 0
   m_Name: Room2x2Frame
   m_TagString: Untagged
@@ -33,6 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7168293940193476246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477587600229650316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 925156597fc32d14e9c123e51a86cde4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door_prefab_list_: []
+  door_list_: []
 --- !u!1 &1971412596801390774
 GameObject:
   m_ObjectHideFlags: 0

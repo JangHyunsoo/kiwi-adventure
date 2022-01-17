@@ -39,9 +39,9 @@ public class EnemySqawnManager : MonoBehaviour
     }
     public void sqawnEnemy(int _no)
     {
-        // enemy_prefab_.GetComponent<EnemyEntity>().enemy_data = EnemyDataBase.instance.getEnemy(_no);
-        enemy_prefab_.GetComponent<SpriteRenderer>().sprite = EnemyDataBase.instance.getEnemy(_no).obj_sprite;
-        Instantiate(enemy_prefab_, new Vector3(1, 1, 0), Quaternion.identity);
+        var enemy_obj = Instantiate(enemy_prefab_, new Vector3(1, 1, 0), Quaternion.identity);
+        enemy_obj.GetComponent<EnemyEntity>().enemy_data = EnemyDataBase.instance.getEnemy(_no);
+        enemy_obj.GetComponent<SpriteRenderer>().sprite = EnemyDataBase.instance.getEnemy(_no).obj_sprite;
     }
 
 
