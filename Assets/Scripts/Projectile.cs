@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int _damage;
-    public double _delay_time;
-    public double _current_delay_time;
+    private int damage_;
+    protected Vector3 my_pos_;
+    protected Vector3 target_pos_;
 
     private void Start()
     {
-        _current_delay_time = 0d;
         init();
     }
     private void Update()
@@ -19,5 +18,9 @@ public class Projectile : MonoBehaviour
     }
     public virtual void init() {}
     public virtual void activate() {}
-
+    public void setPosition(Vector3 _my_pos, Vector3 _target_pos)
+    {
+        my_pos_ = _my_pos;
+        target_pos_ = _target_pos;
+    }
 }

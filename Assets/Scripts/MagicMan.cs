@@ -26,12 +26,14 @@ public class MagicMan : EnemyEntity
     private double dist = 0f;
 
     private SpriteRenderer sprite_renderer;
+    private Rigidbody2D rigidbody_;
 
 
     public void Awake()
     {
         target = PlayerManager.instance.player.transform;
         sprite_renderer = GetComponent<SpriteRenderer>();
+        rigidbody_ = GetComponent<Rigidbody2D>();
     }
 
     public void Update()
@@ -42,13 +44,14 @@ public class MagicMan : EnemyEntity
     public void enemyAI()
     {
         dist = calculDistance();
+        rigidbody_.velocity = Vector2.zero;
 
         if (!isAttack)
         {
             if (short_attack_distance >= dist)
             {
                 isAttack = true;
-                skills[0].activate(transform.position);
+                skills[0].activate(transform.position, target.position);
                 Color color = sprite_renderer.color;
                 color.a = 0.5f;
                 sprite_renderer.color = color;
@@ -57,7 +60,7 @@ public class MagicMan : EnemyEntity
             else if (long_attack_dictance >= dist)
             {
                 isAttack = true;
-                skills[1].activate(transform.position);
+                skills[1].activate(transform.position, target.position);
                 Color color = sprite_renderer.color;
                 color.a = 0.5f;
                 sprite_renderer.color = color;

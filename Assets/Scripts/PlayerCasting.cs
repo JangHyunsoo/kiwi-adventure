@@ -11,6 +11,10 @@ public class PlayerCasting : MonoBehaviour
         KeyCode.D, KeyCode.F 
     };
 
+    private Vector3 mouse_pos_;
+    private Vector3 trans_pos_;
+    private Vector3 target_pos_;
+
     [SerializeField]
     private int _command_idx = 0;
     [SerializeField]
@@ -54,14 +58,14 @@ public class PlayerCasting : MonoBehaviour
                 KeyCode curr_key = skill_key[i];
                 if (Input.GetKeyDown(skill_key[i]))
                 {
-                    if (Inventory.instance.getCurrSkill().command[_command_idx] != curr_key.ToString()[0])
+                    if (SkillBook.instance.getCurrSkill().command[_command_idx] != curr_key.ToString()[0])
                     {
                         FailCommand();
                     }
                     else
                     {
                         _command_idx++;
-                        if(_command_idx == Inventory.instance.getCurrSkill().command.Length)
+                        if(_command_idx == SkillBook.instance.getCurrSkill().command.Length)
                         {
                             _isReload = true;
                             _command_idx = 0;
@@ -80,9 +84,14 @@ public class PlayerCasting : MonoBehaviour
 
     private void fireSkill()    // Å¬¸¯
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
-            Inventory.instance.getCurrSkill().activate(transform.position);
+            mouse_pos_ = Input.mousePosition;
+            trans_pos_ = Camera.main.ScreenToWorldPoint(mouse_pos_);
+            target_pos_ = new Vector3(trans_pos_.x, trans_pos_.y, 0);
+
+            SkillBook.instance.getCurrSkill().activate(transform.position, target_pos_);
             _isReload = false;
         }
     }

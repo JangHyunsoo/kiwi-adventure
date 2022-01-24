@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
     private void init()
     {
         skill_equipment = new int[5] { 0, 0, 0, 0, 0 };
-        skill_equipment[0] = 0;
+        skill_equipment[0] = 1;
         curr_skill_idx = 0;
     }
     public Skill getCurrSkill()

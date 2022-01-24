@@ -33,11 +33,11 @@ public class PlayerController : MonoBehaviour
 
     private void moveToTarget(float _speed)
     {
-        if (Vector2.Distance(target_pos_, transform.position) <= 0.25f) transform.position = target_pos_;
-
         Vector2 dir = (target_pos_ - transform.position).normalized * Time.deltaTime * _speed;
         rb_.MovePosition(rb_.position + dir);
-        
+
+        if (Vector2.Distance(target_pos_, transform.position) <= 0.1f) transform.position = target_pos_;
+
         //transform.position = Vector3.MoveTowards(transform.position, target_pos_, Time.deltaTime * _speed);
     }
 

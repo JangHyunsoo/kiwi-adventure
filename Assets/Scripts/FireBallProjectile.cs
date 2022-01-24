@@ -4,33 +4,28 @@ using UnityEngine;
 
 public class FireBallProjectile : Projectile
 {
-    private Vector3 _mouse_pos;
-    private Vector3 _trans_pos;
-    private Vector3 _target_pos;
-    private Vector2 _direction;
+    private Vector3 direction_;
+
+    private double delay_time_;
+    private double current_delay_time_ = 0d;
 
     public override void init()
     {
-        _delay_time = 5d;
-        _mouse_pos = Input.mousePosition;
-        _trans_pos = Camera.main.ScreenToWorldPoint(_mouse_pos);
-        _target_pos = new Vector3(_trans_pos.x, _trans_pos.y, 0);
-
-        _direction = (_target_pos - transform.position).normalized;
+        delay_time_ = 5d;
+        direction_ = (target_pos_ - transform.position).normalized;
     }
     public override void activate()
     {
-        transform.Translate(_direction * Time.deltaTime * 10f);
-        _current_delay_time += Time.deltaTime;
+        transform.Translate(direction_ * Time.deltaTime * 10f);
+        current_delay_time_ += Time.deltaTime;
 
-        if(_delay_time < _current_delay_time)
+        if(delay_time_ < current_delay_time_)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
     }
 }

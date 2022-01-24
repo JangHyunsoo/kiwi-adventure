@@ -41,7 +41,6 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("begin");
         if(skill_ != null)
         {
             DragSlot.instance.skill_slot = this;
@@ -66,7 +65,6 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("drop");
         if(DragSlot.instance.skill_slot != null)
         {
             ChangeSlot();
@@ -87,5 +85,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             DragSlot.instance.skill_slot.clearSlot();
         }
+
+        SkillBook.instance.updateEquipmentSlot();
     }
 }
