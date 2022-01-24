@@ -22,7 +22,7 @@ public class SkillEquipSlot : MonoBehaviour
     public void clearSlot()
     {
         skill_ = null;
-        setColor(0);
+        // setColor(0);
     }
     private void setColor(float _alpha)
     {
