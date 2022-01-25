@@ -6,6 +6,6 @@ using UnityEngine;
 public class EnemyData : Status
 {
     [SerializeField]
-    private Enemytype enemy_type_;
-    public Enemytype enemy_type { get => enemy_type_; }
+    private EnemyType enemy_type_;
+    public EnemyType enemy_type { get => enemy_type_; }
 }

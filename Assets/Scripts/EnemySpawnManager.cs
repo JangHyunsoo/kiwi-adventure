@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySqawnManager : MonoBehaviour
+public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemy_prefab_;
-    private static EnemySqawnManager _instance;
-    public static EnemySqawnManager instance
+    // Room Data를 가지고 있는 Stage를 받아서, Stage 갱신 시, Stage 내, 모든 sqawn point에서
+    // Enemy를 소환해줌.
+
+    private static EnemySpawnManager _instance;
+    public static EnemySpawnManager instance
     {
         get
         {
@@ -27,16 +30,10 @@ public class EnemySqawnManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void Update()
+    public void spawnEnemy(int _no, Vector3 _pos)
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            sqawnEnemy(0);
-        }
-    }
-    public void sqawnEnemy(int _no)
-    {
-        var enemy_obj = Instantiate(enemy_prefab_, new Vector3(1, 1, 0), Quaternion.identity);
+        Debug.Log("test");
+        var enemy_obj = Instantiate(enemy_prefab_, _pos, Quaternion.identity);
         enemy_obj.GetComponent<EnemyEntity>().enemy_data = EnemyDataBase.instance.getEnemy(_no);
         enemy_obj.GetComponent<SpriteRenderer>().sprite = EnemyDataBase.instance.getEnemy(_no).obj_sprite;
     }

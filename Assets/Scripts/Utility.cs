@@ -6,11 +6,25 @@ public enum Direction
 {
     LEFT, RIGHT, TOP, BOTTOM
 };
-public enum Enemytype
+public enum EnemyType
 {
     MONSTER,
     BOSS
 };
+
+public enum ItemType
+{
+    COUNTABLE,
+    UNCOUNTABLE
+}
+
+public enum SkillBookRarity
+{
+    COMMON,
+    UNCOMMON,
+    RARE,
+    LEGENDARY
+}
 
 public class Utility
 {
@@ -21,6 +35,16 @@ public class Utility
         { Direction.TOP,    new Vector2Int(0, 1) },
         { Direction.BOTTOM, new Vector2Int(0, -1) }
     };
+
+    public static Transform[] getChildsTransform(Transform parent_)
+    {
+        Transform[] ret = new Transform[parent_.childCount];
+        for (int i = 0; i < parent_.childCount; i++)
+        {
+            ret[i] = parent_.GetChild(i);
+        }
+        return ret;
+    }
 
 }
 

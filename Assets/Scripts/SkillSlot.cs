@@ -86,6 +86,6 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             DragSlot.instance.skill_slot.clearSlot();
         }
 
-        SkillBook.instance.updateEquipmentSlot();
+        SkillInventory.instance.updateEquipmentSlot();
     }
 }
