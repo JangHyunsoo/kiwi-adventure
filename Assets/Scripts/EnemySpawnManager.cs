@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField]
+    private Transform enemy_holder_;
+
+    [SerializeField]
     private GameObject enemy_prefab_;
     // Room Data를 가지고 있는 Stage를 받아서, Stage 갱신 시, Stage 내, 모든 sqawn point에서
     // Enemy를 소환해줌.
@@ -32,10 +35,10 @@ public class EnemySpawnManager : MonoBehaviour
     }
     public void spawnEnemy(int _no, Vector3 _pos)
     {
-        Debug.Log("test");
         var enemy_obj = Instantiate(enemy_prefab_, _pos, Quaternion.identity);
         enemy_obj.GetComponent<EnemyEntity>().enemy_data = EnemyDataBase.instance.getEnemy(_no);
         enemy_obj.GetComponent<SpriteRenderer>().sprite = EnemyDataBase.instance.getEnemy(_no).obj_sprite;
+        enemy_obj.transform.SetParent(enemy_holder_);
     }
 
 

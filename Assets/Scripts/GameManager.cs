@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StageManager.instance.init();
+        PlayerManager.instance.init();
     }
 
     // Update is called once per frame

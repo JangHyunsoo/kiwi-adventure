@@ -4,35 +4,54 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    private Vector2Int room_stage_pos_;
     [SerializeField]
     private Transform[] door_tr_list_;
     [SerializeField]
     private Transform reward_spawn_point_;
     [SerializeField]
     private Transform enmey_spawn_point_parents_;
+    [SerializeField]
+    private Transform player_spawn_point_;
+    [SerializeField]
+    private Transform door_holder_;
     private Transform[] enemy_spawn_points_;
     private List<Transform> door_list = new List<Transform>();
+
+    public Vector2Int room_stage_pos { get => room_stage_pos_; set => room_stage_pos_ = value; }
+    public Transform player_spawn_point { get => player_spawn_point_; }
     
     private void Start()
     {
-        createRandomDoor();
+        createDoor();
         enemy_spawn_points_ = Utility.getChildsTransform(enmey_spawn_point_parents_);
-        EnemySpawnManager.instance.spawnEnemy(0, enemy_spawn_points_[1].position);
     }
 
-    public void createRandomDoor()
+    public void createDoor()
     {
-        int door_count = Random.Range(2, 4);
+        List<int> exit_idx_list = StageManager.instance.getExitDoorIndex(room_stage_pos_);
 
-        for (int i = 0; i < door_count; i++)
+        foreach(int idx in exit_idx_list)
         {
-            door_list.Add(Instantiate(StageManager.instance.getRandomDoorPrefab()
-                , door_tr_list_[i].position, Quaternion.identity).transform);
+            createDoorByIndex(idx);
         }
+    }
+
+    private void createDoorByIndex(int _idx)
+    {
+        Transform door = Instantiate(StageManager.instance.getDoorPrefab(0)
+                , door_tr_list_[_idx].position, Quaternion.identity).transform;
+        door.GetComponent<ExitDoor>().enter_id = _idx;
+        door_list.Add(door);
+        door.SetParent(door_holder_);
+
     }
     public void spawnMonster()
     {
-
+        for (int i = 0; i < enemy_spawn_points_.Length; i++)
+        {
+            EnemySpawnManager.instance.spawnEnemy(0, enemy_spawn_points_[i].position);
+        }
     }
 
     public void createBossDoor()

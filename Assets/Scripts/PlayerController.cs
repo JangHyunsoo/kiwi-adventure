@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb_ = GetComponent<Rigidbody2D>();
+        target_pos_ = transform.position;
     }
     public void movePlayer(float _speed)
     {

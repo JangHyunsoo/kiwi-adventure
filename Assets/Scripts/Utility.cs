@@ -6,6 +6,10 @@ public enum Direction
 {
     LEFT, RIGHT, TOP, BOTTOM
 };
+public enum RoomDirection
+{
+    LEFT, MIDDLE, RIGHT
+}
 public enum EnemyType
 {
     MONSTER,

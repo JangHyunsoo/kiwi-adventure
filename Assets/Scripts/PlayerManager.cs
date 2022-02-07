@@ -45,9 +45,9 @@ public class PlayerManager : MonoBehaviour
         if (isFreeze) return;
         _player_controller.movePlayer(_player.player_data.speed);
     }
-    private void init()
+    public void init()
     {
-        _player_object = Instantiate(_player_prefab, new Vector3(0, 0, 0), Quaternion.identity);
+        _player_object = Instantiate(_player_prefab, StageManager.instance.getCurrStagePlayerSpawnPos(), Quaternion.identity);
         _player_controller = _player_object.GetComponent<PlayerController>();
         _player = _player_object.GetComponent<PlayerEntity>();
         _player_object.GetComponent<SpriteRenderer>().sprite = _player.player_data.obj_sprite;
