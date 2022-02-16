@@ -15,7 +15,12 @@ public enum EnemyType
     MONSTER,
     BOSS
 };
-
+public enum Team
+{
+    PLAYER,
+    ENEMY,
+    NPC
+}
 public enum ItemType
 {
     COUNTABLE,
@@ -32,6 +37,10 @@ public enum SkillBookRarity
 
 public class Utility
 {
+    public static string ProjectileTag = "Projectile";
+    public static string PlayerTag = "Player";
+    public static string MonsterTag = "Monster";
+
     public static Dictionary<Direction, Vector2Int> direction_pos = new Dictionary<Direction, Vector2Int>()
     {
         { Direction.LEFT,   new Vector2Int(-1, 0) },

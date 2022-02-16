@@ -7,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     private static PlayerManager _instance =  null;
     [SerializeField]
     private GameObject _player_prefab;
+    [SerializeField]
+    private PlayerHpGauge _player_gauge;
     private GameObject _player_object;
     private PlayerEntity _player;
     private PlayerController _player_controller;
@@ -51,6 +53,11 @@ public class PlayerManager : MonoBehaviour
         _player_controller = _player_object.GetComponent<PlayerController>();
         _player = _player_object.GetComponent<PlayerEntity>();
         _player_object.GetComponent<SpriteRenderer>().sprite = _player.player_data.obj_sprite;
+    }
+    public void hitDamage(int _damage)
+    {
+        _player.hitDamage(_damage);
+        _player_gauge.updateHpGauge(_player.getHpPersent());
     }
     private IEnumerator delay(float _delay_time)
     {

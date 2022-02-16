@@ -6,6 +6,8 @@ TagManager:
   tags:
   - RoomCollider
   - Rooms
+  - Monster
+  - Projectile
   layers:
   - Default
   - TransparentFX

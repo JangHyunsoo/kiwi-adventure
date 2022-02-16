@@ -5,8 +5,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PoisonFleid : Skill
 {
-    public override void activate(Vector3 _my_pos, Vector3 _target_pos)
+    public override void activate(Transform _my_tr, Vector3 _target_pos)
     {
-        GameObject go = GameObject.Instantiate(projectile, _target_pos, Quaternion.identity);
+        GameObject go = GameObject.Instantiate(projectile, _my_tr.position, Quaternion.identity);
+        go.GetComponent<FireBallProjectile>().setTeam(_my_tr.tag);
     }
 }

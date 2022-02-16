@@ -19,4 +19,13 @@ public class PlayerEntity : MonoBehaviour
     {
         current_hp = player_data.max_hp;        
     }
+    public void hitDamage(int _damage)
+    {
+        current_hp -= _damage;
+        if (current_hp <= 0) current_hp = 0;
+    }
+    public float getHpPersent()
+    {
+        return (float)current_hp / (float)player_data.max_hp;
+    }
 }

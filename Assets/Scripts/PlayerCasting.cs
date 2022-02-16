@@ -91,7 +91,7 @@ public class PlayerCasting : MonoBehaviour
             trans_pos_ = Camera.main.ScreenToWorldPoint(mouse_pos_);
             target_pos_ = new Vector3(trans_pos_.x, trans_pos_.y, 0);
 
-            SkillInventory.instance.getCurrSkill().activate(transform.position, target_pos_);
+            SkillInventory.instance.getCurrSkill().activate(transform, target_pos_);
             _isReload = false;
         }
     }

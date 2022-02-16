@@ -27,5 +27,18 @@ public class FireBallProjectile : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.tag != team_)
+        {
+            if(collision.tag == "Player")
+            {
+                PlayerManager.instance.hitDamage(1);
+                Destroy(gameObject);
+            }
+            if(collision.tag == "Monster")
+            {
+                collision.GetComponent<EnemyEntity>().hitDamage(1);
+                Destroy(gameObject);
+            }
+        }
     }
 }

@@ -98,12 +98,12 @@ public class StageManager : MonoBehaviour
     public List<int> getExitDoorIndex(Vector2Int _room_pos)
     {
         List<int> exit_list = new List<int>();
-        if (_room_pos.y >= room_height_) return exit_list;
+        if (_room_pos.y >= room_height_ - 1) return exit_list;
         else
         {
             exit_list.Add(1);
             if (_room_pos.x != 0) exit_list.Add(0);
-            if (_room_pos.x != 2) exit_list.Add(2);
+            if (_room_pos.x != room_width_ - 1) exit_list.Add(2);
             return exit_list;
         }
     }

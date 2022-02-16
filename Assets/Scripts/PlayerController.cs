@@ -34,12 +34,12 @@ public class PlayerController : MonoBehaviour
 
     private void moveToTarget(float _speed)
     {
-        Vector2 dir = (target_pos_ - transform.position).normalized * Time.deltaTime * _speed;
-        rb_.MovePosition(rb_.position + dir);
+        //Vector2 dir = (target_pos_ - transform.position).normalized * Time.deltaTime * _speed;
+        //rb_.MovePosition(rb_.position + dir);
 
-        if (Vector2.Distance(target_pos_, transform.position) <= 0.1f) transform.position = target_pos_;
+        //if (Vector2.Distance(target_pos_, transform.position) <= 0.1f) rb_.MovePosition(target_pos_);
 
-        //transform.position = Vector3.MoveTowards(transform.position, target_pos_, Time.deltaTime * _speed);
+        transform.position = Vector3.MoveTowards(transform.position, target_pos_, Time.deltaTime * _speed);
     }
 
     private void stopMove()

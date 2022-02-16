@@ -11,5 +11,5 @@ public class Skill : ScriptableObject
     public float cool_time;
     public GameObject projectile;
 
-    public virtual void activate(Vector3 _my_pos, Vector3 _target_pos) {}
+    public virtual void activate(Transform _my_tr, Vector3 _target_pos) {}
 }
