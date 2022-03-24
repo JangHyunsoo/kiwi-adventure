@@ -39,6 +39,7 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private int room_width_;
 
+    [SerializeField]
     private Vector2Int curr_player_pos_;
     private Vector2[,] room_pos_array_;
     private Transform[,] room_tr_array_;
@@ -57,8 +58,8 @@ public class StageManager : MonoBehaviour
                 room_pos_array_[x, y] = new Vector2(x * 40f, y * 40f);
                 room_tr_array_[x, y] = Instantiate(room_prefab_list_[0], room_pos_array_[x, y], Quaternion.identity).transform;
                 room_cp_array_[x, y] = room_tr_array_[x, y].GetComponent<Room>();
-                room_cp_array_[x, y].init();
                 room_cp_array_[x, y].room_stage_pos = new Vector2Int(x, y);
+                room_cp_array_[x, y].init();
                 room_tr_array_[x, y].SetParent(room_holder_);
             }
         }
@@ -111,6 +112,7 @@ public class StageManager : MonoBehaviour
     }
     public List<int> getExitDoorIndex(Vector2Int _room_pos)
     {
+        // need fix
         List<int> exit_list = new List<int>();
         if (_room_pos.y >= room_height_ - 1) return exit_list;
         else

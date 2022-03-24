@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField]
     private Vector2Int room_stage_pos_;
     [SerializeField]
     private Transform[] door_tr_list_;
