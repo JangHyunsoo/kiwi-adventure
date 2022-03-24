@@ -24,12 +24,21 @@ public class EnemyEntity : MonoBehaviour
         if (current_hp_ <= 0)
         {
             current_hp_ = 0;
-            is_die_ = true;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
     public float getHpPersent()
     {
         return (float)current_hp_ / (float)enemy_data.max_hp;
+    }
+
+    private void OnDestroy()
+    {
+        EnemyManager.instance.removeEnemy(this);
+        EnemyManager.instance.removeTargetEnemey(this);
+        if (EnemyManager.instance.isEnemyEmpty())
+        {
+            StageManager.instance.clearStage();
+        }
     }
 }

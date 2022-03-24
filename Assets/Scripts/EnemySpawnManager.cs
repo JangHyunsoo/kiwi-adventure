@@ -43,6 +43,7 @@ public class EnemySpawnManager : MonoBehaviour
         enemy_obj.GetComponent<SpriteRenderer>().sprite = EnemyDataBase.instance.getEnemy(_no).obj_sprite;
         enemy_obj.transform.SetParent(enemy_holder_);
         enemy_list_.Add(enemy_obj.GetComponent<EnemyEntity>());
+        EnemyManager.instance.addEnemy(enemy_obj.GetComponent<EnemyEntity>());
     }
     public bool isEnemyEmpty()
     {

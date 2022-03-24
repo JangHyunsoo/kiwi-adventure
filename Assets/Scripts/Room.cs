@@ -16,17 +16,17 @@ public class Room : MonoBehaviour
     [SerializeField]
     private Transform door_holder_;
     private Transform[] enemy_spawn_points_;
-    private List<Transform> door_list = new List<Transform>();
+    private List<Transform> door_list_ = new List<Transform>();
 
     public Vector2Int room_stage_pos { get => room_stage_pos_; set => room_stage_pos_ = value; }
     public Transform player_spawn_point { get => player_spawn_point_; }
     
-    private void Start()
+    public void init()
     {
         createDoor();
+        setDoor(false);
         enemy_spawn_points_ = Utility.getChildsTransform(enmey_spawn_point_parents_);
     }
-
     public void createDoor()
     {
         List<int> exit_idx_list = StageManager.instance.getExitDoorIndex(room_stage_pos_);
@@ -42,7 +42,7 @@ public class Room : MonoBehaviour
         Transform door = Instantiate(StageManager.instance.getDoorPrefab(0)
                 , door_tr_list_[_idx].position, Quaternion.identity).transform;
         door.GetComponent<ExitDoor>().enter_id = _idx;
-        door_list.Add(door);
+        door_list_.Add(door);
         door.SetParent(door_holder_);
 
     }
@@ -57,5 +57,13 @@ public class Room : MonoBehaviour
     public void createBossDoor()
     {
 
+    }
+
+    public void setDoor(bool _flag)
+    {
+        foreach(Transform door in door_list_)
+        {
+            door.gameObject.SetActive(_flag);
+        }
     }
 }

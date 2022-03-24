@@ -25,7 +25,6 @@ public class StageManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        init();
     }
 
     [SerializeField]
@@ -58,26 +57,41 @@ public class StageManager : MonoBehaviour
                 room_pos_array_[x, y] = new Vector2(x * 40f, y * 40f);
                 room_tr_array_[x, y] = Instantiate(room_prefab_list_[0], room_pos_array_[x, y], Quaternion.identity).transform;
                 room_cp_array_[x, y] = room_tr_array_[x, y].GetComponent<Room>();
+                room_cp_array_[x, y].init();
                 room_cp_array_[x, y].room_stage_pos = new Vector2Int(x, y);
                 room_tr_array_[x, y].SetParent(room_holder_);
             }
         }
     }
-    public void startBattle()
+    private void startBattle()
     {
         room_cp_array_[curr_player_pos_.x, curr_player_pos_.y].spawnMonster();
+        Debug.Log(EnemyManager.instance.isEnemyEmpty());
+        if (EnemyManager.instance.isEnemyEmpty())
+        {
+            clearStage();
+        }
     }
-    public void MoveRoom(int _idx) // 0 = Right, 1 = Middle, 2 = Left
+    public void clearStage()
+    {
+        room_cp_array_[curr_player_pos_.x, curr_player_pos_.y].setDoor(true);
+    }
+    public void moveRoom(int _idx) // 0 = Right, 1 = Middle, 2 = Left
     {
         curr_player_pos_.y++;
-        if(_idx == 0)
+        if (_idx == 0)
         {
             curr_player_pos_.x--;
-        } 
-        else if(_idx == 2)
+        }
+        else if (_idx == 2)
         {
             curr_player_pos_.x++;
         }
+    }
+    public void enterRoom()
+    {
+        PlayerManager.instance.movePlayer(getCurrStagePlayerSpawnPos());
+        startBattle();
     }
     public GameObject getDoorPrefab(int _id)
     {

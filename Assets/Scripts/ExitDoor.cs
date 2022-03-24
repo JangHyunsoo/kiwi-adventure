@@ -12,9 +12,8 @@ public class ExitDoor : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            StageManager.instance.MoveRoom(enter_id_);
-            collision.gameObject.transform.position = StageManager.instance.getCurrStagePlayerSpawnPos();
-            StageManager.instance.startBattle();
+            StageManager.instance.moveRoom(enter_id_);
+            StageManager.instance.enterRoom();
         }
     }
 }

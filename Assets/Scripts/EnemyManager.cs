@@ -26,10 +26,27 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private List<EnemyEntity> all_enemy_ = new List<EnemyEntity>();
+
     [SerializeField]
     private EnemyHpGauge enemy_hp_gauge_;
     private List<EnemyEntity> target_enemy_ = new List<EnemyEntity>();
 
+    public void addEnemy(EnemyEntity _enemy)
+    {
+        all_enemy_.Add(_enemy);
+    }
+    public void removeEnemy(EnemyEntity _enemy)
+    {
+        if (all_enemy_.Contains(_enemy))
+        {
+            all_enemy_.Remove(_enemy);
+        }
+    }
+    public bool isEnemyEmpty()
+    {
+        return all_enemy_.Count == 0;
+    }
     public void addTargetEnemey(EnemyEntity _enemy)
     {
         target_enemy_.Add(_enemy);
@@ -37,7 +54,10 @@ public class EnemyManager : MonoBehaviour
 
     public void removeTargetEnemey(EnemyEntity _enemy)
     {
-        target_enemy_.Remove(_enemy);
+        if (isContainEnemy(_enemy))
+        {
+            target_enemy_.Remove(_enemy);
+        }
     }
 
     public bool isContainEnemy(EnemyEntity _enemy)

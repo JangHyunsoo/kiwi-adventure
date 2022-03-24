@@ -37,22 +37,25 @@ public class PlayerManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void Start()
-    {
-        init();
-        StartCoroutine(delay(1f));
-    }
+
     private void Update()
     {
         if (isFreeze) return;
         _player_controller.movePlayer(_player.player_data.speed);
     }
+
     public void init()
     {
         _player_object = Instantiate(_player_prefab, StageManager.instance.getCurrStagePlayerSpawnPos(), Quaternion.identity);
         _player_controller = _player_object.GetComponent<PlayerController>();
         _player = _player_object.GetComponent<PlayerEntity>();
         _player_object.GetComponent<SpriteRenderer>().sprite = _player.player_data.obj_sprite;
+        StartCoroutine(delay(1f));
+        StageManager.instance.enterRoom();
+    }
+    public void movePlayer(Vector2 _vec)
+    {
+        _player_object.transform.position = _vec;
     }
     public void hitDamage(int _damage)
     {
