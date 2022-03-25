@@ -14,7 +14,6 @@ public class PoisonFieldProjectile : Projectile
         sprite_renderer = GetComponent<SpriteRenderer>();
         setAlpha(0f);
     }
-
     public override void activate()
     {
         curr_delay_time_ += Time.deltaTime;
@@ -25,6 +24,7 @@ public class PoisonFieldProjectile : Projectile
             Destroy(gameObject);
         }
     }
+
 
     private void setAlpha(float _alpha)
     {

@@ -1084,6 +1084,7 @@ MonoBehaviour:
   room_holder_: {fileID: 266154407}
   room_height_: 10
   room_width_: 3
+  curr_player_pos_: {x: 0, y: 0}
 --- !u!1001 &410413117
 PrefabInstance:
   m_ObjectHideFlags: 0

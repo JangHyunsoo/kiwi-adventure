@@ -31,6 +31,7 @@ public class MagicMan : EnemyEntity
     public void Awake()
     {
         base.Awake();
+        // init¿∏∑Œ ª©æﬂ«‘
         target = PlayerManager.instance.player.transform;
         sprite_renderer = GetComponent<SpriteRenderer>();
         rigidbody_ = GetComponent<Rigidbody2D>();
