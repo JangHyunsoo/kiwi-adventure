@@ -64,4 +64,5 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(_delay_time);
         isFreeze = false;
     }
+
 }

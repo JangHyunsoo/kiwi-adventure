@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class SkillBook : Item
+public class SkillBook : ItemData
 {
     private List<int> skill_code_list_;
     private SkillBookRarity skillbook_rarity_;
