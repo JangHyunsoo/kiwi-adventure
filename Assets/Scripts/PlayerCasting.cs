@@ -84,7 +84,6 @@ public class PlayerCasting : MonoBehaviour
 
     private void fireSkill()    // Å¬¸¯
     {
-        
         if (Input.GetMouseButtonDown(0))
         {
             mouse_pos_ = Input.mousePosition;

@@ -36,8 +36,10 @@ public class StageManager : MonoBehaviour
 
     [SerializeField]
     private int room_height_;
+    public int room_height { get => room_height_; }
     [SerializeField]
     private int room_width_;
+    public int room_width { get => room_width_; }
 
     [SerializeField]
     private Vector2Int curr_player_pos_;
@@ -110,17 +112,5 @@ public class StageManager : MonoBehaviour
     {
         return room_cp_array_[curr_player_pos_.x, curr_player_pos_.y].player_spawn_point.position;
     }
-    public List<int> getExitDoorIndex(Vector2Int _room_pos)
-    {
-        // need fix
-        List<int> exit_list = new List<int>();
-        if (_room_pos.y >= room_height_ - 1) return exit_list;
-        else
-        {
-            exit_list.Add(1);
-            if (_room_pos.x != 0) exit_list.Add(0);
-            if (_room_pos.x != room_width_ - 1) exit_list.Add(2);
-            return exit_list;
-        }
-    }
+    
 }

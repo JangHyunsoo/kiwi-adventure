@@ -30,7 +30,7 @@ public class Room : MonoBehaviour
     }
     public void createDoor()
     {
-        List<int> exit_idx_list = StageManager.instance.getExitDoorIndex(room_stage_pos_);
+        List<int> exit_idx_list = getExitDoorIndex(room_stage_pos_);
 
         foreach(int idx in exit_idx_list)
         {
@@ -65,6 +65,20 @@ public class Room : MonoBehaviour
         foreach(Transform door in door_list_)
         {
             door.gameObject.SetActive(_flag);
+        }
+    }
+
+    private List<int> getExitDoorIndex(Vector2Int _room_pos)
+    {
+        // need fix
+        List<int> exit_list = new List<int>();
+        if (_room_pos.y >= StageManager.instance.room_height - 1) return exit_list;
+        else
+        {
+            exit_list.Add(1);
+            if (_room_pos.x != 0) exit_list.Add(0);
+            if (_room_pos.x != StageManager.instance.room_width - 1) exit_list.Add(2);
+            return exit_list;
         }
     }
 }
