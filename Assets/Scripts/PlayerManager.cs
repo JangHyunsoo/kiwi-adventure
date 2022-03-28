@@ -13,8 +13,6 @@ public class PlayerManager : MonoBehaviour
     private PlayerEntity _player;
     private PlayerController _player_controller;
 
-    private bool isFreeze = true;
-
     public PlayerEntity player { get => _player; }
 
     public static PlayerManager instance
@@ -40,8 +38,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if (isFreeze) return;
-        _player_controller.movePlayer(_player.player_data.speed);
+
     }
 
     public void init()
@@ -50,7 +47,6 @@ public class PlayerManager : MonoBehaviour
         _player_controller = _player_object.GetComponent<PlayerController>();
         _player = _player_object.GetComponent<PlayerEntity>();
         _player_object.GetComponent<SpriteRenderer>().sprite = _player.player_data.obj_sprite;
-        StartCoroutine(delay(1f));
         StageManager.instance.enterRoom();
     }
     public void movePlayer(Vector2 _vec)
@@ -61,10 +57,5 @@ public class PlayerManager : MonoBehaviour
     {
         _player.hitDamage(_damage);
         _player_gauge.updateHpGauge(_player.getHpPersent());
-    }
-    private IEnumerator delay(float _delay_time)
-    {
-        yield return new WaitForSeconds(_delay_time);
-        isFreeze = false;
     }
 }
