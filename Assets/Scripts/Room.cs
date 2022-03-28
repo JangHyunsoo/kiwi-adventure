@@ -51,7 +51,7 @@ public class Room : MonoBehaviour
     {
         for (int i = 0; i < enemy_spawn_points_.Length; i++)
         {
-            EnemySpawnManager.instance.spawnEnemy(0, enemy_spawn_points_[i].position);
+            EnemyManager.instance.spawnEnemy(0, enemy_spawn_points_[i].position);
         }
     }
 
