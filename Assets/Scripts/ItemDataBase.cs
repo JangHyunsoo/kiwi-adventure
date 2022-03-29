@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,5 +34,26 @@ public class ItemDataBase : MonoBehaviour
     public ItemData getItemData(int _index_num)
     {
         return item_datas_[_index_num];
+    }
+
+    public void Start()
+    {
+        Array.Sort(item_datas_, compare);
+    }
+
+    private int compare(ItemData _one, ItemData _other) 
+    {
+        if (_one.item_code > _other.item_code)
+        {
+            return 1;
+        }
+        else if (_one.item_code > _other.item_code)
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

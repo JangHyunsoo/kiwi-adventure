@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInteraction : MonoBehaviour
+public class PlayerInteraction : MonoBehaviour
 {
     private Transform detection_point;
     private const float detection_radius = 0.2f;
@@ -21,10 +21,8 @@ public class ItemInteraction : MonoBehaviour
         if (inputKey())
         {
             if (detectObject())
-            {
-                detected_object.GetComponent<Item>().item_data.activate();
-                ItemInventory.instance.addItem(detected_object.GetComponent<Item>().item_data);
-                GameObject.Destroy(detected_object);
+            { 
+                detected_object.GetComponent<InteractionEvent>().activate();
             }
         }
     }
@@ -38,10 +36,16 @@ public class ItemInteraction : MonoBehaviour
 
     bool detectObject()
     {
-        detected_object = Physics2D.OverlapCircle(detection_point.position, detection_radius, detection_layer).gameObject;
 
-        if (detected_object == null) return false;
-        else return true;
+        var detected = Physics2D.OverlapCircle(detection_point.position, detection_radius, detection_layer);
+
+
+        if (detected != null)
+        {
+            detected_object = detected.gameObject;
+            return true;
+        }
+        else return false;
     }
     
 }

@@ -13,10 +13,6 @@ public class SkillDataBase : MonoBehaviour
             else { return _instance; }
         }
     }
-
-    [SerializeField]
-    public Skill[] skills;
-
     private void Awake()
     {
         if (_instance == null)
@@ -29,6 +25,9 @@ public class SkillDataBase : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    [SerializeField]
+    public Skill[] skills;
 
     public void init()
     {

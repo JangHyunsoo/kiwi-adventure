@@ -21,8 +21,5 @@ public class ItemData : ScriptableObject
     private Sprite item_sprite_;
     public Sprite item_sprite { get => item_sprite_; set => item_sprite_ = value; }
 
-    public virtual void activate()
-    {
-        Debug.Log("activate!!");
-    }
+    
 }

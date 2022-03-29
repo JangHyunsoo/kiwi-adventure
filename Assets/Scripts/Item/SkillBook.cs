@@ -5,12 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SkillBook : ItemData
 {
-    private List<int> skill_code_list_;
-    private SkillBookRarity skillbook_rarity_;
-
-    public override void activate()
-    {
-        // open skillbook seleting ui
-    }
 
 }
+
+

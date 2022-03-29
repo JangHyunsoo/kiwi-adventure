@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5846808516440556807}
   - component: {fileID: 5625741754132252284}
   - component: {fileID: -6004287319106269254}
-  - component: {fileID: 3762005803282520173}
+  - component: {fileID: 6826847137306168102}
   - component: {fileID: 166237910386151204}
   - component: {fileID: 1725609261891385048}
   m_Layer: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b14e5674b6b57a4b822bb3c48b367d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3762005803282520173
+--- !u!114 &6826847137306168102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,10 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1704c2ffcb1be464c82729f4cbc0ba6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detection_point: {fileID: 0}
   detection_layer:
     serializedVersion: 2
     m_Bits: 64
+  detected_object: {fileID: 0}
 --- !u!50 &166237910386151204
 Rigidbody2D:
   serializedVersion: 4
