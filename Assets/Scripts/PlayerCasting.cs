@@ -86,7 +86,7 @@ public class PlayerCasting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SkillDataBase.instance.getSkill(0).activate(transform.position, Utility.getScreenMousePos());
+            SkillDataBase.instance.getSkill(0).activate(transform.position, Utility.getScreenMousePos(), tag);
             _isReload = false;
         }
     }

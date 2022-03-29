@@ -37,8 +37,11 @@ public class SkillInventory : MonoBehaviour
     [SerializeField]
     private GameObject equipment_icon_slot_parent_;
 
+    [SerializeField]
     private SkillSlot[] have_skill_slots_;
+    [SerializeField]
     private SkillSlot[] equipment_skill_slots_;
+    [SerializeField]
     private SkillEquipSlot[] equipment_skill_icon_slots_;
 
     private int curr_skill_index = 0;
@@ -47,11 +50,13 @@ public class SkillInventory : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void init()
     {
         have_skill_slots_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
         equipment_skill_slots_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
         equipment_skill_icon_slots_ = equipment_icon_slot_parent_.GetComponentsInChildren<SkillEquipSlot>();
+        AcquireSkill(SkillDataBase.instance.getSkill(0));
+        AcquireSkill(SkillDataBase.instance.getSkill(1));
     }
 
     public void OpenInventory()
@@ -66,7 +71,7 @@ public class SkillInventory : MonoBehaviour
         skill_book_go_.SetActive(false);
     }
 
-    public void AcquireItem(Skill _skill)
+    public void AcquireSkill(Skill _skill)
     {
         for (int i = 0; i < equipment_skill_slots_.Length; i++)
         {

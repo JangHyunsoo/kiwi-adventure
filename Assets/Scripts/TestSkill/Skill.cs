@@ -13,14 +13,14 @@ public class Skill
 
     public Skill(SkillData _skill_data, SkillAction _skill_action)
     {
-        skill_data = skill_data;
-        skill_action = _skill_action;
+        this.skill_data = _skill_data;
+        this.skill_action = _skill_action;
     }
 
 
 
-    public void activate(Vector3 _my_pos, Vector3 _target_pos)
+    public void activate(Vector3 _my_pos, Vector3 _target_pos, string _team)
     {
-        skill_action.activate(skill_data.projectile, _my_pos, _target_pos);
+        skill_action.activate(skill_data.projectile, _my_pos, _target_pos, _team);
     }
 }

@@ -4506,6 +4506,9 @@ MonoBehaviour:
   have_slot_parent_: {fileID: 196501358}
   equipment_slot_parent_: {fileID: 1102374572}
   equipment_icon_slot_parent_: {fileID: 1431050495}
+  have_skill_slots_: []
+  equipment_skill_slots_: []
+  equipment_skill_icon_slots_: []
 --- !u!4 &1725243080
 Transform:
   m_ObjectHideFlags: 0

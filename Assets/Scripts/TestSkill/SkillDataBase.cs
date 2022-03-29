@@ -44,10 +44,7 @@ public class SkillDataBase : MonoBehaviour
 
     private void addSkill(SkillAction _skill_action)
     {
-        //    skill_list.Add(new Skill { skill_data = skill_data_list[count_++],
-        //        skill_action = _skill_action });
         skill_list.Add(new Skill(skill_data_list[count_++], _skill_action));
-        Debug.Log(skill_list[0].skill_data.skill_name);
     }
 
     private int compareSkillNumber(SkillData _one, SkillData _other)
