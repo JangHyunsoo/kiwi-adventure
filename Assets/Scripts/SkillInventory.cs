@@ -52,8 +52,6 @@ public class SkillInventory : MonoBehaviour
         have_skill_slots_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
         equipment_skill_slots_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
         equipment_skill_icon_slots_ = equipment_icon_slot_parent_.GetComponentsInChildren<SkillEquipSlot>();
-        AcquireItem(SkillDataBase.instance.getSkill(0));
-        AcquireItem(SkillDataBase.instance.getSkill(1));
     }
 
     public void OpenInventory()

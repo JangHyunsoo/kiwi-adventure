@@ -13,7 +13,7 @@ public class EnemyEntity : MonoBehaviour
     public EnemyData enemy_data { get => enemy_data_; set => enemy_data_ = value; }
     public bool is_die { get => is_die_; }
 
-    public void Awake()
+    public virtual void Awake()
     {
         current_hp_ = enemy_data_.max_hp;
     }

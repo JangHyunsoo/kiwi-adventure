@@ -3322,11 +3322,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1182317646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 953f0acd547952a49ae5c36225dd1c42, type: 3}
+  m_Script: {fileID: 11500000, guid: f44f11ff237152444b050c71aec8e131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skills:
-  - {fileID: 11400000, guid: c21359617d693704a8bb8d7e4d71d2d5, type: 2}
+  skill_data_list:
+  - {fileID: 11400000, guid: 827a5f5e59376ad4093bdd5ff0c444e2, type: 2}
   - {fileID: 11400000, guid: 28b2e412db2d538438a089b780c91a87, type: 2}
 --- !u!4 &1182317648
 Transform:

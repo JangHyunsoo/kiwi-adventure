@@ -28,7 +28,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void addSkill(Skill _skill)
     {
         skill_ = _skill;
-        skill_image_.sprite = skill_.skill_image;
+        skill_image_.sprite = skill_.skill_data.skill_image;
         setColor(1);
     }
     

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5939391749168355828}
   - component: {fileID: 1457870530823389509}
+  - component: {fileID: -5426640732955427747}
   - component: {fileID: 2348651507861245708}
   - component: {fileID: 152046172524646323}
-  - component: {fileID: 8518905594818143238}
   m_Layer: 0
   m_Name: MagicMan
   m_TagString: Monster
@@ -85,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5426640732955427747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518905594818143233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a52253979af1c479578e56f2cac9b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy_data_: {fileID: 11400000, guid: c0c8271d3393d57408500611f79fab72, type: 2}
+  current_hp_: 0
+  target: {fileID: 0}
+  speed: 3
+  isAttack: 0
+  move_distance: 20
+  long_attack_dictance: 3
+  short_attack_distance: 1
+  dist: 0
 --- !u!50 &2348651507861245708
 Rigidbody2D:
   serializedVersion: 4
@@ -122,26 +143,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8518905594818143238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8518905594818143233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a52253979af1c479578e56f2cac9b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy_data_: {fileID: 11400000, guid: c0c8271d3393d57408500611f79fab72, type: 2}
-  skills:
-  - {fileID: 11400000, guid: c21359617d693704a8bb8d7e4d71d2d5, type: 2}
-  - {fileID: 11400000, guid: c21359617d693704a8bb8d7e4d71d2d5, type: 2}
-  target: {fileID: 0}
-  speed: 3
-  isAttack: 0
-  move_distance: 20
-  long_attack_dictance: 3
-  short_attack_distance: 1
-  dist: 0
