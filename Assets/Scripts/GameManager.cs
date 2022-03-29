@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        StageManager.instance.init();
-        PlayerManager.instance.init();
+        initDataBase();
+        initManager();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         
+    }
+
+    private void initManager()
+    {
+        StageManager.instance.init();
+        PlayerManager.instance.init();
+
+    }
+
+
+    private void initDataBase()
+    {
+        SkillDataBase.instance.init();
     }
 }

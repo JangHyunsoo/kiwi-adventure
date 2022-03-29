@@ -18,7 +18,7 @@ public class SkillEquipSlot : MonoBehaviour
     public void updateSlot(Skill _skill)
     {
         skill_ = _skill;
-        image_.sprite = skill_.skill_icon;
+        image_.sprite = skill_.skill_data.skill_icon;
     }
     public void clearSlot()
     {

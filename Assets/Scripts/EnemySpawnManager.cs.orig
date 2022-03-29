@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillDataBase : MonoBehaviour
+public class EnemySpawnManager : MonoBehaviour
 {
-    private static SkillDataBase _instance;
-    public static SkillDataBase instance
+    private static EnemySpawnManager _instance;
+    public static EnemySpawnManager instance
     {
         get
         {
@@ -13,10 +13,6 @@ public class SkillDataBase : MonoBehaviour
             else { return _instance; }
         }
     }
-
-    [SerializeField]
-    public Skill[] skills;
-
     private void Awake()
     {
         if (_instance == null)
@@ -30,12 +26,9 @@ public class SkillDataBase : MonoBehaviour
         }
     }
 
-    public void init()
+    
+    public void Update()
     {
 
-    }
-    public Skill getSkill(int _no)
-    {
-        return skills[_no];
     }
 }

@@ -59,5 +59,14 @@ public class Utility
         return ret;
     }
 
+    public static Vector3 getScreenMousePos()
+    {
+        Vector3 mouse_pos_ = Input.mousePosition;
+        Vector3 trans_pos_ = Camera.main.ScreenToWorldPoint(mouse_pos_);
+        Vector3 target_pos_ = new Vector3(trans_pos_.x, trans_pos_.y, 0);
+
+        return target_pos_;
+    }
+
 }
 

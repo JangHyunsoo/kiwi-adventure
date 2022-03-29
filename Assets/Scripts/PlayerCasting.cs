@@ -58,14 +58,14 @@ public class PlayerCasting : MonoBehaviour
                 KeyCode curr_key = skill_key[i];
                 if (Input.GetKeyDown(skill_key[i]))
                 {
-                    if (SkillInventory.instance.getCurrSkill().command[_command_idx] != curr_key.ToString()[0])
+                    if (SkillInventory.instance.getCurrSkill().skill_data.command[_command_idx] != curr_key.ToString()[0])
                     {
                         FailCommand();
                     }
                     else
                     {
                         _command_idx++;
-                        if(_command_idx == SkillInventory.instance.getCurrSkill().command.Length)
+                        if(_command_idx == SkillInventory.instance.getCurrSkill().skill_data.command.Length)
                         {
                             _isReload = true;
                             _command_idx = 0;
@@ -86,11 +86,7 @@ public class PlayerCasting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            mouse_pos_ = Input.mousePosition;
-            trans_pos_ = Camera.main.ScreenToWorldPoint(mouse_pos_);
-            target_pos_ = new Vector3(trans_pos_.x, trans_pos_.y, 0);
-
-            SkillInventory.instance.getCurrSkill().activate(transform, target_pos_);
+            SkillDataBase.instance.getSkill(0).activate(transform.position, Utility.getScreenMousePos());
             _isReload = false;
         }
     }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class MagicMan : EnemyEntity
 {
     [SerializeField]
-    private Skill[] skills;
+    private Skill[] skills_;
+
     [SerializeField]
     private Transform target;
 
@@ -28,13 +29,14 @@ public class MagicMan : EnemyEntity
     private SpriteRenderer sprite_renderer;
     private Rigidbody2D rigidbody_;
 
-    public void Awake()
+    public override void Awake()
     {
         base.Awake();
         // init¿∏∑Œ ª©æﬂ«‘
         target = PlayerManager.instance.player.transform;
         sprite_renderer = GetComponent<SpriteRenderer>();
         rigidbody_ = GetComponent<Rigidbody2D>();
+        skills_[0] = SkillDataBase.instance.getSkill(0);
     }
 
     public void Update()
@@ -52,7 +54,7 @@ public class MagicMan : EnemyEntity
             if (short_attack_distance >= dist)
             {
                 isAttack = true;
-                skills[0].activate(transform, target.position);
+                skills_[0].activate(transform.position, target.position);
                 Color color = sprite_renderer.color;
                 color.a = 0.5f;
                 sprite_renderer.color = color;
@@ -61,7 +63,7 @@ public class MagicMan : EnemyEntity
             else if (long_attack_dictance >= dist)
             {
                 isAttack = true;
-                skills[1].activate(transform, target.position);
+                skills_[1].activate(transform.position, target.position);
                 Color color = sprite_renderer.color;
                 color.a = 0.5f;
                 sprite_renderer.color = color;
