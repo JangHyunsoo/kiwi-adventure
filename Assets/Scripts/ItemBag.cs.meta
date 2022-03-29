@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/ItemBag.cs.meta
 guid: 042206ae46da1c84689c02b4502c16cf
+========
+guid: f0fc503fe5de8ed479ad9cca4de7da85
+>>>>>>>> 7d11458154b0a86ad12ae203f504910c85ef6cc0:Assets/Scripts/TestSkill/Skill.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

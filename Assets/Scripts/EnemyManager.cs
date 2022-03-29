@@ -27,9 +27,40 @@ public class EnemyManager : MonoBehaviour
     }
 
     [SerializeField]
+    private Transform enemy_holder_;
+    [SerializeField]
+    private GameObject enemy_prefab_;
+
+    private List<EnemyEntity> all_enemy_ = new List<EnemyEntity>();
+
+    [SerializeField]
     private EnemyHpGauge enemy_hp_gauge_;
     private List<EnemyEntity> target_enemy_ = new List<EnemyEntity>();
 
+    public void spawnEnemy(int _no, Vector3 _pos)
+    {
+        var enemy_obj = Instantiate(enemy_prefab_, _pos, Quaternion.identity);
+        enemy_obj.GetComponent<EnemyEntity>().enemy_data = EnemyDataBase.instance.getEnemy(_no);
+        enemy_obj.GetComponent<SpriteRenderer>().sprite = EnemyDataBase.instance.getEnemy(_no).obj_sprite;
+        enemy_obj.transform.SetParent(enemy_holder_);
+        addEnemy(enemy_obj.GetComponent<EnemyEntity>());
+    }
+
+    public void addEnemy(EnemyEntity _enemy)
+    {
+        all_enemy_.Add(_enemy);
+    }
+    public void removeEnemy(EnemyEntity _enemy)
+    {
+        if (all_enemy_.Contains(_enemy))
+        {
+            all_enemy_.Remove(_enemy);
+        }
+    }
+    public bool isEnemyEmpty()
+    {
+        return all_enemy_.Count == 0;
+    }
     public void addTargetEnemey(EnemyEntity _enemy)
     {
         target_enemy_.Add(_enemy);
@@ -37,7 +68,10 @@ public class EnemyManager : MonoBehaviour
 
     public void removeTargetEnemey(EnemyEntity _enemy)
     {
-        target_enemy_.Remove(_enemy);
+        if (isContainEnemy(_enemy))
+        {
+            target_enemy_.Remove(_enemy);
+        }
     }
 
     public bool isContainEnemy(EnemyEntity _enemy)

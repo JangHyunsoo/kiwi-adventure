@@ -8,13 +8,15 @@ public class FollowPlayer : MonoBehaviour
 
     void Start()
     {
-        // fucking player
-        target_ = GameObject.FindGameObjectWithTag("Player").transform;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        target_ = PlayerManager.instance.player.transform;
+
+        if(target_ == null) return;
 
         Vector3 pos = target_.position;
         pos.z = -10;

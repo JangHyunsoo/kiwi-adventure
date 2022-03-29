@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDataBase : MonoBehaviour
+public class SkillDataBase : MonoBehaviour
 {
-    [SerializeField]
-    private EnemyData[] enemy_datas;
-
-    private static EnemyDataBase _instance;
-    public static EnemyDataBase instance
+    private static SkillDataBase _instance;
+    public static SkillDataBase instance
     {
         get
         {
@@ -28,8 +25,16 @@ public class EnemyDataBase : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    public EnemyData getEnemy(int _no)
+
+    [SerializeField]
+    public Skill[] skills;
+
+    public void init()
     {
-        return enemy_datas[_no];
+
+    }
+    public Skill getSkill(int _no)
+    {
+        return skills[_no];
     }
 }

@@ -8,15 +8,19 @@ public class PlayerController : MonoBehaviour
     private Vector3 mouse_pos_;
     private Vector3 trans_pos_;
     private Vector3 target_pos_;
-    
+    private bool isFreeze = true;
+
     private void Update()
     {
+        if (isFreeze) return;
+        movePlayer(PlayerManager.instance.player.player_data.speed);
     }
 
     private void Awake()
     {
         rb_ = GetComponent<Rigidbody2D>();
         target_pos_ = transform.position;
+        StartCoroutine(delay(1f));
     }
     public void movePlayer(float _speed)
     {
@@ -45,5 +49,11 @@ public class PlayerController : MonoBehaviour
     private void stopMove()
     {
         target_pos_ = transform.position;
+    }
+
+    private IEnumerator delay(float _delay_time)
+    {
+        yield return new WaitForSeconds(_delay_time);
+        isFreeze = false;
     }
 }

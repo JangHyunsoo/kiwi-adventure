@@ -13,7 +13,7 @@ public class EnemyEntity : MonoBehaviour
     public EnemyData enemy_data { get => enemy_data_; set => enemy_data_ = value; }
     public bool is_die { get => is_die_; }
 
-    public void Awake()
+    public virtual void Awake()
     {
         current_hp_ = enemy_data_.max_hp;
     }
@@ -24,12 +24,21 @@ public class EnemyEntity : MonoBehaviour
         if (current_hp_ <= 0)
         {
             current_hp_ = 0;
-            is_die_ = true;
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
     public float getHpPersent()
     {
         return (float)current_hp_ / (float)enemy_data.max_hp;
+    }
+
+    private void OnDestroy()
+    {
+        EnemyManager.instance.removeEnemy(this);
+        EnemyManager.instance.removeTargetEnemey(this);
+        if (EnemyManager.instance.isEnemyEmpty())
+        {
+            StageManager.instance.clearStage();
+        }
     }
 }

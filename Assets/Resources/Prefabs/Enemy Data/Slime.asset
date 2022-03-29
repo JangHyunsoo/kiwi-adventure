@@ -15,6 +15,6 @@ MonoBehaviour:
   obj_sprite_: {fileID: 21300000, guid: a4222768388903544b274936b3151494, type: 3}
   obj_name_: Slime
   level_: 1
-  max_hp_: 50
+  max_hp_: 3
   speed_: 50
   enemy_type_: 0
