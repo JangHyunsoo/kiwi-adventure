@@ -5,15 +5,6 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager _instance =  null;
-    [SerializeField]
-    private GameObject _player_prefab;
-    [SerializeField]
-    private PlayerHpGauge _player_gauge;
-    private GameObject _player_object;
-    private PlayerEntity _player;
-    private PlayerController _player_controller;
-
-    public PlayerEntity player { get => _player; }
 
     public static PlayerManager instance
     {
@@ -23,6 +14,20 @@ public class PlayerManager : MonoBehaviour
             else                    { return _instance; }
         }
     }
+
+    [SerializeField]
+    private GameObject _player_prefab;
+    [SerializeField]
+    private PlayerHpGauge _player_gauge;
+
+    private GameObject _player_object;
+    private PlayerEntity _player;
+    private PlayerController _player_controller;
+
+    public GameObject player_object { get => _player_object; }
+    public PlayerEntity player { get => _player; }
+    public PlayerController player_controller { get => _player_controller; }
+
     private void Awake()
     {
         if(_instance == null)
@@ -58,13 +63,4 @@ public class PlayerManager : MonoBehaviour
         _player.hitDamage(_damage);
         _player_gauge.updateHpGauge(_player.getHpPersent());
     }
-<<<<<<< HEAD
-    private IEnumerator delay(float _delay_time)
-    {
-        yield return new WaitForSeconds(_delay_time);
-        isFreeze = false;
-    }
-
-=======
->>>>>>> 7d11458154b0a86ad12ae203f504910c85ef6cc0
 }
