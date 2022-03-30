@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "SkillData.asset", menuName = "SkillData")]
 public class SkillData : ScriptableObject
 {
     public int skill_no;
