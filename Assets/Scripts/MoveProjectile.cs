@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallProjectile : Projectile
+public class MoveProjectile : Projectile
 {
     private Vector3 direction_;
 

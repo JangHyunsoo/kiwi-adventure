@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyEntity : MonoBehaviour
+public class EnemyEntity : Entity
 {
-    [SerializeField]
-    private EnemyData enemy_data_;
-    [SerializeField]
-    public int current_hp_;
-    private bool is_die_;
-
-    public EnemyData enemy_data { get => enemy_data_; set => enemy_data_ = value; }
-    public bool is_die { get => is_die_; }
-
     public virtual void Awake()
     {
         current_hp_ = enemy_data_.max_hp;
