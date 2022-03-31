@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item_type_: 0
   item_name_: SilverCoin
-  item_code_: 2
+  item_code_: 3
   item_amount_: 100
+  item_sprite_: {fileID: 0}
