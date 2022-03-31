@@ -26,5 +26,6 @@ public class GameManager : MonoBehaviour
     private void initDataBase()
     {
         SkillDataBase.instance.init();
+        ItemDataBase.instance.init();
     }
 }

@@ -30,16 +30,18 @@ public class ItemDataBase : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    public void init()
+    {
+        Array.Sort(item_datas_, compare);
+    }
+
 
     public ItemData getItemData(int _index_num)
     {
         return item_datas_[_index_num];
     }
 
-    public void Start()
-    {
-        Array.Sort(item_datas_, compare);
-    }
+
 
     private int compare(ItemData _one, ItemData _other) 
     {
