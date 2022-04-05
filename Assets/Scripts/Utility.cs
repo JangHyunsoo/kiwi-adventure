@@ -27,7 +27,14 @@ public enum ItemType
     UNCOUNTABLE
 }
 
+
 public enum SkillBookRarity
+{
+    NOMAL,
+    RARE
+}
+
+public enum SkillRarity
 {
     COMMON,
     UNCOMMON,

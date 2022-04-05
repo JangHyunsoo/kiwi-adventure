@@ -66,7 +66,7 @@ public class ChestEvent : InteractionEvent
         for(int i = 0; i < drop_item_data_list.Count; i++)
         {
             var obj = GameObject.Instantiate(drop_item_prefab_, drop_pos[i].position, Quaternion.identity);
-            obj.GetComponent<PickUpEvent>().updataItem(drop_item_data_list[i]);
+            obj.GetComponent<ItemPickUpEvent>().updataItem(drop_item_data_list[i]);
         }
     }
 }

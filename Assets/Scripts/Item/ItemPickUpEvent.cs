@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpEvent : InteractionEvent
+public class ItemPickUpEvent : InteractionEvent
 {
     [SerializeField]
     private ItemData item_data_;
