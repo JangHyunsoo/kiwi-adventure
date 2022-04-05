@@ -112,4 +112,23 @@ public class SkillInventory : MonoBehaviour
             }
         }
     }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            foreach (var slot in equipment_skill_slots_)
+            {
+                if (slot.skill != null)
+                {
+                    Debug.Log(slot.skill.skill_data.name);
+                    Debug.Log(slot.skill.skill_data.command);
+                }
+                else
+                {
+                    Debug.Log("null");
+                }
+            }
+        }
+    }
 }

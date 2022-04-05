@@ -2,30 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEntity : MonoBehaviour
+public class PlayerEntity : Entity
 {
-    [SerializeField]
-    private PlayerData player_data_;
-    public PlayerData player_data { get => player_data_; }
-
-    private int current_hp_;
-    public int current_hp { get => current_hp_; set => current_hp_ = value; }
-
-    private void Start()
+    protected override void onDie()
     {
-        init();
-    }
-    private void init()
-    {
-        current_hp = player_data.max_hp;        
-    }
-    public void hitDamage(int _damage)
-    {
-        current_hp -= _damage;
-        if (current_hp <= 0) current_hp = 0;
-    }
-    public float getHpPersent()
-    {
-        return (float)current_hp / (float)player_data.max_hp;
+        Debug.Log("GameOver");
     }
 }
