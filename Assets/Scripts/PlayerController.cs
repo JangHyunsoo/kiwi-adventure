@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (isFreeze) return;
-        movePlayer(PlayerManager.instance.player.player_data.speed);
+        movePlayer(PlayerManager.instance.player.status_data.speed);
     }
 
     private void Awake()

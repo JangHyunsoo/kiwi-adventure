@@ -29,14 +29,8 @@ public class MoveProjectile : Projectile
     {
         if(collision.tag != team_)
         {
-            if(collision.tag == "Player")
-            {
-                PlayerManager.instance.hitDamage(1);
-                Destroy(gameObject);
-            }
-            if(collision.tag == "Monster")
-            {
-                collision.GetComponent<EnemyEntity>().hitDamage(1);
+            if(collision.tag == "Player" || collision.tag == "Monster") {
+                collision.GetComponent<Entity>().hitDamage(1);
                 Destroy(gameObject);
             }
         }

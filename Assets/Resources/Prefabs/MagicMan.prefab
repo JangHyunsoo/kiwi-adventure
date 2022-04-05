@@ -97,8 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a52253979af1c479578e56f2cac9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_data_: {fileID: 11400000, guid: c0c8271d3393d57408500611f79fab72, type: 2}
-  current_hp_: 0
+  status_data_: {fileID: 11400000, guid: c0c8271d3393d57408500611f79fab72, type: 2}
   target: {fileID: 0}
   speed: 3
   isAttack: 0

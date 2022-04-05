@@ -69,7 +69,6 @@ public class StageManager : MonoBehaviour
     private void startBattle()
     {
         room_cp_array_[curr_player_pos_.x, curr_player_pos_.y].spawnMonster();
-        Debug.Log(EnemyManager.instance.isEnemyEmpty());
         if (EnemyManager.instance.isEnemyEmpty())
         {
             clearStage();

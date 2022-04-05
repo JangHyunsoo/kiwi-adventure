@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6295073874623420560}
   - component: {fileID: 1305973117693462139}
-  - component: {fileID: 2700368462001307432}
+  - component: {fileID: 8681979889198976214}
   m_Layer: 0
   m_Name: PoisonFleidProjectile
   m_TagString: Projectile
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2700368462001307432
+--- !u!114 &8681979889198976214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,3 +95,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4395aae80f3bb448a32278439e5f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage_delay_time_: 2
+  hit_times_: 2
