@@ -43,9 +43,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-
     }
-
+    
     public void init()
     {
         _player_object = Instantiate(_player_prefab, StageManager.instance.getCurrStagePlayerSpawnPos(), Quaternion.identity);
