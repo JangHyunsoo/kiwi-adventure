@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: FireBall
   m_EditorClassIdentifier: 
   skill_no: 1
+  skill_rarity: 0
   skill_name: fireball
   skill_image: {fileID: 21300000, guid: 3d762b5e778d2f940a5eed696c1985ec, type: 3}
   skill_icon: {fileID: 21300000, guid: 1896b5aead2b41a468ebbdd8a22ae37c, type: 3}
   projectile_sprite: {fileID: 21300000, guid: ee73982893540ef4fac7f96fd7786810, type: 3}
   command: QW
   cool_time: 1
+  skill_cost: 1
+  skill_damage: 1
   projectile: {fileID: 6545432837217087913, guid: b1649a6b956768a4e8017a58b41593a4, type: 3}

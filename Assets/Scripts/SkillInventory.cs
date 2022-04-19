@@ -44,8 +44,14 @@ public class SkillInventory : MonoBehaviour
     [SerializeField]
     private SkillEquipSlot[] equipment_skill_icon_slots_;
 
+    [SerializeField]
+    private SkillInfoCard skill_info_card_;
+
     private int curr_skill_index = 0;
     private bool isFull = false;
+
+    private int max_equipment_count_ = 3;
+    private int curr_equipment_count_ = 0;
 
 
 
@@ -54,9 +60,11 @@ public class SkillInventory : MonoBehaviour
     {
         have_skill_slots_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
         equipment_skill_slots_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
+        foreach(SkillSlot slot in equipment_skill_slots_) slot.setupEquipmentSlot();
         equipment_skill_icon_slots_ = equipment_icon_slot_parent_.GetComponentsInChildren<SkillEquipSlot>();
-        AcquireSkill(SkillDataBase.instance.getSkill(0));
-        AcquireSkill(SkillDataBase.instance.getSkill(1));
+        AcquireSkillToEquipment(SkillDataBase.instance.getSkill(0));
+        AcquireSkillToEquipment(SkillDataBase.instance.getSkill(1));
+        
     }
 
     public void OpenInventory()
@@ -71,23 +79,38 @@ public class SkillInventory : MonoBehaviour
         skill_book_go_.SetActive(false);
     }
 
-    public void AcquireSkill(Skill _skill)
+    public void AcquireSkillRecipe(Skill _skill)
+    {
+        for (int i = 0; i < have_skill_slots_.Length; i++)
+        {
+            if (have_skill_slots_[i].skill == null)
+            {
+                have_skill_slots_[i].addSkill(_skill);
+                return;
+            }
+        }
+    }
+
+    public void AcquireSkillToHave(Skill _skill)
+    {
+        for (int i = 0; i < have_skill_slots_.Length; i++)
+        {
+            if (have_skill_slots_[i].skill == null)
+            {
+                have_skill_slots_[i].addSkill(_skill);
+                return;
+            }
+        }
+    }
+
+    public void AcquireSkillToEquipment(Skill _skill)
     {
         for (int i = 0; i < equipment_skill_slots_.Length; i++)
         {
             if (equipment_skill_slots_[i].skill == null)
             {
                 equipment_skill_slots_[i].addSkill(_skill);
-                updateEquipmentSlot();
-                return;
-            }
-        }
-
-        for (int i = 0; i < have_skill_slots_.Length; i++)
-        {
-            if (have_skill_slots_[i].skill == null)
-            {
-                have_skill_slots_[i].addSkill(_skill);
+                curr_equipment_count_++;
                 return;
             }
         }
@@ -113,22 +136,8 @@ public class SkillInventory : MonoBehaviour
         }
     }
 
-    public void Update()
+    public void updateSkillInfoCard(Skill _skill)
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            foreach (var slot in equipment_skill_slots_)
-            {
-                if (slot.skill != null)
-                {
-                    Debug.Log(slot.skill.skill_data.name);
-                    Debug.Log(slot.skill.skill_data.command);
-                }
-                else
-                {
-                    Debug.Log("null");
-                }
-            }
-        }
+        skill_info_card_.setSkill(_skill);
     }
 }

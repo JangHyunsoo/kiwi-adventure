@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
     private Skill skill_;
 
     [SerializeField]
     private Image skill_image_;
+    private bool isKnown = false;
+
+    private bool isEquipmentSlot = false;
 
     public Skill skill { get => skill_; set => skill_ = value; }
 
@@ -25,11 +28,22 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         skill_image_.color = color;
     }
 
+    public void setupEquipmentSlot()
+    {
+        isEquipmentSlot = true;
+    }
+
+    public bool getIsEquipmentSlot()
+    {
+        return isEquipmentSlot;
+    }
+
     public void addSkill(Skill _skill)
     {
         skill_ = _skill;
         skill_image_.sprite = skill_.skill_data.skill_image;
-        setColor(1);
+        if (_skill.isKnown) setColor(1);
+        else setColor(0.3f);
     }
     
     private void clearSlot()
@@ -68,6 +82,14 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         if(DragSlot.instance.skill_slot != null)
         {
             ChangeSlot();
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Left)
+        {
+            SkillInventory.instance.updateSkillInfoCard(skill_);
         }
     }
 

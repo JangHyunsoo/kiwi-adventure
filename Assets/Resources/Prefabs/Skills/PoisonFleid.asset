@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: PoisonFleid
   m_EditorClassIdentifier: 
   skill_no: 2
+  skill_rarity: 1
   skill_name: poisonfield
   skill_image: {fileID: 21300000, guid: 46cd1de5748a3fd4fa8c96118a2784ee, type: 3}
   skill_icon: {fileID: 21300000, guid: 27ced811231a34b448e6a40d9d850fd8, type: 3}
   projectile_sprite: {fileID: 21300000, guid: ad3c0e1a3eda8a24dafd63f22c493498, type: 3}
   command: QSW
-  cool_time: 2
+  cool_time: 4
+  skill_cost: 2
+  skill_damage: 1
   projectile: {fileID: 5037424032164093165, guid: 5e6806d3260287d4b8518af3c3698ad9, type: 3}
