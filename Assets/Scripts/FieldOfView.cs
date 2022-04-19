@@ -21,10 +21,10 @@ public class FieldOfView : MonoBehaviour
 
     private void Update()
     {
-        int ray_count = 50;
+        int ray_count = 100;
         float angle = 0f;
         float angle_increase = fov / ray_count;
-        float view_distance = 2f;
+        float view_distance = 4f;
 
         Vector3[] vertices = new Vector3[ray_count + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
@@ -34,6 +34,8 @@ public class FieldOfView : MonoBehaviour
 
         int vertex_index = 1;
         int triangle_index = 0;
+
+        setOrigin(PlayerManager.instance.player.transform.position);
 
         for(int i = 0; i <= ray_count; i++)
         {
@@ -47,7 +49,7 @@ public class FieldOfView : MonoBehaviour
             else
             {
                 vertex = raycast.point;
-                Debug.Log("°É¸²"); 
+                Debug.Log(raycast.point);
             }
 
             vertices[vertex_index] = vertex;
