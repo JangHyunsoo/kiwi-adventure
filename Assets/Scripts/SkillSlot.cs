@@ -87,9 +87,12 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Left)
+        if(skill_ != null)
         {
-            SkillInventory.instance.updateSkillInfoCard(skill_);
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                SkillInventory.instance.updateSkillInfoCard(skill_);
+            }
         }
     }
 

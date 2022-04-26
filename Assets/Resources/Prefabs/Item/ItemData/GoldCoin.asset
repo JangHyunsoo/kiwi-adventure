@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item_type_: 0
   item_name_: GoldCoin
-  item_code_: 3
+  item_code_: 7
   item_amount_: 150
+  item_sprite_: {fileID: 0}

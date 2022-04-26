@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
   item_type_: 0
-  item_name_: 
-  item_code_: 0
+  item_name_: HealthPotion
+  item_code_: 9
   item_amount_: 0
   item_sprite_: {fileID: 0}

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         StageManager.instance.init();
         PlayerManager.instance.init();
         SkillInventory.instance.init();
+        ItemInventory.instance.init();
     }
 
 

@@ -62,8 +62,8 @@ public class SkillInventory : MonoBehaviour
         equipment_skill_slots_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
         foreach(SkillSlot slot in equipment_skill_slots_) slot.setupEquipmentSlot();
         equipment_skill_icon_slots_ = equipment_icon_slot_parent_.GetComponentsInChildren<SkillEquipSlot>();
-        AcquireSkillToEquipment(SkillDataBase.instance.getSkill(0));
-        AcquireSkillToEquipment(SkillDataBase.instance.getSkill(1));
+        AcquireSkillToHave(SkillDataBase.instance.getSkill(0));
+        AcquireSkillToHave(SkillDataBase.instance.getSkill(1));
         
     }
 
@@ -77,18 +77,6 @@ public class SkillInventory : MonoBehaviour
     {
         skill_book_activated = false;
         skill_book_go_.SetActive(false);
-    }
-
-    public void AcquireSkillRecipe(Skill _skill)
-    {
-        for (int i = 0; i < have_skill_slots_.Length; i++)
-        {
-            if (have_skill_slots_[i].skill == null)
-            {
-                have_skill_slots_[i].addSkill(_skill);
-                return;
-            }
-        }
     }
 
     public void AcquireSkillToHave(Skill _skill)
@@ -139,5 +127,10 @@ public class SkillInventory : MonoBehaviour
     public void updateSkillInfoCard(Skill _skill)
     {
         skill_info_card_.setSkill(_skill);
+    }
+
+    public void createSkill(Skill _skill)
+    {
+        Skill curr_skill = skill_info_card_.curr_skill;
     }
 }

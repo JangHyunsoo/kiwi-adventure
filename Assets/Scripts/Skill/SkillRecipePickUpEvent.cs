@@ -9,7 +9,7 @@ public class SkillRecipePickUpEvent : InteractionEvent
 
     public override void activate()
     {
-        SkillInventory.instance.AcquireSkillRecipe(SkillDataBase.instance.getSkill(skill_data_.skill_no));
+        SkillInventory.instance.AcquireSkillToHave(SkillDataBase.instance.getSkillRecipe(skill_data_.skill_no));
     }
 
     public void setRandomSkillData(SkillRarity _skill_rarity)

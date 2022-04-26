@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SkillInfoCard : MonoBehaviour
 {
     private Skill curr_skill_;
+    public Skill curr_skill { get { return curr_skill; } }
     [SerializeField]
     private Image curr_skill_image_;
     [SerializeField]
@@ -28,6 +29,8 @@ public class SkillInfoCard : MonoBehaviour
     private Text curr_skill_photon_element_count_;
     [SerializeField]
     private Text curr_skill_element_dust_count_;
+    [SerializeField]
+    private Transform create_btn_;
 
     public void setSkill(Skill _skill)
     {
