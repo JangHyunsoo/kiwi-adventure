@@ -12,15 +12,24 @@ public class Skill
     private SkillRecipeData skill_recipe_data_;
     public SkillRecipeData skill_recipe_data { get => skill_recipe_data_; set => skill_recipe_data_ = value; }
 
-    private bool isKnown_ = false;
-    public bool isKnown { get { return isKnown_; } set { isKnown_ = value; } }
+    private int level_ = 0;
+    public int level { get { return level_; } set { level_ = value; } }
+    public bool isKnown { get { return level_ != 0; }}
 
     public Skill(SkillData _skill_data, SkillRecipeData _skill_recipe_data, SkillAction _skill_action)
     {
         this.skill_data = _skill_data;
         this.skill_action = _skill_action;
         this.skill_recipe_data = _skill_recipe_data;
-        isKnown_ = false;
+        level_ = 0;
+    }
+
+    public Skill(Skill _skill)
+    {
+        this.skill_data = _skill.skill_data;
+        this.skill_action = _skill.skill_action;
+        this.skill_recipe_data = _skill.skill_recipe_data;
+        level_ = _skill.level;
     }
 
     public void activate(Vector3 _my_pos, Vector3 _target_pos, string _team)

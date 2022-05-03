@@ -35,8 +35,8 @@ public class MagicMan : EnemyEntity
         target = PlayerManager.instance.player.transform;
         sprite_renderer = GetComponent<SpriteRenderer>();
         rigidbody_ = GetComponent<Rigidbody2D>();
-        skills_.Add(SkillDataBase.instance.getSkill(0));
-        skills_.Add(SkillDataBase.instance.getSkill(0));
+        skills_.Add(SkillDataBase.instance.getSkill(0, 0));
+        skills_.Add(SkillDataBase.instance.getSkill(0, 0));
     }
 
     public void Update()

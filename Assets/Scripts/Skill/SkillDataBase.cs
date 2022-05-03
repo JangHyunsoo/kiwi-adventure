@@ -71,16 +71,10 @@ public class SkillDataBase : MonoBehaviour
     {
         return skill_recipe_data_list[_no];
     }
-    public Skill getSkillRecipe(int _no)
+    public Skill getSkill(int _no, int _level)
     {
         Skill skill = skill_list[_no];
-        skill.isKnown = false;
-        return skill_list[_no];
-    }
-    public Skill getSkill(int _no)
-    {
-        Skill skill = skill_list[_no];
-        skill.isKnown = true;
-        return skill_list[_no];
+        skill.level = _level;
+        return new Skill(skill);
     }
 }

@@ -39,7 +39,7 @@ public class ItemInventory : MonoBehaviour
     {
         for(int i = 0; i < 10; i++)
         {
-            inventory_[i] = 20;
+            inventory_[i] = 100;
         }
         updateDisplay();
     }
@@ -48,6 +48,39 @@ public class ItemInventory : MonoBehaviour
     {
         inventory_[_item_data.item_code] += _item_data.item_amount;
         updateDisplay();
+    }
+
+    public void useItem(ItemData _item_data)
+    {
+        inventory_[_item_data.item_code] -= _item_data.item_amount;
+        updateDisplay();
+    }
+
+    public void useItems(Dictionary<int,int> _used_items)
+    {
+        foreach(var item in _used_items)
+        {
+            inventory_[item.Key] -= item.Value;
+        }
+        updateDisplay();
+    }
+
+    public bool checkItem(ItemData _used_item)
+    {
+        if (inventory_[_used_item.item_code] < _used_item.item_amount)
+            return false;
+        return true;
+    }
+
+    public bool checkItems(Dictionary<int, int> _used_items)
+    {
+        foreach (var item in _used_items)
+        {
+            if (inventory_[item.Key] < item.Value)
+                return false;
+        }
+
+        return true;
     }
 
     private void updateDisplay()

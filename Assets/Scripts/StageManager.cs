@@ -111,5 +111,4 @@ public class StageManager : MonoBehaviour
     {
         return room_cp_array_[curr_player_pos_.x, curr_player_pos_.y].player_spawn_point.position;
     }
-    
 }

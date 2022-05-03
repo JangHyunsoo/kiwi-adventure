@@ -10,12 +10,6 @@ public class KeyboardActivate : MonoBehaviour
     private GameObject skill_inventory_;
     private bool skill_inventory_state_;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(skill_inventory_key_))

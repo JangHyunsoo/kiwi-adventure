@@ -50,21 +50,34 @@ public class SkillInventory : MonoBehaviour
     private int curr_skill_index = 0;
     private bool isFull = false;
 
-    private int max_equipment_count_ = 3;
-    private int curr_equipment_count_ = 0;
-
-
-
     // Start is called before the first frame update
     public void init()
     {
-        have_skill_slots_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
-        equipment_skill_slots_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
-        foreach(SkillSlot slot in equipment_skill_slots_) slot.setupEquipmentSlot();
+        setupHaveSlot();
+        setupEquipmentSlot();
         equipment_skill_icon_slots_ = equipment_icon_slot_parent_.GetComponentsInChildren<SkillEquipSlot>();
-        AcquireSkillToHave(SkillDataBase.instance.getSkill(0));
-        AcquireSkillToHave(SkillDataBase.instance.getSkill(1));
-        
+        AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
+        AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
+        AcquireSkillToHave(SkillDataBase.instance.getSkill(1, 0));
+    }
+
+    private void setupHaveSlot()
+    {
+        have_skill_slots_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
+        for(int i = 0; i < have_skill_slots_.Length; i++)
+        {
+            have_skill_slots_[i].slot_no = i;
+        }
+    }
+
+    private void setupEquipmentSlot()
+    {
+        equipment_skill_slots_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
+        for (int i = 0; i < equipment_skill_slots_.Length; i++)
+        {
+            equipment_skill_slots_[i].slot_no = i;
+            equipment_skill_slots_[i].setupEquipmentSlot();
+        }
     }
 
     public void OpenInventory()
@@ -98,7 +111,6 @@ public class SkillInventory : MonoBehaviour
             if (equipment_skill_slots_[i].skill == null)
             {
                 equipment_skill_slots_[i].addSkill(_skill);
-                curr_equipment_count_++;
                 return;
             }
         }
@@ -124,13 +136,84 @@ public class SkillInventory : MonoBehaviour
         }
     }
 
-    public void updateSkillInfoCard(Skill _skill)
+    public void updateSkillInfoCard(SkillSlot _slot)
     {
-        skill_info_card_.setSkill(_skill);
+        skill_info_card_.setSkill(_slot);
     }
 
-    public void createSkill(Skill _skill)
+    public void updateSkillSlot()
     {
-        Skill curr_skill = skill_info_card_.curr_skill;
+
+        for (int i = 0; i < have_skill_slots_.Length; i++)
+        {
+            if (have_skill_slots_[i].skill != null)
+            {
+                have_skill_slots_[i].updateSkill();
+            }
+        }
+    }
+
+    public void createSkill()
+    {
+        SkillSlot curr_slot = skill_info_card_.curr_slot;
+        Skill curr_skill = skill_info_card_.curr_slot.skill;
+
+        if (!ItemInventory.instance.checkItems(curr_skill.skill_recipe_data.ToDictionary()))
+        {
+            Debug.Log("cannot create skill");
+        }
+        else
+        {
+            ItemInventory.instance.useItems(curr_skill.skill_recipe_data.ToDictionary());
+            Skill max_skill = searchSkillMaxLevel(curr_skill.skill_data.skill_no);
+            if(curr_skill == max_skill)
+            {
+                curr_skill.level++;
+            }
+            else
+            {
+                max_skill.level++;
+                curr_slot.clearSlot();
+            }
+            updateSkillSlot();
+            Debug.Log("create " + curr_skill.skill_data.skill_name);
+        }
+        skill_info_card_.updateSkillInfo();
+    }
+
+    private Skill searchSkillMaxLevel(int _no)
+    {
+        List<Skill> result = new List<Skill>();
+
+        for (int i = 0; i < equipment_skill_slots_.Length; i++)
+        {
+            if (equipment_skill_slots_[i].skill != null)
+            {
+                if (equipment_skill_slots_[i].skill.skill_data.skill_no == _no)
+                {
+                    result.Add(equipment_skill_slots_[i].skill);
+                }
+            }
+        }
+
+        for (int i = 0; i < have_skill_slots_.Length; i++)
+        {
+            if (have_skill_slots_[i].skill != null)
+            {
+                if(have_skill_slots_[i].skill.skill_data.skill_no == _no)
+                {
+                    result.Add(have_skill_slots_[i].skill);
+                }
+            }
+        }
+
+        result.Sort(delegate (Skill one, Skill other) 
+        {
+            if (one.level < other.level) return 1;
+            else if (one.level > other.level) return -1;
+            else return 0;
+        });
+
+        return result[0];
     }
 }
