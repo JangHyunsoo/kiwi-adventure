@@ -46,7 +46,14 @@ public class PlayerCasting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _isCasting = true;
+            if (SkillInventory.instance.getCurrSkill() == null)
+            {
+                Debug.Log("cannot casting null skill.");
+            }
+            else
+            {
+                _isCasting = true;
+            }
         }
     }
     private void castSkill()

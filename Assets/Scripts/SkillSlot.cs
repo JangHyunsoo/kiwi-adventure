@@ -50,7 +50,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             else setColor(0.3f);
         }
     }
-    
+
     public void clearSlot()
     {
         skill_ = null;
