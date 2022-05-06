@@ -216,4 +216,39 @@ public class SkillInventory : MonoBehaviour
 
         return result[0];
     }
+
+    public void sortSkill()
+    {
+        for (int i = 0; i < have_skill_slots_.Length; i++)
+        {
+            for (int j = 0; j < have_skill_slots_.Length; j++)
+            {
+                if (compareSkill(have_skill_slots_[i].skill, have_skill_slots_[j].skill) == 1)
+                {
+                    swapHaveSkillSlot(i, j);
+                }
+            }
+        }
+    }
+
+    private int compareSkill(Skill one, Skill other)
+    {
+        if (one == null) return -1;
+        else if (other == null) return 1;
+        else if (one.level == other.level) return one.skill_data.skill_name.CompareTo(other.skill_data.skill_name);
+        else return one.level.CompareTo(other.level);
+    }
+
+    // contain update
+    private void swapHaveSkillSlot(int _idx1, int _idx2)
+    {
+        Skill skill1 = have_skill_slots_[_idx1].skill;
+        Skill skill2 = have_skill_slots_[_idx2].skill;
+
+        have_skill_slots_[_idx1].skill = skill2;
+        have_skill_slots_[_idx2].skill = skill1;
+
+        have_skill_slots_[_idx1].updateSkill();
+        have_skill_slots_[_idx2].updateSkill();
+    }   
 }

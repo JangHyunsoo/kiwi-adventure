@@ -42,9 +42,13 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void updateSkill()
     {
-        skill_image_.sprite = skill_.skill_data.skill_image;
-        if (skill_.isKnown) setColor(1);
-        else setColor(0.3f);
+        if (skill == null) clearSlot();
+        else
+        {
+            skill_image_.sprite = skill_.skill_data.skill_image;
+            if (skill_.isKnown) setColor(1);
+            else setColor(0.3f);
+        }
     }
     
     public void clearSlot()
