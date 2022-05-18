@@ -11,6 +11,13 @@ public class PlayerCasting : MonoBehaviour
         KeyCode.D, KeyCode.F 
     };
 
+    private readonly KeyCode[] skill_idx_ =
+    {
+        KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3,
+        KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6,
+        KeyCode.Alpha7, KeyCode.Alpha8
+    };
+
     private Vector3 mouse_pos_;
     private Vector3 trans_pos_;
     private Vector3 target_pos_;
@@ -41,7 +48,34 @@ public class PlayerCasting : MonoBehaviour
         {
             fireSkill();
         }
+
+        if (!_isCasting)
+        {
+            moveCurrSkillCursorWithKeyboard();
+        }
     }
+    private void moveCurrSkillCursorWithKeyboard()
+    {
+        if (Input.anyKeyDown)
+        {
+            for(int i = 0; i < skill_idx_.Length; i++)
+            {
+                if (Input.GetKeyDown(skill_idx_[i]))
+                {
+                    changeSkill(i);
+                    _isReload = false;
+                    _command_idx = 0;
+                    _isCasting = false;
+                }
+            }
+        }
+    }
+
+    private void changeSkill(int _idx)
+    {
+        SkillInventory.instance.moveCurrSkillCursor(_idx);
+    }
+
     private void startCastSkill()    // 스페이스바
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -68,10 +102,12 @@ public class PlayerCasting : MonoBehaviour
                     if (SkillInventory.instance.getCurrSkill().skill_data.command[_command_idx] != curr_key.ToString()[0])
                     {
                         FailCommand();
+                        SkillInventory.instance.clearCurrCasting();
                     }
                     else
                     {
                         _command_idx++;
+                        SkillInventory.instance.updateCurrCasting(curr_key.ToString());
                         if(_command_idx == SkillInventory.instance.getCurrSkill().skill_data.command.Length)
                         {
                             _isReload = true;
@@ -83,6 +119,7 @@ public class PlayerCasting : MonoBehaviour
             }
         }
     }
+
     private void FailCommand()
     {
         _command_idx = 0;
@@ -95,6 +132,7 @@ public class PlayerCasting : MonoBehaviour
         {
             SkillInventory.instance.getCurrSkill().activate(transform.position, Utility.getScreenMousePos(), tag);
             _isReload = false;
+            SkillInventory.instance.clearCurrCasting();
         }
     }
 }

@@ -47,14 +47,17 @@ public class SkillInventory : MonoBehaviour
     [SerializeField]
     private SkillInfoCard skill_info_card_;
 
-    private int curr_skill_index = 0;
-    private bool isFull = false;
+    [SerializeField]
+    private SkillCastingDisplay skill_casting_display_;
+
+    private int curr_skill_index_ = 0;
 
     // Start is called before the first frame update
     public void init()
     {
         setupHaveSlot();
         setupEquipmentSlot();
+        skill_casting_display_.init();
         equipment_skill_icon_slots_ = equipment_icon_slot_parent_.GetComponentsInChildren<SkillEquipSlot>();
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
@@ -118,7 +121,7 @@ public class SkillInventory : MonoBehaviour
 
     public Skill getCurrSkill()
     {
-        return equipment_skill_slots_[curr_skill_index].skill;
+        return equipment_skill_slots_[curr_skill_index_].skill;
     }
 
     public void updateEquipmentSlot()
@@ -134,6 +137,11 @@ public class SkillInventory : MonoBehaviour
                 equipment_skill_icon_slots_[i].clearSlot();
             }
         }
+    }
+
+    public void updateCastingDisplay()
+    {
+        skill_casting_display_.updateNeed(getCurrSkill());
     }
 
     public void updateSkillInfoCard(SkillSlot _slot)
@@ -251,4 +259,20 @@ public class SkillInventory : MonoBehaviour
         have_skill_slots_[_idx1].updateSkill();
         have_skill_slots_[_idx2].updateSkill();
     }   
+
+    public void moveCurrSkillCursor(int _idx)
+    {
+        curr_skill_index_ = _idx;
+        updateCastingDisplay();
+    }
+
+    public void clearCurrCasting()
+    {
+        skill_casting_display_.clearCurr();
+    }
+
+    public void updateCurrCasting(string _str)
+    {
+        skill_casting_display_.updateCurr(_str);
+    }
 }

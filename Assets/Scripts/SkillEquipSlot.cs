@@ -8,12 +8,6 @@ public class SkillEquipSlot : MonoBehaviour
     [SerializeField]
     private Image image_;
     private Skill skill_;
-    private Sprite none_sprite_;
-
-    void Start()
-    {
-        none_sprite_ = image_.sprite;
-    }
 
     public void updateSlot(Skill _skill)
     {

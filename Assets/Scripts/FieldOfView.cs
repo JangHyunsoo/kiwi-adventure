@@ -75,5 +75,4 @@ public class FieldOfView : MonoBehaviour
     {
         this.origin = origin;
     }
-
 }
