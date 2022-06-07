@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5846808516440556807}
   - component: {fileID: 5625741754132252284}
   - component: {fileID: -6004287319106269254}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 6289091404385615532}
   - component: {fileID: 8651532064944125518}
   - component: {fileID: 5210493549954260321}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -26,13 +26,21 @@ public class MagicMan : EnemyEntity
     [SerializeField]
     private double dist = 0f;
 
+    [SerializeField]
+    private float fov_ = 360f;
+    [SerializeField]
+    private int ray_count_ = 100;
+    [SerializeField]
+    private float view_distance_ = 10f;
+
+    private Vector3 origin;
+
     private SpriteRenderer sprite_renderer;
     private Rigidbody2D rigidbody_;
 
     protected override void init()
     {
         base.init();
-        target = PlayerManager.instance.player.transform;
         sprite_renderer = GetComponent<SpriteRenderer>();
         rigidbody_ = GetComponent<Rigidbody2D>();
         skills_.Add(SkillDataBase.instance.getSkill(0, 0));
@@ -46,11 +54,18 @@ public class MagicMan : EnemyEntity
 
     public void enemyAI()
     {
-        dist = calculDistance();
+        checkEnemy();
         rigidbody_.velocity = Vector2.zero;
+
+        if(target == null)
+        {
+            return;
+        }
 
         if (!isAttack)
         {
+            dist = calculDistance();
+
             if (short_attack_distance >= dist)
             {
                 isAttack = true;
@@ -73,6 +88,43 @@ public class MagicMan : EnemyEntity
             {
                 transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * speed);
             }
+        }
+    }
+
+    private void checkEnemy()
+    {
+        int ray_count = ray_count_;
+        float angle = 0f;
+        float view_distance = view_distance_;
+        float angle_increase = fov_ / ray_count_;
+
+        origin = transform.position;
+        target = null;
+
+        for (int i = 0; i <= ray_count_; i++)
+        {
+            RaycastHit2D raycast = Physics2D.Raycast(origin, Utility.GetVectorFromAngle(angle), view_distance_, (-1) - (1 << LayerMask.NameToLayer("Monster")));
+
+            Debug.Log("test");
+
+            if (raycast.collider != null)
+            {
+                if (raycast.collider.gameObject.tag == Utility.PlayerTag)
+                {
+                    target = raycast.collider.gameObject.transform;
+                    Debug.Log(target.name);
+                }
+                else
+                {
+                    Debug.Log(raycast.collider.gameObject.tag);
+                }
+            }
+            else
+            {
+                Debug.Log("null");
+            }
+
+            angle -= angle_increase;
         }
     }
 

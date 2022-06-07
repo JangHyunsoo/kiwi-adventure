@@ -7,6 +7,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField]
     private LayerMask layer_mask;
     private float fov;
+    private Transform target;
     private Vector3 origin;
     private Mesh mesh;
 
@@ -15,7 +16,7 @@ public class FieldOfView : MonoBehaviour
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         fov = 360f;
-        origin = Vector3.zero;
+        target = PlayerManager.instance.player.transform;
     }
 
 
@@ -26,6 +27,8 @@ public class FieldOfView : MonoBehaviour
         float angle_increase = fov / ray_count;
         float view_distance = 4f;
 
+        origin = target.position;
+
         Vector3[] vertices = new Vector3[ray_count + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
         int[] triagles = new int[ray_count * 3];
@@ -34,8 +37,6 @@ public class FieldOfView : MonoBehaviour
 
         int vertex_index = 1;
         int triangle_index = 0;
-
-        setOrigin(PlayerManager.instance.player.transform.position);
 
         for(int i = 0; i <= ray_count; i++)
         {
@@ -49,7 +50,6 @@ public class FieldOfView : MonoBehaviour
             else
             {
                 vertex = raycast.point;
-                Debug.Log(raycast.point);
             }
 
             vertices[vertex_index] = vertex;

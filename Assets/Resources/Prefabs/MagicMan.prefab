@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5426640732955427747}
   - component: {fileID: 2348651507861245708}
   - component: {fileID: 152046172524646323}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MagicMan
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -105,6 +105,9 @@ MonoBehaviour:
   long_attack_dictance: 3
   short_attack_distance: 1
   dist: 0
+  fov_: 360
+  ray_count_: 100
+  view_distance_: 10
 --- !u!50 &2348651507861245708
 Rigidbody2D:
   serializedVersion: 4
