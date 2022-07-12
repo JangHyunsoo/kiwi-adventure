@@ -2155,15 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab42c693cc2843c47b40704698bf623a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exit_door_prefab_list_:
-  - {fileID: 2812250244297257265, guid: 18ca98b33cbbfd44d88fe65dfed31812, type: 3}
-  - {fileID: 5516129950588391298, guid: d1ff76732769ae54a8736fded0c0eee4, type: 3}
-  room_prefab_list_:
-  - {fileID: 888160258557280025, guid: f56590f185a28244084c3c8c5b516eb2, type: 3}
-  room_holder_: {fileID: 266154407}
-  room_height_: 10
-  room_width_: 3
-  curr_player_pos_: {x: 0, y: 0}
+  stage_: {fileID: 1369505697}
 --- !u!1001 &410413117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7020,6 +7012,55 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2891123224482057282, guid: 5d32baa87eb20054bba411615471aefc, type: 3}
   m_PrefabInstance: {fileID: 909384183}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1369505695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369505696}
+  - component: {fileID: 1369505697}
+  m_Layer: 0
+  m_Name: Stage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369505696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369505695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.768934, y: -0.6794266, z: -1454.3834}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1369505697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369505695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77bf39c48620bf746866ed7a9190b5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_frame_prefab: {fileID: 87728355347847521, guid: f725c8c0eda284449bfd8a284df45521, type: 3}
+  room_size_: 15
+  map_width_size_: 21
+  map_height_size_: 21
+  goal_count: 50
+  curr_count: 0
 --- !u!1 &1372895840
 GameObject:
   m_ObjectHideFlags: 0

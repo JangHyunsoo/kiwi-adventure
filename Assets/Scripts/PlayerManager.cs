@@ -47,11 +47,10 @@ public class PlayerManager : MonoBehaviour
     
     public void init()
     {
-        _player_object = Instantiate(_player_prefab, StageManager.instance.getCurrStagePlayerSpawnPos(), Quaternion.identity);
+        _player_object = Instantiate(_player_prefab, StageManager.instance.curr_real_pos, Quaternion.identity);
         _player_controller = _player_object.GetComponent<PlayerController>();
         _player = _player_object.GetComponent<PlayerEntity>();
         _player_object.GetComponent<SpriteRenderer>().sprite = _player.status_data.obj_sprite;
-        StageManager.instance.enterRoom();
     }
     public void movePlayer(Vector2 _vec)
     {
