@@ -25,14 +25,20 @@ public class MoveProjectile : Projectile
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void onHit(Collider2D collision)
     {
-        if(collision.tag != team_)
+        if (collision.tag != team_)
         {
-            if(collision.tag == "Player" || collision.tag == "Monster") {
+            if (collision.tag == "Player" || collision.tag == "Monster")
+            {
                 collision.GetComponent<Entity>().hitDamage(1);
                 Destroy(gameObject);
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        onHit(collision);
+    }
+
 }

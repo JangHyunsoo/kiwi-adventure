@@ -105,23 +105,23 @@ public class MagicMan : EnemyEntity
         {
             RaycastHit2D raycast = Physics2D.Raycast(origin, Utility.GetVectorFromAngle(angle), view_distance_, (-1) - (1 << LayerMask.NameToLayer("Monster")));
 
-            Debug.Log("test");
+            // Debug.Log("test");
 
             if (raycast.collider != null)
             {
                 if (raycast.collider.gameObject.tag == Utility.PlayerTag)
                 {
                     target = raycast.collider.gameObject.transform;
-                    Debug.Log(target.name);
+                    // Debug.Log(target.name);
                 }
                 else
                 {
-                    Debug.Log(raycast.collider.gameObject.tag);
+                    // Debug.Log(raycast.collider.gameObject.tag);
                 }
             }
             else
             {
-                Debug.Log("null");
+                // Debug.Log("null");
             }
 
             angle -= angle_increase;
