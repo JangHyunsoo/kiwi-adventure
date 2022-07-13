@@ -62,6 +62,9 @@ public class SkillInventory : MonoBehaviour
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(1, 0));
+        AcquireSkillToEquipment(SkillDataBase.instance.getSkill(0, 1));
+        updateCastingDisplay();
+        updateEquipmentSlot();
     }
 
     private void setupHaveSlot()
