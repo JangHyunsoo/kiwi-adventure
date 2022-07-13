@@ -11,7 +11,7 @@ public class FireProjectile : MoveProjectile
             if (collision.tag == "Player" || collision.tag == "Monster")
             {
                 collision.GetComponent<Entity>().hitDamage(1);
-                collision.GetComponent<BuffTable>().addBuff(new Burn(3));
+                collision.GetComponent<BuffTable>().addBuff(new Burn(1));
                 Destroy(gameObject);
             }
         }

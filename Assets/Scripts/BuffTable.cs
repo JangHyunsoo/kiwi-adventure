@@ -7,6 +7,11 @@ public class BuffTable : MonoBehaviour
 {
     private Entity entity_;
     private List<Buff> buff_list_ = new List<Buff>();
+
+
+
+    [SerializeField]
+    private int temp = 0;
     
     public void Awake()
     {
@@ -15,11 +20,12 @@ public class BuffTable : MonoBehaviour
 
     public void Update()
     {
+
         if(buff_list_.Count > 0)
         {
             for (int i = 0; i < buff_list_.Count; i++)
             {
-                if(buff_list_[i].activate(entity_))
+                if(buff_list_[i].sequenceActivate(entity_))
                 {
                     buff_list_.Remove(buff_list_[i--]);
                 }
@@ -38,19 +44,11 @@ public class BuffTable : MonoBehaviour
         {
             if(buff.name == _buff.name)
             {
-                buff.increaseStack(_buff);
+                buff.onetimeActivate(entity_);
                 return;
             }
         }
         buff_list_.Add(_buff);
+        _buff.onetimeActivate(entity_);
     }
-
-    public void deleteBuff()
-    {
-
-    }
-
-
-
-
 }
