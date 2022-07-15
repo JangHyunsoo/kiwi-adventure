@@ -741,6 +741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr_: {fileID: 6072175704460151556}
   event_tr_: {fileID: 6472320394043402824}
+  direction_: 3
   open_sprite_: {fileID: 21300000, guid: 22775d343b0964846a4965d2db1e5efe, type: 3}
   close_sprite_: {fileID: 21300000, guid: 6cae7f974c73b2b468ba78d8059dd62d, type: 3}
 --- !u!61 &5147829146612372697
@@ -779,7 +780,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6472320394043402824}
   - component: {fileID: 6634513315725577883}
-  m_Layer: 0
+  - component: {fileID: 334996428492224004}
+  m_Layer: 10
   m_Name: Door Event Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -810,7 +812,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -826,6 +828,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 1.28}
   m_EdgeRadius: 0
+--- !u!114 &334996428492224004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296321071677098794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50af0d7831bd5443bd969639ac684bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1660937196537402034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr_: {fileID: 454606678594953550}
   event_tr_: {fileID: 2299648751098972236}
+  direction_: 2
   open_sprite_: {fileID: 21300000, guid: 22775d343b0964846a4965d2db1e5efe, type: 3}
   close_sprite_: {fileID: 21300000, guid: 6cae7f974c73b2b468ba78d8059dd62d, type: 3}
 --- !u!61 &3323606240914707970
@@ -1278,7 +1293,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2130311065687934552}
   - component: {fileID: 3084242200217206510}
-  m_Layer: 0
+  - component: {fileID: 2550289410113090026}
+  m_Layer: 10
   m_Name: Door Event Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1309,7 +1325,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1325,6 +1341,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &2550289410113090026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502810361104692905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50af0d7831bd5443bd969639ac684bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2567244074392803978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,7 +1723,8 @@ GameObject:
   m_Component:
   - component: {fileID: 524057548139603756}
   - component: {fileID: 5756377496258053549}
-  m_Layer: 0
+  - component: {fileID: 1581631561827275443}
+  m_Layer: 10
   m_Name: Door Event Trigger (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1726,7 +1755,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1742,6 +1771,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.28, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &1581631561827275443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4209027709934782949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50af0d7831bd5443bd969639ac684bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4266059959434968831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2550,6 +2591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr_: {fileID: 6676476755586302254}
   event_tr_: {fileID: 2130311065687934552}
+  direction_: 1
   open_sprite_: {fileID: 21300000, guid: 22775d343b0964846a4965d2db1e5efe, type: 3}
   close_sprite_: {fileID: 21300000, guid: 6cae7f974c73b2b468ba78d8059dd62d, type: 3}
 --- !u!61 &4402224663606120076
@@ -2853,6 +2895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr_: {fileID: 6007752255082408382}
   event_tr_: {fileID: 524057548139603756}
+  direction_: 0
   open_sprite_: {fileID: 21300000, guid: 22775d343b0964846a4965d2db1e5efe, type: 3}
   close_sprite_: {fileID: 21300000, guid: 6cae7f974c73b2b468ba78d8059dd62d, type: 3}
 --- !u!61 &5884546153774804891
@@ -2891,7 +2934,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2299648751098972236}
   - component: {fileID: 8449905936595063427}
-  m_Layer: 0
+  - component: {fileID: 7603011729047561280}
+  m_Layer: 10
   m_Name: Door Event Trigger (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2922,7 +2966,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2938,6 +2982,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 1.28}
   m_EdgeRadius: 0
+--- !u!114 &7603011729047561280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6762625688145492750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50af0d7831bd5443bd969639ac684bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6909643929028478056
 GameObject:
   m_ObjectHideFlags: 0

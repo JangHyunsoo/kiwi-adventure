@@ -10,6 +10,9 @@ public class Door : MonoBehaviour
     private Transform event_tr_;
 
     [SerializeField]
+    private Direction direction_;
+
+    [SerializeField]
     private Sprite open_sprite_;
     [SerializeField]
     private Sprite close_sprite_;
@@ -28,5 +31,6 @@ public class Door : MonoBehaviour
         is_open_ = true;
         sr_.sprite = open_sprite_;
         event_tr_.gameObject.active = true;
+        event_tr_.GetComponent<DoorEvent>().setDirection(direction_);
     }
 }

@@ -21,11 +21,20 @@ public class Room : MonoBehaviour
         room_frame_ = room_frame_go.GetComponent<RoomFrame>();
         room_flied_ = room_flied_go.GetComponent<RoomFlied>();
         room_frame_.createTile();
-        room_flied_.spawnEnemy();
     }
 
     public void openDoor(Direction dir)
     {
         room_frame_.openDoor(dir);
+    }
+
+    public void clear()
+    {
+        room_frame_.clear();
+    }
+
+    public void startBattle()
+    {
+        room_flied_.spawnEnemy();
     }
 }

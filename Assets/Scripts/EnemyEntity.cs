@@ -11,13 +11,13 @@ public class EnemyEntity : Entity
 
     private void OnDestroy()
     {
-        if (GameManager.instance.is_game_over) return;
+        // if (GameManager.instance.is_game_over) return;
 
         EnemyManager.instance.removeEnemy(this);
         EnemyManager.instance.removeTargetEnemey(this);
         if (EnemyManager.instance.isEnemyEmpty())
         {
-            StageManager.instance.clearStage();
+            StageManager.instance.clearRoom();
         }
     }
 }

@@ -15,7 +15,6 @@ public class PlayerInteraction : MonoBehaviour
         detection_point = PlayerManager.instance.player.transform;
     }
 
-
     void Update()
     {
         if (inputKey())

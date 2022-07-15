@@ -16,4 +16,9 @@ public class RoomFlied : MonoBehaviour
             obj.spawnRandomEnemey();
         }
     }
+
+    public void clear()
+    {
+        
+    }
 }
