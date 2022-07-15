@@ -56,6 +56,11 @@ public class Utility
         { Direction.BOTTOM, new Vector2Int(0, -1) }
     };
 
+    public static Vector2Int dirToVector(Direction _dir)
+    {
+        return direction_pos[_dir];
+    }
+
     public static Transform[] getChildsTransform(Transform parent_)
     {
         Transform[] ret = new Transform[parent_.childCount];

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerEntity : Entity
 {
-
-
     protected override void onDie()
     {
         Debug.Log("GameOver");

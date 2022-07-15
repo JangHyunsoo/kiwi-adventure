@@ -38,12 +38,28 @@ public class StageManager : MonoBehaviour
         stage_.init();
         int width_center = Mathf.RoundToInt(stage_.map_width_size / 2);
         int height_center = Mathf.RoundToInt(stage_.map_height_size / 2);
-        curr_map_pos_ = new Vector2Int(width_center, height_center);
+        moveRoom(new Vector2Int(width_center, height_center));
     }
 
-    public void clearStage()
+    public void clearRoom()
     {
-        // 스테이지 클리어
+        stage_.clearRoom(curr_map_pos);
+    }
+
+    public void moveRoom(Vector2Int _move_pos)
+    {
+        curr_map_pos_ = _move_pos;
+        PlayerManager.instance.movePlayer(curr_real_pos);
+        if(!stage_.isClearedRoom(curr_map_pos_)) 
+            startCurrRoomBattle();
+    }
+
+    public void moveRoom(Direction _dir)
+    {
+        curr_map_pos_ = curr_map_pos_ + Utility.dirToVector(_dir) * new Vector2Int(1, -1);
+        PlayerManager.instance.movePlayer(curr_real_pos);
+        if (!stage_.isClearedRoom(curr_map_pos_))
+            startCurrRoomBattle();
     }
 
     public Vector2 calculRealPos(Vector2Int _pos)
@@ -54,6 +70,6 @@ public class StageManager : MonoBehaviour
 
     public void startCurrRoomBattle()
     {
-        
+        stage_.startBattle(curr_map_pos);
     }
 }

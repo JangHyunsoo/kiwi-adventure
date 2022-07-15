@@ -13,6 +13,7 @@ public class Stage : MonoBehaviour
     private Vector2[,] real_pos;
     private bool[,] room_exists;
     private bool[,] done_open_door;
+    private bool[,] cleared_rooms_;
 
     [SerializeField]
     private float room_size_ = 15f;
@@ -37,6 +38,7 @@ public class Stage : MonoBehaviour
         real_pos = new Vector2[map_width_size_, map_height_size_];
         room_exists = new bool[map_width_size_, map_height_size_];
         done_open_door = new bool[map_width_size_, map_height_size_];
+        cleared_rooms_ = new bool[map_width_size_, map_height_size_];
 
         for (int y = 0; y < map_height_size_; y++)
         {
@@ -45,6 +47,7 @@ public class Stage : MonoBehaviour
                 real_pos[x, y] = new Vector2(room_size / 2 + (room_size * x), room_size / 2 - (room_size * y));
                 room_exists[x, y] = false;
                 done_open_door[x,y] = false;
+                cleared_rooms_[x, y] = false;
             }
         }
     }
@@ -148,5 +151,21 @@ public class Stage : MonoBehaviour
         initRoomData();
         createRandomRoom();
         openRoomsDoor();
+    }
+
+    public void clearRoom(Vector2Int _pos)
+    {
+        room_components_[_pos.x, _pos.y].clear();
+        cleared_rooms_[_pos.x, _pos.y] = true;
+    }
+
+    public bool isClearedRoom(Vector2Int _pos)
+    {
+        return cleared_rooms_[_pos.x, _pos.y];
+    }
+
+    public void startBattle(Vector2Int _pos)
+    {
+        room_components_[_pos.x, _pos.y].startBattle();
     }
 }

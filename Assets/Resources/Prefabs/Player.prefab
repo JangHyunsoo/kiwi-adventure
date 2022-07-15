@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5846808516440556807}
   - component: {fileID: 2833250500594075206}
   - component: {fileID: 5625741754132252284}
+  - component: {fileID: 2690043117303392032}
   - component: {fileID: -6004287319106269254}
   m_Layer: 8
   m_Name: Player
@@ -139,6 +140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status_data_: {fileID: 11400000, guid: 398e069920922cd46ad70c8482bf61e6, type: 2}
+  current_hp_: 0
+  slow_value_: 1
 --- !u!114 &2833250500594075206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86662794622d98e438e7bf1b82a12fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  temp: 0
 --- !u!114 &5625741754132252284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +170,22 @@ MonoBehaviour:
   _command_idx: 0
   _isCasting: 0
   _isReload: 0
+--- !u!114 &2690043117303392032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313755421659091322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1704c2ffcb1be464c82729f4cbc0ba6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detection_layer:
+    serializedVersion: 2
+    m_Bits: 1088
+  detected_object: {fileID: 0}
 --- !u!114 &-6004287319106269254
 MonoBehaviour:
   m_ObjectHideFlags: 0
