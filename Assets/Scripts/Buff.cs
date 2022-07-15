@@ -63,9 +63,13 @@ public class Buff
 
 public class Burn : Buff
 {
-    public Burn(int _stack) : base("Burn", _stack, 3d, new TickHpEffect(true, 1), new SpeedEffect(false, 0.97f)) { }
+    public Burn(int _stack) : base("Burn", _stack, 3d, new TickHpEffect(1), new SpeedEffect(0.97f)) { }
 }
 
+public class HpOverPower : Buff
+{
+    public HpOverPower(int _value) : base("HpOverPower", 1, -1d, new MaxHpEffect(_value)) { } 
+}
 
 
 

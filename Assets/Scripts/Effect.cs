@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class Effect
 {
-    protected bool is_tick_;
     protected float value_;
     protected float cur_tick_time_ = 0f;
 
-    public Effect(bool _is_tick, float _value)
+    public Effect(float _value)
     {
-        is_tick_ = _is_tick;
         value_ = _value;
     }
 
@@ -24,7 +22,7 @@ public class Effect
 
 public class TickHpEffect : Effect
 {
-    public TickHpEffect(bool _is_tick, float _value) : base(_is_tick, _value) { }
+    public TickHpEffect(float _value) : base(_value) { }
 
     public override void sequenceActivate(Entity _entity, int _stack)
     {
@@ -41,7 +39,7 @@ public class TickHpEffect : Effect
 public class SpeedEffect : Effect
 {
 
-    public SpeedEffect(bool _is_tick, float _value) : base(_is_tick, _value) { }
+    public SpeedEffect(float _value) : base(_value) { }
 
     public override void onetimeActivate(Entity _entity, int _stack)
     {
@@ -63,10 +61,21 @@ public class SpeedEffect : Effect
 
 public class CoolTimeEffect : Effect
 {
-    public CoolTimeEffect(bool _is_tick, float _value) : base(_is_tick, _value) { }
+    public CoolTimeEffect(float _value) : base(_value) { }
 
     public override void sequenceActivate(Entity _entity, int _stack)
     {
         _entity.cooltime_value *= value_;
+    }
+}
+
+public class MaxHpEffect : Effect
+{
+    public MaxHpEffect(float _value) : base(_value) { }
+
+    public override void onetimeActivate(Entity _entity, int _stack)
+    {
+        base.onetimeActivate(_entity, _stack);
+        _entity.status_data.max_hp += (int)value_;
     }
 }
