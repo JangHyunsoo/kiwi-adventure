@@ -15,8 +15,8 @@ MonoBehaviour:
   skill_no: 1
   skill_rarity: 0
   skill_name: fireball
-  skill_image: {fileID: 21300000, guid: 3d762b5e778d2f940a5eed696c1985ec, type: 3}
-  skill_icon: {fileID: 21300000, guid: 1896b5aead2b41a468ebbdd8a22ae37c, type: 3}
+  skill_image: {fileID: 21300000, guid: ee73982893540ef4fac7f96fd7786810, type: 3}
+  skill_icon: {fileID: 21300000, guid: 3b0cde1f83c972946869c4a236296121, type: 3}
   projectile_sprite: {fileID: 21300000, guid: ee73982893540ef4fac7f96fd7786810, type: 3}
   command: QW
   cool_time: 1
