@@ -5,48 +5,27 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] left_door;
+    private GameObject room_frame_prefab_;
     [SerializeField]
-    private GameObject[] right_door;
-    [SerializeField]
-    private GameObject[] top_door;
-    [SerializeField]
-    private GameObject[] bottom_door;
+    private GameObject room_flied_prefab_;
 
-    private Vector2Int room_pos;
-    private HashSet<Direction> _open_direction = new HashSet<Direction>();
+    private RoomFrame room_frame_;
+    private RoomFlied room_flied_;
 
-    public void openDoor(Direction _direction)
+    public void createRoom()
     {
-        _open_direction.Add(_direction);
+        GameObject room_frame_go = Instantiate(room_frame_prefab_, transform.position, Quaternion.identity);
+        GameObject room_flied_go = Instantiate(room_flied_prefab_, transform.position, Quaternion.identity);
+        room_frame_go.transform.SetParent(transform);
+        room_flied_go.transform.SetParent(transform);
+        room_frame_ = room_frame_go.GetComponent<RoomFrame>();
+        room_flied_ = room_flied_go.GetComponent<RoomFlied>();
+        room_frame_.createTile();
+        room_flied_.spawnEnemy();
+    }
 
-        if(_direction == Direction.LEFT)
-        {
-            foreach(var door in left_door)
-            {
-                door.SetActive(false);
-            }
-        }
-        else if (_direction == Direction.RIGHT)
-        {
-            foreach (var door in right_door)
-            {
-                door.SetActive(false);
-            }
-        }
-        else if (_direction == Direction.TOP)
-        {
-            foreach (var door in bottom_door)
-            {
-                door.SetActive(false);
-            }
-        }
-        else if(_direction == Direction.BOTTOM)
-        {
-            foreach (var door in top_door)
-            {
-                door.SetActive(false);
-            }
-        }
+    public void openDoor(Direction dir)
+    {
+        room_frame_.openDoor(dir);
     }
 }

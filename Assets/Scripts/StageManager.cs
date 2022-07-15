@@ -51,4 +51,9 @@ public class StageManager : MonoBehaviour
         float room_size = stage_.room_size;
         return new Vector2(room_size / 2 + (room_size * _pos.x), room_size / 2 - (room_size * _pos.y));
     }
+
+    public void startCurrRoomBattle()
+    {
+        
+    }
 }

@@ -37,13 +37,14 @@ public class EnemyManager : MonoBehaviour
     private EnemyHpGauge enemy_hp_gauge_;
     private List<EnemyEntity> target_enemy_ = new List<EnemyEntity>();
 
-    public void spawnEnemy(int _no, Vector3 _pos)
+    public GameObject spawnEnemy(int _no, Vector3 _pos)
     {
         var enemy_obj = Instantiate(enemy_prefab_, _pos, Quaternion.identity);
         enemy_obj.GetComponent<EnemyEntity>().status_data = EnemyDataBase.instance.getEnemy(_no);
         enemy_obj.GetComponent<SpriteRenderer>().sprite = EnemyDataBase.instance.getEnemy(_no).obj_sprite;
         enemy_obj.transform.SetParent(enemy_holder_);
         addEnemy(enemy_obj.GetComponent<EnemyEntity>());
+        return enemy_obj;
     }
 
     public void addEnemy(EnemyEntity _enemy)

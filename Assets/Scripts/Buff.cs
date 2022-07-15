@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Buff
 {
     private string name_;
@@ -39,7 +38,6 @@ public class Buff
         {
             cur_time_ -= (float)during_time_;
             cur_stack_--;
-            Debug.Log(cur_stack_);
         }
 
         foreach (var _effect in effect_list_)
@@ -65,7 +63,7 @@ public class Buff
 
 public class Burn : Buff
 {
-    public Burn(int _stack) : base("Burn", _stack, 3d, new TickHpEffect(true, 1), new SpeedEffect(false, 0.97f)) {}
+    public Burn(int _stack) : base("Burn", _stack, 3d, new TickHpEffect(true, 1), new SpeedEffect(false, 0.97f)) { }
 }
 
 

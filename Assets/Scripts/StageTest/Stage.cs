@@ -9,6 +9,7 @@ public class Stage : MonoBehaviour
     private GameObject room_frame_prefab;
     
     private Transform[,] room_transforms;
+    private Room[,] room_components_;
     private Vector2[,] real_pos;
     private bool[,] room_exists;
     private bool[,] done_open_door;
@@ -32,6 +33,7 @@ public class Stage : MonoBehaviour
     private void initRoomData()
     {
         room_transforms = new Transform[map_width_size_, map_height_size_];
+        room_components_ = new Room[map_width_size_, map_height_size_];
         real_pos = new Vector2[map_width_size_, map_height_size_];
         room_exists = new bool[map_width_size_, map_height_size_];
         done_open_door = new bool[map_width_size_, map_height_size_];
@@ -52,6 +54,8 @@ public class Stage : MonoBehaviour
         if (isExist(_pos)) return; // 수정해야함.
 
         room_transforms[_pos.x, _pos.y] = Instantiate(room_frame_prefab, real_pos[_pos.x, _pos.y], Quaternion.identity).transform;
+        room_components_[_pos.x, _pos.y] = room_transforms[_pos.x, _pos.y].GetComponent<Room>();
+        room_components_[_pos.x, _pos.y].createRoom();
         room_transforms[_pos.x, _pos.y].name = _pos.x.ToString() + ", " + _pos.y.ToString();
         room_transforms[_pos.x, _pos.y].SetParent(gameObject.transform);
         room_exists[_pos.x, _pos.y] = true;
@@ -102,7 +106,7 @@ public class Stage : MonoBehaviour
     private void openRoomDoor(Vector2Int _pos)
     {
         Room room = room_transforms[_pos.x, _pos.y].GetComponent<Room>();
-      
+
         foreach (Direction dir in Enum.GetValues(typeof(Direction)))
         {
             Vector2Int check_pos = _pos + Utility.direction_pos[dir];
