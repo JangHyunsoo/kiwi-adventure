@@ -17,5 +17,3 @@ MonoBehaviour:
   level_: 1
   max_hp_: 50
   speed_: 10
-  skill_list_:
-  - {fileID: 11400000, guid: c21359617d693704a8bb8d7e4d71d2d5, type: 2}
