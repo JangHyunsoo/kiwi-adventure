@@ -57,7 +57,7 @@ public class StageManager : MonoBehaviour
     public void moveRoom(Direction _dir)
     {
         curr_map_pos_ = curr_map_pos_ + Utility.dirToVector(_dir) * new Vector2Int(1, -1);
-        PlayerManager.instance.movePlayer(curr_real_pos);
+        PlayerManager.instance.movePlayer(curr_real_pos + 6 * Utility.dirToVector(Utility.reverseDirection(_dir)));
         if (!stage_.isClearedRoom(curr_map_pos_))
             startCurrRoomBattle();
     }

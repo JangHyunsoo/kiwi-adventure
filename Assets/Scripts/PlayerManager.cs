@@ -51,10 +51,12 @@ public class PlayerManager : MonoBehaviour
         _player_controller = _player_object.GetComponent<PlayerController>();
         _player = _player_object.GetComponent<PlayerEntity>();
         _player_object.GetComponent<SpriteRenderer>().sprite = _player.status_data.obj_sprite;
+        _player_controller.clear();
     }
     public void movePlayer(Vector2 _vec)
     {
         _player_object.transform.position = _vec;
+        _player_controller.clear();
     }
     public void hitDamage(int _damage)
     {

@@ -8,7 +8,6 @@ public class DoorEvent : InteractionEvent
 
     public override void activate()
     {
-        Debug.Log("Door Event");
         StageManager.instance.moveRoom(dir_);
     }
 

@@ -87,6 +87,11 @@ public class PlayerController : MonoBehaviour
         target_pos_ = transform.position;
     }
 
+    public void clear()
+    {
+        stopMove();
+    }
+
     private IEnumerator delay(float _delay_time)
     {
         yield return new WaitForSeconds(_delay_time);

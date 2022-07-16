@@ -56,6 +56,14 @@ public class Utility
         { Direction.BOTTOM, new Vector2Int(0, -1) }
     };
 
+    public static Direction reverseDirection(Direction _dir)
+    {
+        if (_dir == Direction.BOTTOM) return Direction.TOP;
+        else if (_dir == Direction.TOP) return Direction.BOTTOM;
+        else if (_dir == Direction.LEFT) return Direction.RIGHT;
+        else return Direction.LEFT;
+    }
+
     public static Vector2Int dirToVector(Direction _dir)
     {
         return direction_pos[_dir];
