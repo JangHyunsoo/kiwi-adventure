@@ -18,28 +18,31 @@ public class SkillSliderUI : MonoBehaviour
     private const int SKILL_SIZE_ = 5;
     private const int SLOT_SIZE_ = 8;
 
-    [SerializeField]
     private int front_slot_index_ = 0;
-    [SerializeField]
     private int end_slot_index_ = 4;
 
-    [SerializeField]
     private int cur_pos_index_ = 1;
-    [SerializeField]
     private int cur_skill_index_ = 1;
 
-    [SerializeField]
     private int[] real_idx_pos_ = { 0, 1, 2, 3, 4 };
 
     [SerializeField]
     private Transform skill_slot_image_parent_;
+    [SerializeField]
+    private Transform skill_slot_pos_parent_;
+
+    private Transform[] skill_slot_image_tr_list_;
+    private Transform[] skill_slot_pos_tr_list_;
 
     [SerializeField]
-    private Transform[] skill_slot_image_list_;
+    private Image[] skill_slot_image_cp_list_;
 
-    [SerializeField]
-    private Transform[] skill_slot_pos_list_;
-
+    private void Start()
+    {
+        skill_slot_image_tr_list_ = Utility.getChildsTransform(skill_slot_image_parent_);
+        skill_slot_pos_tr_list_ = Utility.getChildsTransform(skill_slot_pos_parent_);
+        target_rotation_ = Quaternion.Euler(0, 0, 0);
+    }
 
     private void Update()
     {
@@ -56,37 +59,40 @@ public class SkillSliderUI : MonoBehaviour
         rotateCircle();
     }
 
-    private void Start()
-    {
-        skill_slot_image_list_ = Utility.getChildsTransform(skill_slot_image_parent_);
-        skill_slot_pos_list_ = Utility.getChildsTransform(transform);
-        target_rotation_ = Quaternion.Euler(0, 0, 0);
-        calculRotateAngle();
-    }
-
     private void updateSkillSlotPos()
     {
         for (int i = 0; i < SKILL_SIZE_; i++)
         {
-            skill_slot_image_list_[i].position = skill_slot_pos_list_[real_idx_pos_[i]].position;
+            skill_slot_image_tr_list_[i].position = skill_slot_pos_tr_list_[real_idx_pos_[i]].position;
         }
     }
 
-    private void calculRotateAngle()
+    public void updateSkillImage()
     {
-        rotate_angle_ = 45 - (Mathf.Atan2(48f, 256f) / Mathf.PI * 180);
+        for(int i = 0; i < SKILL_SIZE_; i++)
+        {
+            var skill = SkillInventory.instance.getEquipmentSkill(i);
+            if (skill == null)
+            {
+                skill_slot_image_cp_list_[i].sprite = null;
+            }
+            else
+            {
+                skill_slot_image_cp_list_[i].sprite = SkillInventory.instance.getEquipmentSkill(i).skill_data.skill_icon;
+            }
+        }
     }
 
     private void rotateCircle()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, target_rotation_, Time.deltaTime * speed_);
+        skill_slot_pos_parent_.rotation = Quaternion.Lerp(skill_slot_pos_parent_.rotation, target_rotation_, Time.deltaTime * speed_);
     }
 
     private void updateScale()
     {
         for (int i = 0; i < SKILL_SIZE_; i++)
         {
-            var cur_image = skill_slot_image_list_[i];
+            var cur_image = skill_slot_image_tr_list_[i];
             if (cur_skill_index_ == i)
             {
                 cur_image.localScale = Vector3.Lerp(Vector3.one, cur_image.localScale, Time.deltaTime * speed_);

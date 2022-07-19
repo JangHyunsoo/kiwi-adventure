@@ -41,14 +41,14 @@ public class SkillInventory : MonoBehaviour
     private SkillSlot[] have_skill_slots_;
     [SerializeField]
     private SkillSlot[] equipment_skill_slots_;
-    [SerializeField]
-    private SkillEquipSlot[] equipment_skill_icon_slots_;
 
     [SerializeField]
     private SkillInfoCard skill_info_card_;
 
     [SerializeField]
     private SkillCastingDisplay skill_casting_display_;
+    [SerializeField]
+    private SkillSliderUI skilli_slider_;
 
     private int curr_skill_index_ = 0;
 
@@ -58,7 +58,6 @@ public class SkillInventory : MonoBehaviour
         setupHaveSlot();
         setupEquipmentSlot();
         skill_casting_display_.init();
-        equipment_skill_icon_slots_ = equipment_icon_slot_parent_.GetComponentsInChildren<SkillEquipSlot>();
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(1, 0));
@@ -127,19 +126,14 @@ public class SkillInventory : MonoBehaviour
         return equipment_skill_slots_[curr_skill_index_].skill;
     }
 
+    public Skill getEquipmentSkill(int _idx)
+    {
+        return equipment_skill_slots_[_idx].skill;
+    }
+
     public void updateEquipmentSlot()
     {
-        for (int i = 0; i < equipment_skill_slots_.Length; i++)
-        {
-            if (equipment_skill_slots_[i].skill != null)
-            {
-                equipment_skill_icon_slots_[i].updateSlot(equipment_skill_slots_[i].skill);
-            }
-            else
-            {
-                equipment_skill_icon_slots_[i].clearSlot();
-            }
-        }
+        skilli_slider_.updateSkillImage();
     }
 
     public void updateCastingDisplay()
