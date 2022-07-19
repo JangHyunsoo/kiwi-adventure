@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -422,7 +422,7 @@ RectTransform:
   m_GameObject: {fileID: 70961887}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.953125, y: 0.953125, z: 1}
   m_Children: []
   m_Father: {fileID: 2122989775}
   m_RootOrder: 1
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8a8d4475d26122419e77269220e9e86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ee9b927238cd254580ffc76a03875ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1926,7 +1926,7 @@ RectTransform:
   m_GameObject: {fileID: 320482660}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.953125, y: 0.953125, z: 1}
   m_Children: []
   m_Father: {fileID: 959890972}
   m_RootOrder: 1
@@ -1956,7 +1956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8a8d4475d26122419e77269220e9e86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cac0e8ce65e234f4eae5a4e32998d1b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2943,7 +2943,7 @@ RectTransform:
   m_GameObject: {fileID: 533013084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.953125, y: 0.953125, z: 1}
   m_Children: []
   m_Father: {fileID: 985935808}
   m_RootOrder: 1
@@ -2973,7 +2973,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8a8d4475d26122419e77269220e9e86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a365153fbc49fd94d8d766b96a86406d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4848,7 +4848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9429,7 +9429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10219,7 +10219,7 @@ RectTransform:
   m_GameObject: {fileID: 1655419697}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.953125, y: 0.953125, z: 1}
   m_Children: []
   m_Father: {fileID: 333614180}
   m_RootOrder: 1
@@ -10249,7 +10249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8a8d4475d26122419e77269220e9e86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0570e61f467542847ab52cbc3ddde47b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10839,7 +10839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12685,7 +12685,7 @@ RectTransform:
   m_GameObject: {fileID: 2054810481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.953125, y: 0.953125, z: 1}
   m_Children: []
   m_Father: {fileID: 1699574833}
   m_RootOrder: 1
@@ -12715,7 +12715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8a8d4475d26122419e77269220e9e86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb7031a7807faaa4ab5d6781475d645a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13321,6 +13321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3317e0628b292d043890ec05e1d8e8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  front_slot_index_: 0
+  end_slot_index_: 4
+  cur_pos_index_: 1
+  cur_skill_index_: 1
+  real_idx_pos_: 0000000001000000020000000300000004000000
   skill_slot_image_parent_: {fileID: 1386631641}
   skill_slot_image_list_: []
   skill_slot_pos_list_: []
@@ -13374,7 +13379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
