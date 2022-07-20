@@ -25,14 +25,22 @@ public class SkillCastingDisplay : MonoBehaviour
     
     public void updateNeed(Skill _skill)
     {
-        string command = _skill.skill_data.command;
-
-        clearNeed();
-
-        for(int i = 0; i < command.Length; i++)
+        if (_skill != null)
         {
-            need_casting_text_array_[i].text = command[i].ToString();
+            string command = _skill.skill_data.command;
+
+            clearNeed();
+
+            for (int i = 0; i < command.Length; i++)
+            {
+                need_casting_text_array_[i].text = command[i].ToString();
+            }
         }
+        else
+        {
+            clearNeed();
+        }
+        
     }
 
     public void updateCurr(string _str)
