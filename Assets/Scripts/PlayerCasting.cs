@@ -23,33 +23,23 @@ public class PlayerCasting : MonoBehaviour
     private Vector3 target_pos_;
 
     [SerializeField]
-    private int _command_idx = 0;
+    private int command_idx_ = 0;
     [SerializeField]
-    private bool _isCasting = false;
+    private bool is_casting_ = false;
     [SerializeField]
-    private bool _isReload = false;
+    private bool is_reload_ = false;
 
-    private void Start()
-    {
+    private int[] cur_command_list_; 
 
-    }
 
     private void Update()
     {
-        if (!_isCasting)
-        {
-            startCastSkill();
-        }
-        else
-        {
-            castSkill();
-        }
-        if (_isReload)
+        if (is_reload_)
         {
             fireSkill();
         }
 
-        if (!_isCasting)
+        if (!is_casting_)
         {
             moveCurrSkillCursorWithKeyboard();
         }
@@ -63,9 +53,9 @@ public class PlayerCasting : MonoBehaviour
                 if (Input.GetKeyDown(skill_idx_[i]))
                 {
                     changeSkill(i);
-                    _isReload = false;
-                    _command_idx = 0;
-                    _isCasting = false;
+                    is_reload_ = false;
+                    command_idx_ = 0;
+                    is_casting_ = false;
                 }
             }
         }
@@ -75,64 +65,62 @@ public class PlayerCasting : MonoBehaviour
     {
         SkillInventory.instance.moveCurrSkillCursor(_idx);
     }
-
-    private void startCastSkill()    // 스페이스바
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (SkillInventory.instance.getCurrSkill() == null)
-            {
-                Debug.Log("cannot casting null skill.");
-            }
-            else
-            {
-                _isCasting = true;
-            }
-        }
-    }
-    private void castSkill()
-    {
-        if (Input.anyKeyDown)
-        {
-            for(int i = 0; i < skill_key.Length; i++)
-            {
-                KeyCode curr_key = skill_key[i];
-                if (Input.GetKeyDown(skill_key[i]))
-                {
-                    if (SkillInventory.instance.getCurrSkill().skill_data.command[_command_idx] != curr_key.ToString()[0])
-                    {
-                        FailCommand();
-                        SkillInventory.instance.clearCurrCasting();
-                    }
-                    else
-                    {
-                        _command_idx++;
-                        SkillInventory.instance.updateCurrCasting(curr_key.ToString());
-                        if(_command_idx == SkillInventory.instance.getCurrSkill().skill_data.command.Length)
-                        {
-                            _isReload = true;
-                            _command_idx = 0;
-                            _isCasting = false;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void FailCommand()
-    {
-        _command_idx = 0;
-        _isCasting = false;
-    }
-
+ 
     private void fireSkill()    // 클릭
     {
         if (Input.GetMouseButtonDown(0))
         {
             SkillInventory.instance.getCurrSkill().activate(transform.position, Utility.getScreenMousePos(), tag);
-            _isReload = false;
+            is_reload_ = false;
             SkillInventory.instance.clearCurrCasting();
         }
+    }
+
+    public bool isCasting()
+    {
+        return is_casting_;
+    }
+    
+    public void setIsCasting(bool _value)
+    {
+        is_casting_ = _value;
+    }
+
+    public void loadSkillCommand()
+    {
+        cur_command_list_ = SkillInventory.instance.getCurrSkill().skill_data.command;
+    }
+
+
+    public bool compareSkillCommand(int _command_code)
+    {
+        return cur_command_list_[command_idx_] == _command_code;
+    }
+    public int getCurrentSkillCommand(int _index)
+    {
+        return cur_command_list_[_index];
+    }
+    
+    public void nextCommand()
+    {
+        command_idx_++;
+    }
+
+    public bool isFinishCasting()
+    {
+        return cur_command_list_.Length == command_idx_;
+    }
+
+    public void failSkill()
+    {
+        command_idx_ = 0;
+        is_casting_ = false;
+    }
+
+    public void readySkill()
+    {
+        is_reload_ = true;
+        command_idx_ = 0;
+        is_casting_ = false;
     }
 }

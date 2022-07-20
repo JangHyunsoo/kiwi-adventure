@@ -11,7 +11,7 @@ public class SkillData : ScriptableObject
     public Sprite skill_image;
     public Sprite skill_icon;
     public Sprite projectile_sprite;
-    public string command;
+    public int[] command;
     public float cool_time;
     public int skill_cost;
     public int skill_damage;

@@ -18,7 +18,7 @@ MonoBehaviour:
   skill_image: {fileID: 21300000, guid: ee73982893540ef4fac7f96fd7786810, type: 3}
   skill_icon: {fileID: 21300000, guid: 3b0cde1f83c972946869c4a236296121, type: 3}
   projectile_sprite: {fileID: 21300000, guid: ee73982893540ef4fac7f96fd7786810, type: 3}
-  command: QW
+  command: 0100000002000000
   cool_time: 1
   skill_cost: 1
   skill_damage: 1

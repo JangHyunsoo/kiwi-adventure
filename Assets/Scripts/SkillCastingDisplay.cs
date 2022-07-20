@@ -27,14 +27,14 @@ public class SkillCastingDisplay : MonoBehaviour
     {
         if (_skill != null)
         {
-            string command = _skill.skill_data.command;
-
+            var command = _skill.skill_data.command;
             clearNeed();
 
             for (int i = 0; i < command.Length; i++)
             {
                 need_casting_text_array_[i].text = command[i].ToString();
             }
+
         }
         else
         {

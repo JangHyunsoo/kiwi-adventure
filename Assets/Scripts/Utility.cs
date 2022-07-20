@@ -42,6 +42,24 @@ public enum SkillRarity
     LEGENDARY
 }
 
+public enum KeyActionType
+{
+    DOWN,
+    UP,
+    DURING
+}
+
+public enum KeyCommand
+{
+    ONE,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX
+}
+
+
 public class Utility
 {
     public static string ProjectileTag = "Projectile";
