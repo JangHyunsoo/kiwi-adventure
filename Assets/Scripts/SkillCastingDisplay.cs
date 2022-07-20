@@ -25,7 +25,7 @@ public class SkillCastingDisplay : MonoBehaviour
     
     public void updateNeed(Skill _skill)
     {
-        string command = _skill.skill_data.command;
+        var command = _skill.skill_data.command;
 
         clearNeed();
 
