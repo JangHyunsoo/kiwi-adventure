@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -30,6 +31,12 @@ public class Stage : MonoBehaviour
     [SerializeField]
     private int curr_count = 0;
 
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float next_cnt_incr_percent_ = 0.3f;
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float straight_percent_ = 0.7f;
 
     private void initRoomData()
     {
@@ -64,33 +71,90 @@ public class Stage : MonoBehaviour
         room_exists[_pos.x, _pos.y] = true;
         curr_count++;
     }
+
+    struct _tagVecData
+    {
+        public Vector2Int vec;
+        public Direction dir;
+        public _tagVecData(Vector2Int _vec, Direction _dir)
+        {
+            vec = _vec;
+            dir = _dir;
+        }
+    }
+
     private void createRandomRoom()
     {
         int width_center = Mathf.RoundToInt(map_width_size_ / 2);
         int height_center = Mathf.RoundToInt(map_height_size_ / 2);
         int nextCount = 0;
-        Vector2Int nowPos = new Vector2Int(width_center, height_center);
-        Queue<Vector2Int> queue = new Queue<Vector2Int>();
-        queue.Enqueue(nowPos);
+        _tagVecData now_data = new _tagVecData(new Vector2Int(width_center, height_center), Direction.BOTTOM);
+        Queue<_tagVecData> queue = new Queue<_tagVecData>();
+        queue.Enqueue(now_data);
 
         while(queue.Count != 0)
         {
-            nowPos = queue.Dequeue();
-            createFrame(nowPos);
-            var canDir = getCanDirection(nowPos);
+            now_data = queue.Dequeue();
+            createFrame(now_data.vec);
+            var canDir = getCanDirection(now_data.vec);
             if (canDir.Count == 4) nextCount = 4;
             else if (canDir.Count == 0) nextCount = 0;
             else if (canDir.Count == 1) nextCount = 1;
-            else if (canDir.Count == 2 || canDir.Count == 3) nextCount = Random.Range(1, 2);
+            else if (canDir.Count == 2 || canDir.Count == 3)
+            {
+                if(Utility.randIndex(next_cnt_incr_percent_, 1 - next_cnt_incr_percent_) == 0)
+                {
+                    nextCount = 2;
+                }
+                else
+                {
+                    nextCount = 1;
+                }
+            }
 
             for(int i = 0; i < nextCount; i++)
             {
-                int rand = Random.Range(0, canDir.Count);
+                int rand = randStraight(now_data, canDir);
                 queue.Enqueue(canDir[rand]);
                 canDir.RemoveAt(rand);
             }
 
-            if (goal_count <= curr_count) queue.Clear();
+            if (goal_count == curr_count) queue.Clear();
+        }
+    }
+
+    private int randStraight(_tagVecData _now, List<_tagVecData> _move_list)
+    {
+        int straight_idx = -1;
+        List<int> other_idxs = new List<int>();
+        for(int i = 0; i < _move_list.Count; i++)
+        {
+            if(_move_list[i].dir == _now.dir)
+            {
+                straight_idx = i;
+            }
+            else
+            {
+                other_idxs.Add(i);
+            }
+        }
+
+        if(straight_idx == -1)
+        {
+            return Random.RandomRange(0, _move_list.Count);
+        }
+        else
+        {
+            int idx = Utility.randIndex(straight_percent_, 1 - straight_percent_);
+
+            if (other_idxs.Count == 0 || idx == 0)
+            {
+                return straight_idx;
+            }
+            else
+            {
+                return other_idxs[Random.RandomRange(0, other_idxs.Count)];
+            }
         }
     }
     
@@ -108,7 +172,7 @@ public class Stage : MonoBehaviour
 
     private void openRoomDoor(Vector2Int _pos)
     {
-        Room room = room_transforms[_pos.x, _pos.y].GetComponent<Room>();
+        Room room = room_components_[_pos.x, _pos.y];
 
         foreach (Direction dir in Enum.GetValues(typeof(Direction)))
         {
@@ -123,13 +187,16 @@ public class Stage : MonoBehaviour
         }
     }
 
-    private List<Vector2Int> getCanDirection(Vector2Int _pos)
+    private List<_tagVecData> getCanDirection(Vector2Int _pos)
     {
-        List<Vector2Int> result = new List<Vector2Int>();
+        List<_tagVecData> result = new List<_tagVecData>();
         
         foreach(Direction dir in Enum.GetValues(typeof(Direction))){
             Vector2Int check_pos = _pos + Utility.direction_pos[dir];
-            if (!isExist(check_pos)) result.Add(check_pos);
+            if (!isExist(check_pos))
+            {
+                result.Add(new _tagVecData(check_pos, dir));
+            }
         }
 
         return result;
