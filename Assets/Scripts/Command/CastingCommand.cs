@@ -19,13 +19,15 @@ public class CastingCommand : Command
         {
             player_casting_.setIsCasting(true);
             player_casting_.loadSkillCommand();
+            SkillInventory.instance.setCommand(player_casting_.isCasting());
             Debug.Log("스킬 실행 중");
         }
         else
         {
             player_casting_.setIsCasting(false);
+            SkillInventory.instance.setCommand(player_casting_.isCasting());
         }
     }
-
+    
 
 }

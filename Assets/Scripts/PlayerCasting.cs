@@ -72,7 +72,8 @@ public class PlayerCasting : MonoBehaviour
         {
             SkillInventory.instance.getCurrSkill().activate(transform.position, Utility.getScreenMousePos(), tag);
             is_reload_ = false;
-            SkillInventory.instance.clearCurrCasting();
+            is_casting_ = false;
+            SkillInventory.instance.setCommand(false);
         }
     }
 
