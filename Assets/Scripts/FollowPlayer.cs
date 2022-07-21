@@ -5,21 +5,32 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     private Transform target_;
-
+    private Vector3 target_pos_;
+    private Vector3 follow_pos_;
+    
     void Start()
     {
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        target_ = PlayerManager.instance.player.transform;
-
-        if(target_ == null) return;
-
-        Vector3 pos = target_.position;
-        pos.z = -10;
-        transform.position = pos;
+        setTarget();
+        followTargetPos();
+        transform.position = follow_pos_;
     }
+
+    void setTarget()
+    {
+        // player_target == null 생각하기
+        target_ = PlayerManager.instance.player.transform;
+        target_pos_ = target_.position;
+        target_pos_.z = -10;
+    }
+
+    void followTargetPos()
+    {
+        follow_pos_ = Vector3.Lerp(transform.position, target_pos_, Time.deltaTime * 5f);
+    }
+
+
 }
