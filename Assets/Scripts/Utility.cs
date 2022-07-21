@@ -113,5 +113,23 @@ public class Utility
         float angleRad = angle * (Mathf.PI / 180f);
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
     }
+
+    public static int randIndex(params float[] percent)
+    {
+        float[] stack_percent = new float[percent.Length];
+        stack_percent[0] = percent[0];
+        for (int i = 1; i < stack_percent.Length; i++)
+        {
+            stack_percent[i] = stack_percent[i - 1] + percent[i];
+        }
+        float rand = Random.RandomRange(0f, 1f);
+        
+        for(int i = 0; i < stack_percent.Length; i++)
+        {
+            if (stack_percent[i] >= rand)
+                return i;
+        }
+        return -1;
+    }
 }
 
