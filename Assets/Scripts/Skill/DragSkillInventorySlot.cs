@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DragSlot : MonoBehaviour
+public class DragSkillInventorySlot : MonoBehaviour
 {
-    static public DragSlot instance;
+    static public DragSkillInventorySlot instance;
 
     public SkillSlot skill_slot;
 

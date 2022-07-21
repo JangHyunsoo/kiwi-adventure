@@ -22,6 +22,8 @@ public class SkillSliderUI : MonoBehaviour
     [SerializeField]
     private float color_speed_ = 8f;
 
+    [SerializeField]
+    private Sprite null_skill_sprite_;
 
     private const int SKILL_SIZE_ = 5;
     private const int SLOT_SIZE_ = 8;
@@ -117,7 +119,7 @@ public class SkillSliderUI : MonoBehaviour
             var skill = SkillInventory.instance.getEquipmentSkill(i);
             if (skill == null)
             {
-                skill_slot_image_cp_list_[i].setIconImageSprite(null);
+                skill_slot_image_cp_list_[i].setIconImageSprite(null_skill_sprite_);
             }
             else
             {

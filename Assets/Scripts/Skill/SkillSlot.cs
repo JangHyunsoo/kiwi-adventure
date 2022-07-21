@@ -62,9 +62,9 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         if(skill_ != null)
         {
-            DragSlot.instance.skill_slot = this;
-            DragSlot.instance.DragSetSkill(skill_image_);
-            DragSlot.instance.transform.position = eventData.position;
+            DragSkillInventorySlot.instance.skill_slot = this;
+            DragSkillInventorySlot.instance.DragSetSkill(skill_image_);
+            DragSkillInventorySlot.instance.transform.position = eventData.position;
         }
     }
 
@@ -72,21 +72,21 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         if (skill_ != null)
         {
-            DragSlot.instance.transform.position = eventData.position;
+            DragSkillInventorySlot.instance.transform.position = eventData.position;
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        DragSlot.instance.setColor(0);
-        DragSlot.instance.skill_slot = null;
+        DragSkillInventorySlot.instance.setColor(0);
+        DragSkillInventorySlot.instance.skill_slot = null;
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (DragSlot.instance.skill_slot != null)
+        if (DragSkillInventorySlot.instance.skill_slot != null)
         {
-            if (is_equipment_slot_ && !DragSlot.instance.skill_slot.skill.isKnown)
+            if (is_equipment_slot_ && !DragSkillInventorySlot.instance.skill_slot.skill.isKnown)
             {
                 Debug.Log("cannot move");
                 return;
@@ -114,15 +114,15 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         Skill temp = skill;
 
-        addSkill(DragSlot.instance.skill_slot.skill_);
+        addSkill(DragSkillInventorySlot.instance.skill_slot.skill_);
 
         if(temp != null)
         {
-            DragSlot.instance.skill_slot.addSkill(temp);
+            DragSkillInventorySlot.instance.skill_slot.addSkill(temp);
         }
         else
         {
-            DragSlot.instance.skill_slot.clearSlot();
+            DragSkillInventorySlot.instance.skill_slot.clearSlot();
         }
 
         SkillInventory.instance.updateEquipmentSlot();
