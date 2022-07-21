@@ -552,7 +552,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.33333334, g: 0.33333334, b: 0.33333334, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -9517,6 +9517,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interaction_key_: 103
   skill_casting_key_: 32
+  skill_key_1_: 113
+  skill_key_2_: 119
+  skill_key_3_: 101
+  skill_key_4_: 97
+  skill_key_5_: 115
+  skill_key_6_: 100
+  skill_index_key_1_: 49
+  skill_index_key_2_: 50
+  skill_index_key_3_: 51
+  skill_index_key_4_: 52
+  skill_index_key_5_: 53
 --- !u!4 &1634544543
 Transform:
   m_ObjectHideFlags: 0
@@ -10117,7 +10128,7 @@ MonoBehaviour:
   equipment_skill_slots_: []
   skill_info_card_: {fileID: 1596376981}
   skill_casting_display_: {fileID: 307264407}
-  skilli_slider_: {fileID: 1944677156}
+  skill_slider_: {fileID: 1944677156}
 --- !u!4 &1725243080
 Transform:
   m_ObjectHideFlags: 0
@@ -11187,6 +11198,7 @@ MonoBehaviour:
   - {fileID: 2054810483}
   - {fileID: 70961889}
   - {fileID: 320482662}
+  temp: 0
 --- !u!1001 &1963401946
 PrefabInstance:
   m_ObjectHideFlags: 0

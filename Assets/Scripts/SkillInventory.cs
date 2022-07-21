@@ -48,11 +48,12 @@ public class SkillInventory : MonoBehaviour
     [SerializeField]
     private SkillCastingDisplay skill_casting_display_;
     [SerializeField]
-    private SkillSliderUI skilli_slider_;
+    private SkillSliderUI skill_slider_;
+    public SkillSliderUI skill_slider { get => skill_slider_; }
 
     private int curr_skill_index_ = 0;
+    public int curr_skill_index { get => curr_skill_index_; }
 
-    // Start is called before the first frame update
     public void init()
     {
         setupHaveSlot();
@@ -84,7 +85,6 @@ public class SkillInventory : MonoBehaviour
             equipment_skill_slots_[i].setupEquipmentSlot();
         }
     }
-
     public void OpenInventory()
     {
         skill_book_activated = true;
@@ -133,7 +133,7 @@ public class SkillInventory : MonoBehaviour
 
     public void updateEquipmentSlot()
     {
-        skilli_slider_.updateSkillImage();
+        skill_slider_.updateSkillImage();
     }
 
     public void updateCastingDisplay()
@@ -272,4 +272,5 @@ public class SkillInventory : MonoBehaviour
     {
         skill_casting_display_.updateCurr(_str);
     }
+
 }

@@ -18,13 +18,14 @@ public class SkillSliderUI : MonoBehaviour
     private const int SKILL_SIZE_ = 5;
     private const int SLOT_SIZE_ = 8;
 
-    private int front_slot_index_ = 0;
-    private int end_slot_index_ = 4;
 
-    private int cur_pos_index_ = 1;
-    private int cur_skill_index_ = 1;
+    private int front_slot_index_ = 4;
+    private int end_slot_index_ = 3;
 
-    private int[] real_idx_pos_ = { 0, 1, 2, 3, 4 };
+    private int cur_pos_index_ = 0;
+    private int cur_skill_index_ = 0;
+
+    private int[] real_idx_pos_ = { 0, 1, 2, 3, 7 };
 
     [SerializeField]
     private Transform skill_slot_image_parent_;
@@ -37,23 +38,46 @@ public class SkillSliderUI : MonoBehaviour
     [SerializeField]
     private Image[] skill_slot_image_cp_list_;
 
+    [SerializeField]
+    public int temp;
+
     private void Start()
     {
         skill_slot_image_tr_list_ = Utility.getChildsTransform(skill_slot_image_parent_);
         skill_slot_pos_tr_list_ = Utility.getChildsTransform(skill_slot_pos_parent_);
-        target_rotation_ = Quaternion.Euler(0, 0, 0);
+        skill_slot_pos_parent_.rotation = Quaternion.Euler(0, 0, -45);
+        target_rotation_ = skill_slot_pos_parent_.rotation;
     }
 
     private void Update()
     {
+        int target_skill_index = SkillInventory.instance.curr_skill_index;
+        temp = target_skill_index;
+
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            rotateNext();
+            if (target_skill_index == 0)
+            {
+                target_skill_index = 4;
+            }
+            else
+            {
+                target_skill_index--;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            rotatePrivious();
+            if (target_skill_index == 4)
+            {
+                target_skill_index = 0;
+            }
+            else
+            {
+                target_skill_index++;
+            }
         }
+
+        rotateCurrntSkill(target_skill_index);
         updateSkillSlotPos();
         updateScale();
         rotateCircle();
@@ -69,7 +93,7 @@ public class SkillSliderUI : MonoBehaviour
 
     public void updateSkillImage()
     {
-        for(int i = 0; i < SKILL_SIZE_; i++)
+        for (int i = 0; i < SKILL_SIZE_; i++)
         {
             var skill = SkillInventory.instance.getEquipmentSkill(i);
             if (skill == null)
@@ -109,7 +133,7 @@ public class SkillSliderUI : MonoBehaviour
         var new_front_idx = (front_slot_index_ - 1) % SKILL_SIZE_;
         if (new_front_idx < 0) new_front_idx += SKILL_SIZE_;
 
-        if (cur_pos_index_ - real_idx_pos_[front_slot_index_] == 1) 
+        if (cur_pos_index_ - real_idx_pos_[front_slot_index_] == 1)
         {
             var new_front_real_pos = (real_idx_pos_[front_slot_index_] - 1) % SLOT_SIZE_;
             if (new_front_real_pos < 0) new_front_real_pos += SLOT_SIZE_;
@@ -172,22 +196,57 @@ public class SkillSliderUI : MonoBehaviour
         target_rotation_ = Quaternion.Euler(new Vector3(0, 0, target_rotation_.eulerAngles.z + 45));
     }
 
+    public void rotateCurrntSkill(int _target_skill_num)
+    {
+        int cur_skill_num = SkillInventory.instance.curr_skill_index;
+        int value = _target_skill_num - cur_skill_num;
 
- //   private void moveCurrSkillCursorWithKeyboard()
- //   {
- //       if (Input.anyKeyDown)
- //       {
- //           for (int i = 0; i < skill_idx_.Length; i++)
- //           {
- //               if (Input.GetKeyDown(skill_idx_[i]))
- //               {
- //                   changeSkill(i);
- //                   _isReload = false;
- //                   _command_idx = 0;
- //                   _isCasting = false;
- //               }
- //           }
- //       }
- //   }
+        if (value > 2)
+        {
+            value -= 5;
+        }
+        else if (value < -2)
+        {
+            value += 5;
+        }
+
+        rotateSkillCircleByStep(value);
+        SkillInventory.instance.moveCurrSkillCursor(_target_skill_num);
+    }
+
+    public void rotateSkillCircleByStep(int _step)
+    {
+        if (_step > 0)
+        {
+            for (int i = 0; i < _step; i++)
+            {
+                rotatePrivious();
+            }
+        }
+        else if (_step < 0)
+        {
+            for (int i = 0; i < _step * -1; i++)
+            {
+                rotateNext();
+            }
+        }
+    }
+
+    //   private void moveCurrSkillCursorWithKeyboard()
+    //   {
+    //       if (Input.anyKeyDown)
+    //       {
+    //           for (int i = 0; i < skill_idx_.Length; i++)
+    //           {
+    //               if (Input.GetKeyDown(skill_idx_[i]))
+    //               {
+    //                   changeSkill(i);
+    //                   _isReload = false;
+    //                   _command_idx = 0;
+    //                   _isCasting = false;
+    //               }
+    //           }
+    //       }
+    //   }
 
 }
