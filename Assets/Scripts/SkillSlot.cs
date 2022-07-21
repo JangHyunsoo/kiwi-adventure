@@ -126,6 +126,5 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         }
 
         SkillInventory.instance.updateEquipmentSlot();
-        SkillInventory.instance.updateCastingDisplay();
     }
 }

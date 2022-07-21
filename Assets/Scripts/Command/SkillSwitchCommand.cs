@@ -13,6 +13,7 @@ public class SkillSwitchCommand : Command
 
     public override void activate()
     {
-        SkillInventory.instance.skill_slider.rotateCurrntSkill(key_code_);
+        SkillInventory.instance.castingSkillAction(key_code_);
+
     }
 }

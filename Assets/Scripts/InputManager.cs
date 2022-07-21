@@ -69,12 +69,12 @@ public class InputManager : MonoBehaviour
     {
         key_command_dic_[interaction_key_] = new InterActionCommand(KeyActionType.DOWN, interaction_key_);
         key_command_dic_[skill_casting_key_] = new CastingCommand(KeyActionType.DOWN, skill_casting_key_);
-        key_command_dic_[skill_key_1_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_1_, 1);
-        key_command_dic_[skill_key_2_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_2_, 2);
-        key_command_dic_[skill_key_3_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_3_, 3);
-        key_command_dic_[skill_key_4_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_4_, 4);
-        key_command_dic_[skill_key_5_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_5_, 5);
-        key_command_dic_[skill_key_6_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_6_, 6);
+        key_command_dic_[skill_key_1_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_1_, 0);
+        key_command_dic_[skill_key_2_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_2_, 1);
+        key_command_dic_[skill_key_3_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_3_, 2);
+        key_command_dic_[skill_key_4_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_4_, 3);
+        key_command_dic_[skill_key_5_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_5_, 4);
+        key_command_dic_[skill_key_6_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_6_, 5);
         key_command_dic_[skill_index_key_1_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_index_key_1_, 0);
         key_command_dic_[skill_index_key_2_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_index_key_2_, 1);
         key_command_dic_[skill_index_key_3_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_index_key_3_, 2);

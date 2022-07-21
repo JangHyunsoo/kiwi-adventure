@@ -44,12 +44,12 @@ public class SkillInventory : MonoBehaviour
 
     [SerializeField]
     private SkillInfoCard skill_info_card_;
-
-    [SerializeField]
-    private SkillCastingDisplay skill_casting_display_;
+    
     [SerializeField]
     private SkillSliderUI skill_slider_;
-    public SkillSliderUI skill_slider { get => skill_slider_; }
+
+    [SerializeField]
+    private SkillCommandUI skill_command_ui_;
 
     private int curr_skill_index_ = 0;
     public int curr_skill_index { get => curr_skill_index_; }
@@ -58,12 +58,11 @@ public class SkillInventory : MonoBehaviour
     {
         setupHaveSlot();
         setupEquipmentSlot();
-        skill_casting_display_.init();
+        skill_command_ui_.init();
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(1, 0));
         AcquireSkillToEquipment(SkillDataBase.instance.getSkill(0, 1));
-        updateCastingDisplay();
         updateEquipmentSlot();
     }
 
@@ -134,11 +133,6 @@ public class SkillInventory : MonoBehaviour
     public void updateEquipmentSlot()
     {
         skill_slider_.updateSkillImage();
-    }
-
-    public void updateCastingDisplay()
-    {
-        skill_casting_display_.updateNeed(getCurrSkill());
     }
 
     public void updateSkillInfoCard(SkillSlot _slot)
@@ -260,17 +254,22 @@ public class SkillInventory : MonoBehaviour
     public void moveCurrSkillCursor(int _idx)
     {
         curr_skill_index_ = _idx;
-        updateCastingDisplay();
     }
 
-    public void clearCurrCasting()
+    public void castingSkillAction(int _key_code)
     {
-        skill_casting_display_.clearCurr();
+        skill_slider_.rotateCurrntSkill(_key_code);
     }
 
-    public void updateCurrCasting(string _str)
+    // start and end 분리하기... 
+    public void setCommand(bool _is_casting)
     {
-        skill_casting_display_.updateCurr(_str);
+        if (_is_casting) 
+        {
+            skill_command_ui_.setCommandSprite();
+        }
+
+        skill_command_ui_.setCondition(_is_casting);
     }
 
 }
