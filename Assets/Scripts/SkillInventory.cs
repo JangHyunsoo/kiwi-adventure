@@ -34,8 +34,6 @@ public class SkillInventory : MonoBehaviour
     private GameObject have_slot_parent_;
     [SerializeField]
     private GameObject equipment_slot_parent_;
-    [SerializeField]
-    private GameObject equipment_icon_slot_parent_;
 
     [SerializeField]
     private SkillSlot[] have_skill_slots_;
@@ -46,7 +44,7 @@ public class SkillInventory : MonoBehaviour
     private SkillInfoCard skill_info_card_;
     
     [SerializeField]
-    private SkillSliderUI skill_slider_;
+    private SkillSliderUI skill_slider_ui_;
 
     [SerializeField]
     private SkillCommandUI skill_command_ui_;
@@ -58,6 +56,7 @@ public class SkillInventory : MonoBehaviour
     {
         setupHaveSlot();
         setupEquipmentSlot();
+        skill_slider_ui_.init();
         skill_command_ui_.init();
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
@@ -132,7 +131,7 @@ public class SkillInventory : MonoBehaviour
 
     public void updateEquipmentSlot()
     {
-        skill_slider_.updateSkillImage();
+        skill_slider_ui_.updateSkillImage();
     }
 
     public void updateSkillInfoCard(SkillSlot _slot)
@@ -258,7 +257,7 @@ public class SkillInventory : MonoBehaviour
 
     public void castingSkillAction(int _key_code)
     {
-        skill_slider_.rotateCurrntSkill(_key_code);
+        skill_slider_ui_.rotateCurrntSkill(_key_code);
     }
 
     // start and end 분리하기... 

@@ -42,8 +42,6 @@ public class SkillSliderUI : MonoBehaviour
 
     private Transform[] skill_slot_image_tr_list_;
     private Transform[] skill_slot_pos_tr_list_;
-
-    [SerializeField]
     private SkillSliderSlotUI[] skill_slot_image_cp_list_;
 
     [SerializeField]

@@ -1886,6 +1886,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 333614180}
+  - component: {fileID: 333614181}
   m_Layer: 5
   m_Name: SkillSprite
   m_TagString: Untagged
@@ -1915,6 +1916,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &333614181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333614179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730603eeb70d6d54b832f0733bb9763c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &352530528
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,6 +5127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 959890972}
+  - component: {fileID: 959890973}
   m_Layer: 5
   m_Name: SkillSprite
   m_TagString: Untagged
@@ -5143,6 +5157,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &959890973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959890971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730603eeb70d6d54b832f0733bb9763c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &959924455
 GameObject:
   m_ObjectHideFlags: 0
@@ -5419,6 +5445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 985935808}
+  - component: {fileID: 985935809}
   m_Layer: 5
   m_Name: SkillSprite
   m_TagString: Untagged
@@ -5448,6 +5475,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &985935809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985935807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730603eeb70d6d54b832f0733bb9763c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &988821145
 GameObject:
   m_ObjectHideFlags: 0
@@ -8773,6 +8812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1699574833}
+  - component: {fileID: 1699574834}
   m_Layer: 5
   m_Name: SkillSprite
   m_TagString: Untagged
@@ -8802,6 +8842,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1699574834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699574832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730603eeb70d6d54b832f0733bb9763c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1705714104
 GameObject:
   m_ObjectHideFlags: 0
@@ -9025,11 +9077,10 @@ MonoBehaviour:
   skill_book_go_: {fileID: 1397244581}
   have_slot_parent_: {fileID: 196501358}
   equipment_slot_parent_: {fileID: 1102374572}
-  equipment_icon_slot_parent_: {fileID: 0}
   have_skill_slots_: []
   equipment_skill_slots_: []
   skill_info_card_: {fileID: 1596376981}
-  skill_slider_: {fileID: 1944677156}
+  skill_slider_ui_: {fileID: 1944677156}
   skill_command_ui_: {fileID: 1861728310}
 --- !u!4 &1725243080
 Transform:
@@ -10187,14 +10238,11 @@ MonoBehaviour:
   color_speed_: 8
   skill_slot_image_parent_: {fileID: 1386631641}
   skill_slot_pos_parent_: {fileID: 2091464589}
-  skill_slot_image_cp_list_:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  normal_bolder_line_color_: {r: 0, g: 0, b: 0, a: 0}
-  curr_bolder_line_color_: {r: 0, g: 0, b: 0, a: 0}
+  skill_slot_image_tr_list_: []
+  skill_slot_pos_tr_list_: []
+  skill_slot_image_cp_list_: []
+  normal_bolder_line_color_: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
+  curr_bolder_line_color_: {r: 0.46330643, g: 0.7924528, b: 0.21306513, a: 1}
 --- !u!1 &1948313928
 GameObject:
   m_ObjectHideFlags: 0
@@ -11594,6 +11642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2122989775}
+  - component: {fileID: 2122989776}
   m_Layer: 5
   m_Name: SkillSprite
   m_TagString: Untagged
@@ -11623,6 +11672,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2122989776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122989774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730603eeb70d6d54b832f0733bb9763c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2133999414
 GameObject:
   m_ObjectHideFlags: 0
