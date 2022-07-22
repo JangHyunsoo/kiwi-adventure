@@ -12,12 +12,12 @@ public class SkillRecipeData : ScriptableObject
     public int fire_element_count;
     public int photon_element_count;
     public int element_dust_count;
-    public int[] ToArray()
+    public int[] toArray()
     {
         return new int[6] { air_element_count, aqua_element_count, earth_element_count, 
             fire_element_count, photon_element_count, element_dust_count };
     }
-    public Dictionary<int,int> ToDictionary()
+    public Dictionary<int,int> toDictionary()
     {
         var temp_dic = new Dictionary<int, int>();
         temp_dic[1] = air_element_count;

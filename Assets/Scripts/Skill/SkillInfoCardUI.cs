@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillInfoCard : MonoBehaviour
+public class SkillInfoCardUI : MonoBehaviour
 {
     private SkillSlot curr_slot_;
     public SkillSlot curr_slot { get => curr_slot_; }

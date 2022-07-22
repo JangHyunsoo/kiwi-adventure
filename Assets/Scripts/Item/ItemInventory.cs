@@ -68,7 +68,9 @@ public class ItemInventory : MonoBehaviour
     public bool checkItem(ItemData _used_item)
     {
         if (inventory_[_used_item.item_code] < _used_item.item_amount)
+        {
             return false;
+        }
         return true;
     }
 
@@ -77,7 +79,9 @@ public class ItemInventory : MonoBehaviour
         foreach (var item in _used_items)
         {
             if (inventory_[item.Key] < item.Value)
+            {
                 return false;
+            }
         }
 
         return true;

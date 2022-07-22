@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     }
 
     public bool is_game_over = true;
+    private float time_scale_ = 1f;
 
     void Start()
     {
@@ -38,7 +39,6 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("test");
             is_game_over = false;
             Application.Quit();
         }
@@ -58,5 +58,10 @@ public class GameManager : MonoBehaviour
     {
         SkillDataBase.instance.init();
         ItemDataBase.instance.init();
+    }
+
+    public void setTimeScale(float _value)
+    {
+        Time.timeScale = _value;
     }
 }

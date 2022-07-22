@@ -16,17 +16,21 @@ public class PlayerManager : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject _player_prefab;
+    private GameObject player_prefab_;
     [SerializeField]
-    private PlayerHpGauge _player_gauge;
+    private PlayerHpGauge player_gauge_;
 
-    private GameObject _player_object;
-    private PlayerEntity _player;
-    private PlayerController _player_controller;
+    private GameObject player_go_;
+    private PlayerEntity player_entity_;
+    private PlayerMovement player_movement_;
+    private PlayerInteraction player_interaction_;
+    private PlayerCasting player_casting_;
 
-    public GameObject player_object { get => _player_object; }
-    public PlayerEntity player { get => _player; }
-    public PlayerController player_controller { get => _player_controller; }
+    public GameObject player_go { get => player_go_; }
+    public PlayerEntity player { get => player_entity_; }
+    public PlayerMovement player_controller { get => player_movement_; }
+    public PlayerInteraction player_interaction { get => player_interaction_; }
+    public PlayerCasting player_casting { get => player_casting_; }
 
     private void Awake()
     {
@@ -47,20 +51,25 @@ public class PlayerManager : MonoBehaviour
     
     public void init()
     {
-        _player_object = Instantiate(_player_prefab, Vector3.zero, Quaternion.identity);
-        _player_controller = _player_object.GetComponent<PlayerController>();
-        _player = _player_object.GetComponent<PlayerEntity>();
-        _player_object.GetComponent<SpriteRenderer>().sprite = _player.status_data.obj_sprite;
-        _player_controller.clear();
+        player_go_ = Instantiate(player_prefab_, Vector3.zero, Quaternion.identity);
+        player_movement_ = player_go_.GetComponent<PlayerMovement>();
+        player_entity_ = player_go_.GetComponent<PlayerEntity>();
+        player_interaction_ = player_go_.GetComponent<PlayerInteraction>();
+        player_casting_ = player_go.GetComponent<PlayerCasting>();
+        player_go_.GetComponent<SpriteRenderer>().sprite = player_entity_.status_data.obj_sprite;
+        player_interaction.init();
+        player_movement_.init();
+        player_entity_.init();
+        player_movement_.clear();
     }
-    public void movePlayer(Vector2 _vec)
+    public void movePosition(Vector2 _vec)
     {
-        _player_object.transform.position = _vec;
-        _player_controller.clear();
+        player_go_.transform.position = _vec;
+        player_movement_.clear();
     }
     public void hitDamage(int _damage)
     {
-        _player.hitDamage(_damage);
-        _player_gauge.updateHpGauge(_player.getHpPersent());
+        player_entity_.hitDamage(_damage);
+        player_gauge_.updateHpGauge(player_entity_.getHpPersent());
     }
 }

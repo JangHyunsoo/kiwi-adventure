@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Command
 {
-    public GameObject obj_;
-
     public KeyActionType key_action_type;
     public KeyCode key;
 
@@ -26,7 +24,6 @@ public class Command
 
     public virtual void init()
     {
-        obj_ = PlayerManager.instance.player_object;
     }
 
     public virtual void activate() { }

@@ -3,29 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CastingCommand : Command
-{
-    private PlayerCasting player_casting_;
-    
+{   
     public CastingCommand(KeyActionType _type, KeyCode _key) : base(_type, _key) { }
    
     public override void activate()
     {
-        if (player_casting_ == null)
+        var player_casting = PlayerManager.instance.player_casting;
+
+        if (!player_casting.isCasting())
         {
-            player_casting_ = obj_.GetComponent<PlayerCasting>();
-        }
-        
-        if(!player_casting_.isCasting())
-        {
-            player_casting_.setIsCasting(true);
-            player_casting_.loadSkillCommand();
-            SkillInventory.instance.setCommand(player_casting_.isCasting());
-            Debug.Log("스킬 실행 중");
+            player_casting.setIsCasting(true);
+            player_casting.loadSkillCommand();
+            SkillInventory.instance.setCommand(player_casting.isCasting());
         }
         else
         {
-            player_casting_.setIsCasting(false);
-            SkillInventory.instance.setCommand(player_casting_.isCasting());
+            player_casting.setIsCasting(false);
+            SkillInventory.instance.setCommand(player_casting.isCasting());
         }
     }
     

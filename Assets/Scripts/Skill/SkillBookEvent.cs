@@ -9,7 +9,7 @@ public class SkillBookEvent : InteractionEvent
     [SerializeField]
     private SkillRecipePickUpEvent[] drop_skill_recipe_list_;
     private SkillRarity min_skill_rarity_;
-    private SkillRarity[] skill_rarity_list_ = new SkillRarity[3];
+    private SkillRarity[] skill_rarity_list_ = new SkillRarity[MAX_SKILLBOOK_SIZE];
     private int[] gacha_percentage_ = { 60, 90, 97, 100 };
 
     private const int MAX_SKILLBOOK_SIZE = 3;
@@ -51,8 +51,7 @@ public class SkillBookEvent : InteractionEvent
         int random_min = 0;
         if (_min_rarity != SkillRarity.COMMON) random_min = gacha_percentage_[(int)_min_rarity - 1];
 
-        int random_number = Random.RandomRange(random_min,
-            gacha_percentage_[gacha_percentage_.Length - 1]);
+        int random_number = Random.RandomRange(random_min, gacha_percentage_[gacha_percentage_.Length - 1]);
         var rarity_list = Enum.GetValues(typeof(SkillRarity));
 
         for (int i = 0; i < rarity_list.Length; i++)
@@ -63,12 +62,5 @@ public class SkillBookEvent : InteractionEvent
             }
         }
         return SkillRarity.COMMON;
-    }
-
-
-    public void test()
-    {
-        Debug.Log(calculRandomSkillRarity(SkillRarity.COMMON).ToString());
-        Debug.Log(calculRandomSkillRarity(SkillRarity.UNCOMMON).ToString());
     }
 }

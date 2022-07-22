@@ -7,14 +7,14 @@ using Random = UnityEngine.Random;
 public class Stage : MonoBehaviour
 {
     [SerializeField]
-    private GameObject room_frame_prefab;
+    private GameObject room_prefab_;
     
-    private Transform[,] room_transforms;
-    private Room[,] room_components_;
-    private Vector2[,] real_pos;
-    private bool[,] room_exists;
-    private bool[,] done_open_door;
-    private bool[,] cleared_rooms_;
+    private Transform[,] room_transform_2d_;
+    private Room[,] room_component_2d_;
+    private bool[,] room_exist_2d_;
+    private Vector2[,] real_pos_2d_;
+    private bool[,] done_open_door_2d_;
+    private bool[,] cleared_room_2d_;
 
     [SerializeField]
     private float room_size_ = 15f;
@@ -27,9 +27,9 @@ public class Stage : MonoBehaviour
     public int map_height_size { get => map_height_size_; }
 
     [SerializeField]
-    private int goal_count = 50;
+    private int goal_count_ = 50;
     [SerializeField]
-    private int curr_count = 0;
+    private int curr_count_ = 0;
 
     [SerializeField]
     [Range(0f, 1f)]
@@ -40,21 +40,21 @@ public class Stage : MonoBehaviour
 
     private void initRoomData()
     {
-        room_transforms = new Transform[map_width_size_, map_height_size_];
-        room_components_ = new Room[map_width_size_, map_height_size_];
-        real_pos = new Vector2[map_width_size_, map_height_size_];
-        room_exists = new bool[map_width_size_, map_height_size_];
-        done_open_door = new bool[map_width_size_, map_height_size_];
-        cleared_rooms_ = new bool[map_width_size_, map_height_size_];
+        room_transform_2d_ = new Transform[map_width_size_, map_height_size_];
+        room_component_2d_ = new Room[map_width_size_, map_height_size_];
+        real_pos_2d_ = new Vector2[map_width_size_, map_height_size_];
+        room_exist_2d_ = new bool[map_width_size_, map_height_size_];
+        done_open_door_2d_ = new bool[map_width_size_, map_height_size_];
+        cleared_room_2d_ = new bool[map_width_size_, map_height_size_];
 
         for (int y = 0; y < map_height_size_; y++)
         {
             for(int x = 0; x < map_width_size_; x++)
             {
-                real_pos[x, y] = new Vector2(room_size / 2 + (room_size * x), room_size / 2 - (room_size * y));
-                room_exists[x, y] = false;
-                done_open_door[x,y] = false;
-                cleared_rooms_[x, y] = false;
+                real_pos_2d_[x, y] = new Vector2(room_size / 2 + (room_size * x), room_size / 2 - (room_size * y));
+                room_exist_2d_[x, y] = false;
+                done_open_door_2d_[x,y] = false;
+                cleared_room_2d_[x, y] = false;
             }
         }
     }
@@ -63,20 +63,20 @@ public class Stage : MonoBehaviour
     {
         if (isExist(_pos)) return; // 수정해야함.
 
-        room_transforms[_pos.x, _pos.y] = Instantiate(room_frame_prefab, real_pos[_pos.x, _pos.y], Quaternion.identity).transform;
-        room_components_[_pos.x, _pos.y] = room_transforms[_pos.x, _pos.y].GetComponent<Room>();
-        room_components_[_pos.x, _pos.y].createRoom();
-        room_transforms[_pos.x, _pos.y].name = _pos.x.ToString() + ", " + _pos.y.ToString();
-        room_transforms[_pos.x, _pos.y].SetParent(gameObject.transform);
-        room_exists[_pos.x, _pos.y] = true;
-        curr_count++;
+        room_transform_2d_[_pos.x, _pos.y] = Instantiate(room_prefab_, real_pos_2d_[_pos.x, _pos.y], Quaternion.identity).transform;
+        room_component_2d_[_pos.x, _pos.y] = room_transform_2d_[_pos.x, _pos.y].GetComponent<Room>();
+        room_component_2d_[_pos.x, _pos.y].createRoom();
+        room_transform_2d_[_pos.x, _pos.y].name = _pos.x.ToString() + ", " + _pos.y.ToString();
+        room_transform_2d_[_pos.x, _pos.y].SetParent(gameObject.transform);
+        room_exist_2d_[_pos.x, _pos.y] = true;
+        curr_count_++;
     }
 
-    struct _tagVecData
+    private class VecData
     {
         public Vector2Int vec;
         public Direction dir;
-        public _tagVecData(Vector2Int _vec, Direction _dir)
+        public VecData(Vector2Int _vec, Direction _dir)
         {
             vec = _vec;
             dir = _dir;
@@ -88,8 +88,8 @@ public class Stage : MonoBehaviour
         int width_center = Mathf.RoundToInt(map_width_size_ / 2);
         int height_center = Mathf.RoundToInt(map_height_size_ / 2);
         int nextCount = 0;
-        _tagVecData now_data = new _tagVecData(new Vector2Int(width_center, height_center), Direction.BOTTOM);
-        Queue<_tagVecData> queue = new Queue<_tagVecData>();
+        VecData now_data = new VecData(new Vector2Int(width_center, height_center), Direction.BOTTOM);
+        Queue<VecData> queue = new Queue<VecData>();
         queue.Enqueue(now_data);
 
         while(queue.Count != 0)
@@ -119,11 +119,11 @@ public class Stage : MonoBehaviour
                 canDir.RemoveAt(rand);
             }
 
-            if (goal_count == curr_count) queue.Clear();
+            if (goal_count_ == curr_count_) queue.Clear();
         }
     }
 
-    private int randStraight(_tagVecData _now, List<_tagVecData> _move_list)
+    private int randStraight(VecData _now, List<VecData> _move_list)
     {
         int straight_idx = -1;
         List<int> other_idxs = new List<int>();
@@ -145,9 +145,9 @@ public class Stage : MonoBehaviour
         }
         else
         {
-            int idx = Utility.randIndex(straight_percent_, 1 - straight_percent_);
+            int rand = Utility.randIndex(straight_percent_, 1 - straight_percent_);
 
-            if (other_idxs.Count == 0 || idx == 0)
+            if (other_idxs.Count == 0 || rand == 0)
             {
                 return straight_idx;
             }
@@ -164,22 +164,24 @@ public class Stage : MonoBehaviour
         {
             for(int x = 0; x < map_width_size_; x++)
             {
-                if(room_exists[x,y])
+                if (room_exist_2d_[x, y])
+                {
                     openRoomDoor(new Vector2Int(x, y));
+                }
             }
         }
     }
 
     private void openRoomDoor(Vector2Int _pos)
     {
-        Room room = room_components_[_pos.x, _pos.y];
+        Room room = room_component_2d_[_pos.x, _pos.y];
 
         foreach (Direction dir in Enum.GetValues(typeof(Direction)))
         {
             Vector2Int check_pos = _pos + Utility.direction_pos[dir];
             if (isMap(check_pos))
             {
-                if (room_exists[check_pos.x, check_pos.y])
+                if (room_exist_2d_[check_pos.x, check_pos.y])
                 {
                     room.openDoor(dir);
                 }
@@ -187,15 +189,15 @@ public class Stage : MonoBehaviour
         }
     }
 
-    private List<_tagVecData> getCanDirection(Vector2Int _pos)
+    private List<VecData> getCanDirection(Vector2Int _pos)
     {
-        List<_tagVecData> result = new List<_tagVecData>();
+        List<VecData> result = new List<VecData>();
         
         foreach(Direction dir in Enum.GetValues(typeof(Direction))){
             Vector2Int check_pos = _pos + Utility.direction_pos[dir];
             if (!isExist(check_pos))
             {
-                result.Add(new _tagVecData(check_pos, dir));
+                result.Add(new VecData(check_pos, dir));
             }
         }
 
@@ -210,7 +212,7 @@ public class Stage : MonoBehaviour
     private bool isExist(Vector2Int _pos)
     {
         if (!isMap(_pos)) return true;
-        return room_exists[_pos.x,_pos.y];
+        return room_exist_2d_[_pos.x,_pos.y];
     }
 
     public void init()
@@ -222,17 +224,17 @@ public class Stage : MonoBehaviour
 
     public void clearRoom(Vector2Int _pos)
     {
-        room_components_[_pos.x, _pos.y].clear();
-        cleared_rooms_[_pos.x, _pos.y] = true;
+        room_component_2d_[_pos.x, _pos.y].clear();
+        cleared_room_2d_[_pos.x, _pos.y] = true;
     }
 
     public bool isClearedRoom(Vector2Int _pos)
     {
-        return cleared_rooms_[_pos.x, _pos.y];
+        return cleared_room_2d_[_pos.x, _pos.y];
     }
 
     public void startBattle(Vector2Int _pos)
     {
-        room_components_[_pos.x, _pos.y].startBattle();
+        room_component_2d_[_pos.x, _pos.y].startRoom();
     }
 }

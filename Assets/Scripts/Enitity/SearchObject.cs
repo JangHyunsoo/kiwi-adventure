@@ -34,23 +34,12 @@ public class SearchObject : MonoBehaviour
         {
             RaycastHit2D raycast = Physics2D.Raycast(origin, Utility.GetVectorFromAngle(angle), view_distance_, (-1) - (1 << LayerMask.NameToLayer("Player")));
 
-            Debug.Log("test");
-
             if (raycast.collider != null)
             {
                 if (raycast.collider.gameObject.tag == Utility.MonsterTag)
                 {
                     result_ = raycast.collider.gameObject;
-                    Debug.Log(result_.name);
                 }
-                else
-                {
-                    Debug.Log(raycast.collider.gameObject.tag);
-                }
-            }
-            else
-            {
-                Debug.Log("null");
             }
 
             angle -= angle_increase;

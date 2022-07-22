@@ -31,11 +31,13 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private GameObject enemy_prefab_;
 
-    private List<EnemyEntity> all_enemy_ = new List<EnemyEntity>();
+    [SerializeField]
+    private List<EnemyEntity> all_enemy_arr_ = new List<EnemyEntity>();
 
     [SerializeField]
     private EnemyHpGauge enemy_hp_gauge_;
-    private List<EnemyEntity> target_enemy_ = new List<EnemyEntity>();
+    [SerializeField]
+    private List<EnemyEntity> target_enemy_arr_ = new List<EnemyEntity>();
 
     public GameObject spawnEnemy(int _no, Vector3 _pos)
     {
@@ -49,42 +51,44 @@ public class EnemyManager : MonoBehaviour
 
     public void addEnemy(EnemyEntity _enemy)
     {
-        all_enemy_.Add(_enemy);
+        all_enemy_arr_.Add(_enemy);
     }
     public void removeEnemy(EnemyEntity _enemy)
     {
-        if (all_enemy_.Contains(_enemy))
+        if (all_enemy_arr_.Contains(_enemy))
         {
-            all_enemy_.Remove(_enemy);
+            all_enemy_arr_.Remove(_enemy);
         }
     }
+
     public bool isEnemyEmpty()
     {
-        return all_enemy_.Count == 0;
+        return all_enemy_arr_.Count == 0;
     }
+
     public void addTargetEnemey(EnemyEntity _enemy)
     {
-        target_enemy_.Add(_enemy);
+        target_enemy_arr_.Add(_enemy);
     }
 
     public void removeTargetEnemey(EnemyEntity _enemy)
     {
         if (isContainEnemy(_enemy))
         {
-            target_enemy_.Remove(_enemy);
+            target_enemy_arr_.Remove(_enemy);
         }
     }
 
     public bool isContainEnemy(EnemyEntity _enemy)
     {
-        return target_enemy_.Contains(_enemy);
+        return target_enemy_arr_.Contains(_enemy);
     }
 
     public void Update()
     {
-        if (target_enemy_.Count != 0) {
+        if (target_enemy_arr_.Count != 0) {
+            enemy_hp_gauge_.updateHpGauge(target_enemy_arr_[0].getHpPersent());
             enemy_hp_gauge_.gameObject.SetActive(true);
-            enemy_hp_gauge_.updateHpGauge(target_enemy_[0].getHpPersent());
         }
         else
         {

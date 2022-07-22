@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class EnemyEntity : Entity
 {
-    protected override void onDie()
+    private void Start()
     {
-        Destroy(this.gameObject);
+        init();
     }
 
-    private void OnDestroy()
+    protected override void onDie()
     {
-        // if (GameManager.instance.is_game_over) return;
-
         EnemyManager.instance.removeEnemy(this);
         EnemyManager.instance.removeTargetEnemey(this);
         if (EnemyManager.instance.isEnemyEmpty())
         {
             StageManager.instance.clearRoom();
         }
+
+        Destroy(this.gameObject);
     }
 }

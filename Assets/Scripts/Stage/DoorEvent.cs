@@ -8,7 +8,7 @@ public class DoorEvent : InteractionEvent
 
     public override void activate()
     {
-        StageManager.instance.moveRoom(dir_);
+        StageManager.instance.movePlayer(dir_);
     }
 
     public void setDirection(Direction _dir)

@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerData : Status
 {
+    // 플레이어 고유 스킬들 저장
     [SerializeField]
-    private Skill[] skill_list_;
-    public Skill[] skill_list { get => skill_list_; }
+    private Skill[] skill_arr_;
+    public Skill[] skill_arr { get => skill_arr_; }
 }

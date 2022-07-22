@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010b4b9e13048724cb1c85056ccc7a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_spawn_object_holder_: {fileID: 1721301385866816863}
+  enemy_spawn_object_parent_: {fileID: 1721301385866816863}
 --- !u!1 &8699472576399641204
 GameObject:
   m_ObjectHideFlags: 0

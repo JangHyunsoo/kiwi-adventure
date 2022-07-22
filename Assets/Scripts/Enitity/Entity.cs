@@ -22,16 +22,10 @@ public class Entity : MonoBehaviour
     protected float cooltime_value_;
     public float cooltime_value { get => cooltime_value_; set => cooltime_value_ = value; }
 
-
-    private void Awake()
-    {
-        init();
-    }
-    protected virtual void init()
+    public virtual void init()
     {
         current_hp = status_data_.max_hp;
     }
-    
 
     public void hitDamage(int _damage)
     {
@@ -46,8 +40,6 @@ public class Entity : MonoBehaviour
     {
         return (float)current_hp / (float)status_data_.max_hp;
     }
-    protected virtual void onDie() 
-    { 
 
-    }
+    protected virtual void onDie() { }
 }

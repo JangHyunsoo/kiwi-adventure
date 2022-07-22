@@ -7,9 +7,6 @@ public class ItemDataBase : MonoBehaviour
 {
     private static ItemDataBase _instance = null;
 
-    [SerializeField]
-    private ItemData[] item_datas_;
-
     public static ItemDataBase instance
     {
         get
@@ -30,11 +27,14 @@ public class ItemDataBase : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    [SerializeField]
+    private ItemData[] item_datas_;
+
     public void init()
     {
         Array.Sort(item_datas_, compare);
     }
-
 
     public ItemData getItemData(int _index_num)
     {

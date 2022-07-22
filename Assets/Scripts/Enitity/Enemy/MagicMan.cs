@@ -38,7 +38,7 @@ public class MagicMan : EnemyEntity
     private SpriteRenderer sprite_renderer;
     private Rigidbody2D rigidbody_;
 
-    protected override void init()
+    public override void init()
     {
         base.init();
         sprite_renderer = GetComponent<SpriteRenderer>();
@@ -105,23 +105,12 @@ public class MagicMan : EnemyEntity
         {
             RaycastHit2D raycast = Physics2D.Raycast(origin, Utility.GetVectorFromAngle(angle), view_distance_, (-1) - (1 << LayerMask.NameToLayer("Monster")));
 
-            // Debug.Log("test");
-
             if (raycast.collider != null)
             {
                 if (raycast.collider.gameObject.tag == Utility.PlayerTag)
                 {
                     target = raycast.collider.gameObject.transform;
-                    // Debug.Log(target.name);
                 }
-                else
-                {
-                    // Debug.Log(raycast.collider.gameObject.tag);
-                }
-            }
-            else
-            {
-                // Debug.Log("null");
             }
 
             angle -= angle_increase;

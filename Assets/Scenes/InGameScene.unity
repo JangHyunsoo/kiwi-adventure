@@ -305,7 +305,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy_holder_: {fileID: 1060625305}
   enemy_prefab_: {fileID: 8518905594818143233, guid: 10598c24ad2c3054085bdc4cbde68aa6, type: 3}
+  all_enemy_arr_: []
   enemy_hp_gauge_: {fileID: 159711039}
+  target_enemy_arr_: []
 --- !u!4 &21722587
 Transform:
   m_ObjectHideFlags: 0
@@ -2649,7 +2651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72ad1e941086fa4781e2605767c3896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill_slot: {fileID: 0}
   skill_image_: {fileID: 472728911}
 --- !u!114 &472728911
 MonoBehaviour:
@@ -6860,8 +6861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e8e118d2738d34892903245d244c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player_prefab: {fileID: 1313755421659091322, guid: 518d490c048da7143b3bf5cc8ba18cfa, type: 3}
-  _player_gauge: {fileID: 584497775}
+  player_prefab_: {fileID: 1313755421659091322, guid: 518d490c048da7143b3bf5cc8ba18cfa, type: 3}
+  player_gauge_: {fileID: 584497775}
 --- !u!4 &1245190299
 Transform:
   m_ObjectHideFlags: 0
@@ -7612,12 +7613,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77bf39c48620bf746866ed7a9190b5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room_frame_prefab: {fileID: 7363345752287921644, guid: cd49ecfc0418e594a880e63a9808a633, type: 3}
+  room_prefab_: {fileID: 7363345752287921644, guid: cd49ecfc0418e594a880e63a9808a633, type: 3}
   room_size_: 15
   map_width_size_: 21
   map_height_size_: 21
-  goal_count: 10
-  curr_count: 0
+  goal_count_: 50
+  curr_count_: 0
   next_cnt_incr_percent_: 0
   straight_percent_: 1
 --- !u!1 &1372895840
@@ -10312,8 +10313,6 @@ MonoBehaviour:
   skill_book_go_: {fileID: 1397244581}
   have_slot_parent_: {fileID: 196501358}
   equipment_slot_parent_: {fileID: 1102374572}
-  have_skill_slots_: []
-  equipment_skill_slots_: []
   skill_info_card_: {fileID: 1596376981}
   skill_slider_ui_: {fileID: 1944677156}
   skill_command_ui_: {fileID: 1861728310}
@@ -11183,7 +11182,7 @@ MonoBehaviour:
   ui_move_speed_: 10
   activate_target_tr_: {fileID: 792879929}
   unactivate_target_tr_: {fileID: 1948313929}
-  rune_sprite_list_:
+  rune_sprite_arr_:
   - {fileID: 21300000, guid: 06019042908bcd24b81d053ab01af25d, type: 3}
   - {fileID: 21300000, guid: a694e13a234fc6d47bc8508d96df06f9, type: 3}
   - {fileID: 21300000, guid: d033430212c18914d933b793c671759f, type: 3}

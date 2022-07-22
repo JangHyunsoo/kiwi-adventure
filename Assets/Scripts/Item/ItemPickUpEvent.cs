@@ -6,7 +6,7 @@ public class ItemPickUpEvent : InteractionEvent
 {
     [SerializeField]
     private ItemData item_data_;
-    public ItemData item_data { get => item_data_; set => item_data_ = item_data; }
+    public ItemData item_data { get => item_data_; }
 
     public override void activate()
     {

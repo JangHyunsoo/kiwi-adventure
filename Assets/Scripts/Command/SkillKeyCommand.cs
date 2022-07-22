@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SkillKeyCommand : Command
 {
-    private PlayerCasting player_casting_;
     private int command_code_;
 
     public SkillKeyCommand(KeyActionType _type, KeyCode _key, int _command_code) : base(_type, _key)
@@ -14,25 +13,22 @@ public class SkillKeyCommand : Command
 
     public override void activate()
     {
-        if(player_casting_ == null)
-        {
-            player_casting_ = obj_.GetComponent<PlayerCasting>();
-        }
+        var player_casting = PlayerManager.instance.player_casting;
 
-        if (player_casting_.isCasting())
+        if (player_casting.isCasting())
         {
-            if (player_casting_.compareSkillCommand(command_code_))
+            if (player_casting.compareSkillCommand(command_code_))
             {
-                player_casting_.nextCommand();
+                player_casting.nextCommand();
 
-                if (player_casting_.isFinishCasting())
+                if (player_casting.isFinishCasting())
                 {
-                    player_casting_.readySkill();
+                    player_casting.readySkill();
                 }
             }
             else
             {
-                player_casting_.failSkill();
+                player_casting.failSkill();
             }
         }
     }

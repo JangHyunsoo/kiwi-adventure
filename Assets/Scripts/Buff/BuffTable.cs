@@ -7,20 +7,14 @@ public class BuffTable : MonoBehaviour
 {
     private Entity entity_;
     private List<Buff> buff_list_ = new List<Buff>();
-
-
-
-    [SerializeField]
-    private int temp = 0;
     
-    public void Awake()
+    public void Start()
     {
         init();
     }
 
     public void Update()
     {
-
         if(buff_list_.Count > 0)
         {
             for (int i = 0; i < buff_list_.Count; i++)

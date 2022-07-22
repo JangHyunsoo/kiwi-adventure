@@ -6,7 +6,8 @@ public class ChestEvent : InteractionEvent
 {
     [SerializeField]
     private int[] fixed_items_;
-    private int random_items_;
+    [SerializeField]
+    private int item_count_;
 
     private bool isOpen = false;
 
@@ -38,7 +39,7 @@ public class ChestEvent : InteractionEvent
 
     private void setRandomItem()
     {
-        random_items_ = Random.Range(3, 5);
+        item_count_ = Random.Range(3, 5);
     }
 
     private void setChest()
@@ -48,7 +49,7 @@ public class ChestEvent : InteractionEvent
             drop_item_data_list.Add(ItemDataBase.instance.getItemData(fixed_items_[index]));
         }
         
-        for(int i = 0; i < random_items_; i++)
+        for(int i = 0; i < item_count_; i++)
         {
             drop_item_data_list.Add(ItemDataBase.instance.getItemData(3));
         }
@@ -61,7 +62,6 @@ public class ChestEvent : InteractionEvent
     private void openChest()
     {
         var drop_pos = Utility.getChildsTransform(item_drop_pos_);
-
 
         for(int i = 0; i < drop_item_data_list.Count; i++)
         {

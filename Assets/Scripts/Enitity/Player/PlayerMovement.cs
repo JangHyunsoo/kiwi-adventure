@@ -2,46 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb_;
     private Vector3 target_pos_;
-    private bool is_freeze = true;
-    private bool is_empty = true;
-    private Queue<Vector3> reserved_position_list_ = new Queue<Vector3>();
+    private bool is_freeze_ = true;
+    private bool is_empty_ = true;
+    private Queue<Vector3> reserved_position_queue_ = new Queue<Vector3>();
 
-    private void Update()
-    {
-        if (is_freeze) return;
-
-        moveCommand();
-
-        is_empty = reserved_position_list_.Count == 0;
-
-        if (is_empty)
-        {
-            moveToTarget(target_pos_, PlayerManager.instance.player.cur_speed);
-        }
-        else if (!is_empty)
-        {
-            if (Vector2.Distance(reserved_position_list_.Peek(), transform.position) <= 0.1f)
-            {
-                reserved_position_list_.Dequeue();
-            }
-            else
-            {
-                moveToTarget(reserved_position_list_.Peek(), PlayerManager.instance.player.cur_speed);
-            }
-        }
-    }
-
-    private void Awake()
+    public void init()
     {
         rb_ = GetComponent<Rigidbody2D>();
         target_pos_ = transform.position;
         StartCoroutine(delay(1f));
     }
 
+    private void Update()
+    {
+        if (is_freeze_) return;
+
+        moveCommand();
+
+        is_empty_ = reserved_position_queue_.Count == 0;
+
+        if (is_empty_)
+        {
+            moveToTarget(target_pos_, PlayerManager.instance.player.cur_speed);
+        }
+        else if (!is_empty_)
+        {
+            if (Vector2.Distance(reserved_position_queue_.Peek(), transform.position) <= 0.1f)
+            {
+                reserved_position_queue_.Dequeue();
+            }
+            else
+            {
+                moveToTarget(reserved_position_queue_.Peek(), PlayerManager.instance.player.cur_speed);
+            }
+        }
+    }
 
     public void moveCommand()
     {
@@ -50,12 +49,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 calTargetPos();
-                reserved_position_list_.Enqueue(target_pos_);
+                reserved_position_queue_.Enqueue(target_pos_);
             }
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            reserved_position_list_.Clear();
+            reserved_position_queue_.Clear();
             calTargetPos();
         }
         else if(Input.GetMouseButtonDown(2))
@@ -76,14 +75,12 @@ public class PlayerController : MonoBehaviour
         Vector2 dir = (_target_pos - transform.position).normalized * Time.deltaTime * _speed;
         rb_.MovePosition(rb_.position + dir);
 
-        if (Vector2.Distance(target_pos_, transform.position) <= 0.1f) rb_.MovePosition(target_pos_);
-
-        //transform.position = Vector3.MoveTowards(transform.position, target_pos_, Time.deltaTime * _speed);
+        if (Vector2.Distance(target_pos_, transform.position) <= Time.deltaTime * _speed) rb_.MovePosition(target_pos_);
     }
 
     private void stopMove()
     {
-        reserved_position_list_.Clear();
+        reserved_position_queue_.Clear();
         target_pos_ = transform.position;
     }
 
@@ -95,6 +92,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator delay(float _delay_time)
     {
         yield return new WaitForSeconds(_delay_time);
-        is_freeze = false;
+        is_freeze_ = false;
     }
 }

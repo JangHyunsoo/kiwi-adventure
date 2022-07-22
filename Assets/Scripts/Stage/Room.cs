@@ -33,8 +33,8 @@ public class Room : MonoBehaviour
         room_frame_.clear();
     }
 
-    public void startBattle()
+    public void startRoom()
     {
-        room_flied_.spawnEnemy();
+        room_flied_.startRoom();
     }
 }

@@ -9,11 +9,15 @@ public class PlayerHpGauge : MonoBehaviour
     private Image hp_gauge_image_;
     private float hp_amount_;
 
-    // Start is called before the first frame update
     void Start()
     {
         hp_amount_ = 1f;
         hp_gauge_image_.fillAmount = hp_amount_;
+    }
+
+    void Update()
+    {
+        updateHpGauge(PlayerManager.instance.player.getHpPersent());
     }
 
     public void updateHpGauge(float _amount)
@@ -22,11 +26,5 @@ public class PlayerHpGauge : MonoBehaviour
 
         hp_amount_ = _amount;
         hp_gauge_image_.fillAmount = hp_amount_;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        updateHpGauge(PlayerManager.instance.player.getHpPersent());
     }
 }

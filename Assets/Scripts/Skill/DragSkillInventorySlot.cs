@@ -7,7 +7,8 @@ public class DragSkillInventorySlot : MonoBehaviour
 {
     static public DragSkillInventorySlot instance;
 
-    public SkillSlot skill_slot;
+    private SkillSlot skill_slot_;
+    public SkillSlot skill_slot { get => skill_slot_; set => skill_slot_ = value; }
 
     [SerializeField]
     private Image skill_image_;

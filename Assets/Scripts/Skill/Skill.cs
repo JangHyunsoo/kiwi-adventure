@@ -14,7 +14,7 @@ public class Skill
 
     private int level_ = 0;
     public int level { get { return level_; } set { level_ = value; } }
-    public bool isKnown { get { return level_ != 0; }}
+    public bool is_known { get => level_ != 0; }
 
     public Skill(SkillData _skill_data, SkillRecipeData _skill_recipe_data, SkillAction _skill_action)
     {

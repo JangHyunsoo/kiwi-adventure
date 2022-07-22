@@ -5,7 +5,7 @@ public class Buff
     private string name_;
     public string name { get => name_; }
     private double during_time_;
-    public Effect[] effect_list_;
+    public Effect[] effect_arr_;
     private int cur_stack_ = 0;
     public int cur_stack { get => cur_stack_; }
     private int buff_stack_;
@@ -16,7 +16,7 @@ public class Buff
         name_ = _name;
         during_time_ = _during_time;
         buff_stack_ = _stack;
-        effect_list_ = _effects;
+        effect_arr_ = _effects;
     }
 
     public void onetimeActivate(Entity _entity)
@@ -24,7 +24,7 @@ public class Buff
         cur_time_ = 0f;
         cur_stack_ += buff_stack_;
 
-        foreach (var _effect in effect_list_)
+        foreach (var _effect in effect_arr_)
         {
             _effect.onetimeActivate(_entity, buff_stack_);
         }
@@ -40,7 +40,7 @@ public class Buff
             cur_stack_--;
         }
 
-        foreach (var _effect in effect_list_)
+        foreach (var _effect in effect_arr_)
         {
             _effect.sequenceActivate(_entity, cur_stack_);
         }

@@ -26,7 +26,7 @@ public class SkillInventory : MonoBehaviour
         }
     }
 
-    private bool skill_book_activated;
+    private bool skill_book_activated_;
 
     [SerializeField]
     private GameObject skill_book_go_;
@@ -35,13 +35,11 @@ public class SkillInventory : MonoBehaviour
     [SerializeField]
     private GameObject equipment_slot_parent_;
 
-    [SerializeField]
-    private SkillSlot[] have_skill_slots_;
-    [SerializeField]
-    private SkillSlot[] equipment_skill_slots_;
+    private SkillSlot[] have_skill_slot_arr_;
+    private SkillSlot[] equipment_skill_slot_arr_;
 
     [SerializeField]
-    private SkillInfoCard skill_info_card_;
+    private SkillInfoCardUI skill_info_card_;
     
     [SerializeField]
     private SkillSliderUI skill_slider_ui_;
@@ -67,41 +65,42 @@ public class SkillInventory : MonoBehaviour
 
     private void setupHaveSlot()
     {
-        have_skill_slots_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
-        for(int i = 0; i < have_skill_slots_.Length; i++)
+        have_skill_slot_arr_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
+        for(int i = 0; i < have_skill_slot_arr_.Length; i++)
         {
-            have_skill_slots_[i].slot_no = i;
+            have_skill_slot_arr_[i].slot_no = i;
         }
     }
 
     private void setupEquipmentSlot()
     {
-        equipment_skill_slots_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
-        for (int i = 0; i < equipment_skill_slots_.Length; i++)
+        equipment_skill_slot_arr_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
+        for (int i = 0; i < equipment_skill_slot_arr_.Length; i++)
         {
-            equipment_skill_slots_[i].slot_no = i;
-            equipment_skill_slots_[i].setupEquipmentSlot();
+            equipment_skill_slot_arr_[i].slot_no = i;
+            equipment_skill_slot_arr_[i].setupEquipmentSlot();
         }
     }
+
     public void OpenInventory()
     {
-        skill_book_activated = true;
+        skill_book_activated_ = true;
         skill_book_go_.SetActive(true);
     }
 
     public void CloseInventory()
     {
-        skill_book_activated = false;
+        skill_book_activated_ = false;
         skill_book_go_.SetActive(false);
     }
 
     public void AcquireSkillToHave(Skill _skill)
     {
-        for (int i = 0; i < have_skill_slots_.Length; i++)
+        for (int i = 0; i < have_skill_slot_arr_.Length; i++)
         {
-            if (have_skill_slots_[i].skill == null)
+            if (have_skill_slot_arr_[i].skill == null)
             {
-                have_skill_slots_[i].addSkill(_skill);
+                have_skill_slot_arr_[i].addSkill(_skill);
                 return;
             }
         }
@@ -109,11 +108,11 @@ public class SkillInventory : MonoBehaviour
 
     public void AcquireSkillToEquipment(Skill _skill)
     {
-        for (int i = 0; i < equipment_skill_slots_.Length; i++)
+        for (int i = 0; i < equipment_skill_slot_arr_.Length; i++)
         {
-            if (equipment_skill_slots_[i].skill == null)
+            if (equipment_skill_slot_arr_[i].skill == null)
             {
-                equipment_skill_slots_[i].addSkill(_skill);
+                equipment_skill_slot_arr_[i].addSkill(_skill);
                 return;
             }
         }
@@ -121,12 +120,12 @@ public class SkillInventory : MonoBehaviour
 
     public Skill getCurrSkill()
     {
-        return equipment_skill_slots_[curr_skill_index_].skill;
+        return equipment_skill_slot_arr_[curr_skill_index_].skill;
     }
 
     public Skill getEquipmentSkill(int _idx)
     {
-        return equipment_skill_slots_[_idx].skill;
+        return equipment_skill_slot_arr_[_idx].skill;
     }
 
     public void updateEquipmentSlot()
@@ -142,11 +141,11 @@ public class SkillInventory : MonoBehaviour
     public void updateSkillSlot()
     {
 
-        for (int i = 0; i < have_skill_slots_.Length; i++)
+        for (int i = 0; i < have_skill_slot_arr_.Length; i++)
         {
-            if (have_skill_slots_[i].skill != null)
+            if (have_skill_slot_arr_[i].skill != null)
             {
-                have_skill_slots_[i].updateSkill();
+                have_skill_slot_arr_[i].updateSkill();
             }
         }
     }
@@ -156,13 +155,13 @@ public class SkillInventory : MonoBehaviour
         SkillSlot curr_slot = skill_info_card_.curr_slot;
         Skill curr_skill = skill_info_card_.curr_slot.skill;
 
-        if (!ItemInventory.instance.checkItems(curr_skill.skill_recipe_data.ToDictionary()))
+        if (!ItemInventory.instance.checkItems(curr_skill.skill_recipe_data.toDictionary()))
         {
             Debug.Log("cannot create skill");
         }
         else
         {
-            ItemInventory.instance.useItems(curr_skill.skill_recipe_data.ToDictionary());
+            ItemInventory.instance.useItems(curr_skill.skill_recipe_data.toDictionary());
             Skill max_skill = searchSkillMaxLevel(curr_skill.skill_data.skill_no);
             if(curr_skill == max_skill)
             {
@@ -183,24 +182,24 @@ public class SkillInventory : MonoBehaviour
     {
         List<Skill> result = new List<Skill>();
 
-        for (int i = 0; i < equipment_skill_slots_.Length; i++)
+        for (int i = 0; i < equipment_skill_slot_arr_.Length; i++)
         {
-            if (equipment_skill_slots_[i].skill != null)
+            if (equipment_skill_slot_arr_[i].skill != null)
             {
-                if (equipment_skill_slots_[i].skill.skill_data.skill_no == _no)
+                if (equipment_skill_slot_arr_[i].skill.skill_data.skill_no == _no)
                 {
-                    result.Add(equipment_skill_slots_[i].skill);
+                    result.Add(equipment_skill_slot_arr_[i].skill);
                 }
             }
         }
 
-        for (int i = 0; i < have_skill_slots_.Length; i++)
+        for (int i = 0; i < have_skill_slot_arr_.Length; i++)
         {
-            if (have_skill_slots_[i].skill != null)
+            if (have_skill_slot_arr_[i].skill != null)
             {
-                if(have_skill_slots_[i].skill.skill_data.skill_no == _no)
+                if(have_skill_slot_arr_[i].skill.skill_data.skill_no == _no)
                 {
-                    result.Add(have_skill_slots_[i].skill);
+                    result.Add(have_skill_slot_arr_[i].skill);
                 }
             }
         }
@@ -217,11 +216,11 @@ public class SkillInventory : MonoBehaviour
 
     public void sortSkill()
     {
-        for (int i = 0; i < have_skill_slots_.Length; i++)
+        for (int i = 0; i < have_skill_slot_arr_.Length; i++)
         {
-            for (int j = 0; j < have_skill_slots_.Length; j++)
+            for (int j = 0; j < have_skill_slot_arr_.Length; j++)
             {
-                if (compareSkill(have_skill_slots_[i].skill, have_skill_slots_[j].skill) == 1)
+                if (compareSkill(have_skill_slot_arr_[i].skill, have_skill_slot_arr_[j].skill) == 1)
                 {
                     swapHaveSkillSlot(i, j);
                 }
@@ -240,14 +239,14 @@ public class SkillInventory : MonoBehaviour
     // contain update
     private void swapHaveSkillSlot(int _idx1, int _idx2)
     {
-        Skill skill1 = have_skill_slots_[_idx1].skill;
-        Skill skill2 = have_skill_slots_[_idx2].skill;
+        Skill skill1 = have_skill_slot_arr_[_idx1].skill;
+        Skill skill2 = have_skill_slot_arr_[_idx2].skill;
 
-        have_skill_slots_[_idx1].skill = skill2;
-        have_skill_slots_[_idx2].skill = skill1;
+        have_skill_slot_arr_[_idx1].skill = skill2;
+        have_skill_slot_arr_[_idx2].skill = skill1;
 
-        have_skill_slots_[_idx1].updateSkill();
-        have_skill_slots_[_idx2].updateSkill();
+        have_skill_slot_arr_[_idx1].updateSkill();
+        have_skill_slot_arr_[_idx2].updateSkill();
     }   
 
     public void moveCurrSkillCursor(int _idx)
@@ -270,5 +269,4 @@ public class SkillInventory : MonoBehaviour
 
         skill_command_ui_.setCondition(_is_casting);
     }
-
 }

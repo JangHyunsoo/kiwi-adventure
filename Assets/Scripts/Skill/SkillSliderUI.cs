@@ -6,12 +6,6 @@ using UnityEngine.UI;
 
 public class SkillSliderUI : MonoBehaviour
 {
-    private readonly KeyCode[] skill_idx_ =
-    {
-        KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3,
-        KeyCode.Alpha4, KeyCode.Alpha5
-    };
-
     private float rotate_angle_;
     private Quaternion target_rotation_;
 
@@ -35,16 +29,16 @@ public class SkillSliderUI : MonoBehaviour
     private int cur_pos_index_ = 0;
     private int cur_skill_index_ = 0;
 
-    private int[] real_idx_pos_ = { 0, 1, 2, 3, 7 };
+    private int[] real_idx_pos_arr_ = { 0, 1, 2, 3, 7 };
 
     [SerializeField]
     private Transform skill_slot_image_parent_;
     [SerializeField]
     private Transform skill_slot_pos_parent_;
 
-    private Transform[] skill_slot_image_tr_list_;
-    private Transform[] skill_slot_pos_tr_list_;
-    private SkillSliderSlotUI[] skill_slot_image_cp_list_;
+    private Transform[] skill_slot_image_tr_arr_;
+    private Transform[] skill_slot_pos_tr_arr_;
+    private SkillSliderSlotUI[] skill_slot_image_cp_arr_;
 
     [SerializeField]
     private Color normal_bolder_line_color_;
@@ -53,8 +47,8 @@ public class SkillSliderUI : MonoBehaviour
 
     public void init()
     {
-        skill_slot_image_tr_list_ = Utility.getChildsTransform(skill_slot_image_parent_);
-        skill_slot_pos_tr_list_ = Utility.getChildsTransform(skill_slot_pos_parent_);
+        skill_slot_image_tr_arr_ = Utility.getChildsTransform(skill_slot_image_parent_);
+        skill_slot_pos_tr_arr_ = Utility.getChildsTransform(skill_slot_pos_parent_);
         initSkillSlot();
         skill_slot_pos_parent_.rotation = Quaternion.Euler(0, 0, -45);
         target_rotation_ = skill_slot_pos_parent_.rotation;
@@ -62,9 +56,9 @@ public class SkillSliderUI : MonoBehaviour
 
     private void initSkillSlot()
     {
-        skill_slot_image_cp_list_ = skill_slot_image_parent_.GetComponentsInChildren<SkillSliderSlotUI>();
+        skill_slot_image_cp_arr_ = skill_slot_image_parent_.GetComponentsInChildren<SkillSliderSlotUI>();
 
-        foreach (SkillSliderSlotUI slot in skill_slot_image_cp_list_)
+        foreach (SkillSliderSlotUI slot in skill_slot_image_cp_arr_)
         {
             slot.init();
         }
@@ -78,7 +72,7 @@ public class SkillSliderUI : MonoBehaviour
         {
             if (target_skill_index == 0)
             {
-                target_skill_index = 4;
+                target_skill_index = SKILL_SIZE_ - 1;
             }
             else
             {
@@ -87,7 +81,7 @@ public class SkillSliderUI : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            if (target_skill_index == 4)
+            if (target_skill_index == SKILL_SIZE_)
             {
                 target_skill_index = 0;
             }
@@ -108,7 +102,7 @@ public class SkillSliderUI : MonoBehaviour
     {
         for (int i = 0; i < SKILL_SIZE_; i++)
         {
-            skill_slot_image_tr_list_[i].position = skill_slot_pos_tr_list_[real_idx_pos_[i]].position;
+            skill_slot_image_tr_arr_[i].position = skill_slot_pos_tr_arr_[real_idx_pos_arr_[i]].position;
         }
     }
 
@@ -119,11 +113,11 @@ public class SkillSliderUI : MonoBehaviour
             var skill = SkillInventory.instance.getEquipmentSkill(i);
             if (skill == null)
             {
-                skill_slot_image_cp_list_[i].setIconImageSprite(null_skill_sprite_);
+                skill_slot_image_cp_arr_[i].setIconImageSprite(null_skill_sprite_);
             }
             else
             {
-                skill_slot_image_cp_list_[i].setIconImageSprite(skill.skill_data.skill_icon);
+                skill_slot_image_cp_arr_[i].setIconImageSprite(skill.skill_data.skill_icon);
             }
         }
     }
@@ -137,7 +131,7 @@ public class SkillSliderUI : MonoBehaviour
     {
         for (int i = 0; i < SKILL_SIZE_; i++)
         {
-            var cur_image = skill_slot_image_tr_list_[i];
+            var cur_image = skill_slot_image_tr_arr_[i];
             if (cur_skill_index_ == i)
             {
                 cur_image.localScale = Vector3.Lerp(cur_image.localScale, Vector3.one, Time.deltaTime * scale_speed_);
@@ -153,7 +147,7 @@ public class SkillSliderUI : MonoBehaviour
     {
         for (int i = 0; i < SKILL_SIZE_; i++)
         {
-            var cur_slot = skill_slot_image_cp_list_[i];
+            var cur_slot = skill_slot_image_cp_arr_[i];
             if (cur_skill_index_ == i)
             {
                 cur_slot.setBolderLineColor(Color.Lerp(cur_slot.bolder_line_image.color, curr_bolder_line_color_, Time.deltaTime * color_speed_));
@@ -170,11 +164,11 @@ public class SkillSliderUI : MonoBehaviour
         var new_front_idx = (front_slot_index_ - 1) % SKILL_SIZE_;
         if (new_front_idx < 0) new_front_idx += SKILL_SIZE_;
 
-        if (cur_pos_index_ - real_idx_pos_[front_slot_index_] == 1)
+        if (cur_pos_index_ - real_idx_pos_arr_[front_slot_index_] == 1)
         {
-            var new_front_real_pos = (real_idx_pos_[front_slot_index_] - 1) % SLOT_SIZE_;
+            var new_front_real_pos = (real_idx_pos_arr_[front_slot_index_] - 1) % SLOT_SIZE_;
             if (new_front_real_pos < 0) new_front_real_pos += SLOT_SIZE_;
-            real_idx_pos_[new_front_idx] = new_front_real_pos;
+            real_idx_pos_arr_[new_front_idx] = new_front_real_pos;
             front_slot_index_ = new_front_idx;
             end_slot_index_ = (end_slot_index_ - 1) % SKILL_SIZE_;
             if (end_slot_index_ < 0)
@@ -182,9 +176,9 @@ public class SkillSliderUI : MonoBehaviour
                 end_slot_index_ += SKILL_SIZE_;
             }
         }
-        else if (cur_pos_index_ == 0 && real_idx_pos_[front_slot_index_] == (SLOT_SIZE_ - 1))
+        else if (cur_pos_index_ == 0 && real_idx_pos_arr_[front_slot_index_] == (SLOT_SIZE_ - 1))
         {
-            real_idx_pos_[new_front_idx] = 6;
+            real_idx_pos_arr_[new_front_idx] = 6;
             front_slot_index_ = new_front_idx;
             end_slot_index_ = (end_slot_index_ - 1) % SKILL_SIZE_;
             if (end_slot_index_ < 0)
@@ -213,16 +207,16 @@ public class SkillSliderUI : MonoBehaviour
     {
         var new_end_idx = (end_slot_index_ + 1) % SKILL_SIZE_;
 
-        if (cur_pos_index_ - real_idx_pos_[end_slot_index_] == -1)
+        if (cur_pos_index_ - real_idx_pos_arr_[end_slot_index_] == -1)
         {
-            var new_end_real_pos = (real_idx_pos_[end_slot_index_] + 1) % SLOT_SIZE_;
-            real_idx_pos_[new_end_idx] = new_end_real_pos;
+            var new_end_real_pos = (real_idx_pos_arr_[end_slot_index_] + 1) % SLOT_SIZE_;
+            real_idx_pos_arr_[new_end_idx] = new_end_real_pos;
             end_slot_index_ = new_end_idx;
             front_slot_index_ = (front_slot_index_ + 1) % SKILL_SIZE_;
         }
-        else if (cur_pos_index_ == (SLOT_SIZE_ - 1) && real_idx_pos_[end_slot_index_] == 0)
+        else if (cur_pos_index_ == (SLOT_SIZE_ - 1) && real_idx_pos_arr_[end_slot_index_] == 0)
         {
-            real_idx_pos_[new_end_idx] = 1;
+            real_idx_pos_arr_[new_end_idx] = 1;
             end_slot_index_ = new_end_idx;
             front_slot_index_ = (front_slot_index_ + 1) % SKILL_SIZE_;
         }

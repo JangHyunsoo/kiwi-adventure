@@ -40,41 +40,40 @@ public class RoomFrame : MonoBehaviour
     {
         _open_direction.Add(_direction);
 
-        if(_direction == Direction.LEFT)
+        switch (_direction)
         {
-            foreach(var door in left_door_tile_)
-            {
-                door.SetActive(false);
-            }
-            left_door_.SetActive(true);
-            left_door_.GetComponent<Door>().closeDoor();
-        }
-        else if (_direction == Direction.RIGHT)
-        {
-            foreach (var door in right_door_tile_)
-            {
-                door.SetActive(false);
-            }
-            right_door_.SetActive(true);
-            right_door_.GetComponent<Door>().closeDoor();
-        }
-        else if (_direction == Direction.TOP)
-        {
-            foreach (var door in bottom_door_tile_)
-            {
-                door.SetActive(false);
-            }
-            bottom_door_.SetActive(true);
-            bottom_door_.GetComponent<Door>().closeDoor();
-        }
-        else if(_direction == Direction.BOTTOM)
-        {
-            foreach (var door in top_door_tile_)
-            {
-                door.SetActive(false);
-            }
-            top_door_.SetActive(true);
-            top_door_.GetComponent<Door>().closeDoor();
+            case Direction.LEFT:
+                foreach (var door in left_door_tile_)
+                {
+                    door.SetActive(false);
+                }
+                left_door_.SetActive(true);
+                left_door_.GetComponent<Door>().closeDoor();
+                break;
+            case Direction.RIGHT:
+                foreach (var door in right_door_tile_)
+                {
+                    door.SetActive(false);
+                }
+                right_door_.SetActive(true);
+                right_door_.GetComponent<Door>().closeDoor();
+                break;
+            case Direction.TOP:
+                foreach (var door in bottom_door_tile_)
+                {
+                    door.SetActive(false);
+                }
+                bottom_door_.SetActive(true);
+                bottom_door_.GetComponent<Door>().closeDoor();
+                break;
+            case Direction.BOTTOM:
+                foreach (var door in top_door_tile_)
+                {
+                    door.SetActive(false);
+                }
+                top_door_.SetActive(true);
+                top_door_.GetComponent<Door>().closeDoor();
+                break;
         }
     }
 
@@ -82,21 +81,20 @@ public class RoomFrame : MonoBehaviour
     {
         foreach (var dir in _open_direction)
         {
-            if (dir == Direction.LEFT)
+            switch (dir)
             {
-                left_door_.GetComponent<Door>().openDoor();
-            }
-            else if (dir == Direction.RIGHT)
-            {
-                right_door_.GetComponent<Door>().openDoor();
-            }
-            else if (dir == Direction.TOP)
-            {
-                bottom_door_.GetComponent<Door>().openDoor();
-            }
-            else if (dir == Direction.BOTTOM)
-            {
-                top_door_.GetComponent<Door>().openDoor();
+                case Direction.LEFT:
+                    left_door_.GetComponent<Door>().openDoor();
+                    break;
+                case Direction.RIGHT:
+                    right_door_.GetComponent<Door>().openDoor();
+                    break;
+                case Direction.TOP:
+                    bottom_door_.GetComponent<Door>().openDoor();
+                    break;
+                case Direction.BOTTOM:
+                    top_door_.GetComponent<Door>().openDoor();
+                    break;
             }
         }
     }

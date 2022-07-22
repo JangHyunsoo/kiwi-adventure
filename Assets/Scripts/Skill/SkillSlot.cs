@@ -46,7 +46,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         else
         {
             skill_image_.sprite = skill_.skill_data.skill_image;
-            if (skill_.isKnown) setColor(1);
+            if (skill_.is_known) setColor(1);
             else setColor(0.3f);
         }
     }
@@ -86,7 +86,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         if (DragSkillInventorySlot.instance.skill_slot != null)
         {
-            if (is_equipment_slot_ && !DragSkillInventorySlot.instance.skill_slot.skill.isKnown)
+            if (is_equipment_slot_ && !DragSkillInventorySlot.instance.skill_slot.skill.is_known)
             {
                 Debug.Log("cannot move");
                 return;
