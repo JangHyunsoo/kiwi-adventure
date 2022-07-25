@@ -26,11 +26,6 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    private bool skill_book_activated_;
-
-    [SerializeField]
-    private GameObject skill_book_go_;
-
     [SerializeField]
     private SkillInventoryUI skill_inventory_ui_;
 
@@ -54,21 +49,14 @@ public class SkillManager : MonoBehaviour
         updateEquipmentSlot();
     }
 
-    public void OpenInventory()
+    public void setSkillInventoryActivate(bool _condition)
     {
-        skill_book_activated_ = true;
-        skill_book_go_.SetActive(true);
+        skill_inventory_ui_.setActivate(_condition);
     }
 
     public void addSkill(Skill _skill)
     {
         skill_inventory_ui_.AcquireSkillToHave(_skill);
-    }
-
-    public void CloseInventory()
-    {
-        skill_book_activated_ = false;
-        skill_book_go_.SetActive(false);
     }
 
     public void updateEquipmentSlot()

@@ -12,6 +12,8 @@ public class SkillInventoryUI : MonoBehaviour
     private SkillSlot[] have_skill_slot_arr_;
     private SkillSlot[] equipment_skill_slot_arr_;
 
+    private bool is_activate_ = false;
+
     public void init()
     {
         setupHaveSlot();
@@ -159,5 +161,11 @@ public class SkillInventoryUI : MonoBehaviour
 
         have_skill_slot_arr_[_idx1].updateSkill();
         have_skill_slot_arr_[_idx2].updateSkill();
+    }
+
+    public void setActivate(bool _condition)
+    {
+        is_activate_ = _condition;
+        gameObject.SetActive(_condition);
     }
 }

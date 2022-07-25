@@ -4055,7 +4055,7 @@ RectTransform:
   - {fileID: 1944677155}
   - {fileID: 61899535}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6582,11 +6582,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1369505695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.768934, y: -0.6794266, z: -1454.3834}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1369505697
 MonoBehaviour:
@@ -8443,6 +8443,7 @@ MonoBehaviour:
   skill_index_key_3_: 51
   skill_index_key_4_: 52
   skill_index_key_5_: 53
+  skill_book_activate_: 107
 --- !u!4 &1634544543
 Transform:
   m_ObjectHideFlags: 0
@@ -9054,7 +9055,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162592b1f12d49a4b8dbec89b435aa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill_book_go_: {fileID: 1397244581}
   skill_inventory_ui_: {fileID: 1397244585}
   skill_info_card_: {fileID: 1596376981}
   skill_slider_ui_: {fileID: 1944677156}
@@ -9514,51 +9514,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753665609}
   m_CullTransparentMesh: 1
---- !u!1 &1777803858
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1777803860}
-  - component: {fileID: 1777803859}
-  m_Layer: 0
-  m_Name: KeyboardControl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1777803859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1777803858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4aca34cde2029943b58ccf009a03e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_inventory_key_: 107
-  skill_inventory_: {fileID: 1397244581}
---- !u!4 &1777803860
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1777803858}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1785466016
 GameObject:
   m_ObjectHideFlags: 0
@@ -11021,7 +10976,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2032043234
 GameObject:

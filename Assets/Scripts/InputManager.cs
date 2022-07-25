@@ -54,7 +54,8 @@ public class InputManager : MonoBehaviour
     private KeyCode skill_index_key_4_ = KeyCode.Alpha4;
     [SerializeField]
     private KeyCode skill_index_key_5_ = KeyCode.Alpha5;
-
+    [SerializeField]
+    private KeyCode skill_book_activate_ = KeyCode.K;
 
 
     private void Update()
@@ -69,6 +70,7 @@ public class InputManager : MonoBehaviour
     {
         key_command_dic_[interaction_key_] = new InterActionCommand(KeyActionType.DOWN, interaction_key_);
         key_command_dic_[skill_casting_key_] = new CastingCommand(KeyActionType.DOWN, skill_casting_key_);
+        key_command_dic_[skill_book_activate_] = new SkillInventoryActivateCommand(KeyActionType.DOWN, skill_book_activate_);
         key_command_dic_[skill_key_1_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_1_, 0);
         key_command_dic_[skill_key_2_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_2_, 1);
         key_command_dic_[skill_key_3_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_3_, 2);
