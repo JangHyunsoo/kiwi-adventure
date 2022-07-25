@@ -6,7 +6,7 @@ using UnityEngine;
 public class SkillData : ScriptableObject
 {
     public int skill_no;
-    public SkillRarity skill_rarity;
+    public Rarity skill_rarity;
     public string skill_name;
     public Sprite skill_image;
     public Sprite skill_icon;

@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b549699c2d78bf641a326b3711edf1f2, type: 3}
-  m_Name: AirElement
+  m_Name: 04.PhotonElement
   m_EditorClassIdentifier: 
   item_type_: 0
-  item_name_: AirElement
-  item_code_: 1
-  item_amount_: 1
+  item_name_: PhotonElement
+  item_code_: 4
   item_sprite_: {fileID: 0}

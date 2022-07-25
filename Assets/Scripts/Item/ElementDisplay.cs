@@ -20,11 +20,11 @@ public class ElementDisplay : MonoBehaviour
 
     public void updateElementDisplay()
     {
-        air_element_text_.text = ItemInventory.instance.inventory[1].ToString();
-        aqua_element_text_.text = ItemInventory.instance.inventory[2].ToString();
-        earth_element_text_.text = ItemInventory.instance.inventory[3].ToString();
-        fire_element_text_.text = ItemInventory.instance.inventory[4].ToString();
-        photon_element_text_.text = ItemInventory.instance.inventory[5].ToString();
-        element_dust_text_.text = ItemInventory.instance.inventory[6].ToString();
+        air_element_text_.text = ItemInventory.instance.inventory[0].ToString();
+        aqua_element_text_.text = ItemInventory.instance.inventory[1].ToString();
+        earth_element_text_.text = ItemInventory.instance.inventory[2].ToString();
+        fire_element_text_.text = ItemInventory.instance.inventory[3].ToString();
+        photon_element_text_.text = ItemInventory.instance.inventory[4].ToString();
+        element_dust_text_.text = ItemInventory.instance.inventory[5].ToString();
     }
 }

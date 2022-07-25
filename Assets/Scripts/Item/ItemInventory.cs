@@ -44,15 +44,15 @@ public class ItemInventory : MonoBehaviour
         updateDisplay();
     }
 
-    public void addItem(ItemData _item_data)
+    public void addItem(DropItemData _drop_item_data)
     {
-        inventory_[_item_data.item_code] += _item_data.item_amount;
+        inventory_[_drop_item_data.item_data.item_code] += _drop_item_data.amount;
         updateDisplay();
     }
 
-    public void useItem(ItemData _item_data)
+    public void useItem(DropItemData _drop_item_data)
     {
-        inventory_[_item_data.item_code] -= _item_data.item_amount;
+        inventory_[_drop_item_data.item_data.item_code] -= _drop_item_data.amount;
         updateDisplay();
     }
 
@@ -65,9 +65,10 @@ public class ItemInventory : MonoBehaviour
         updateDisplay();
     }
 
-    public bool checkItem(ItemData _used_item)
+    public bool checkItem(DropItemData _used_item)
     {
-        if (inventory_[_used_item.item_code] < _used_item.item_amount)
+
+        if (inventory_[_used_item.item_data.item_code] < _used_item.amount)
         {
             return false;
         }

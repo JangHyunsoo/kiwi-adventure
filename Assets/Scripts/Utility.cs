@@ -28,13 +28,7 @@ public enum ItemType
 }
 
 
-public enum SkillBookRarity
-{
-    NOMAL,
-    RARE
-}
-
-public enum SkillRarity
+public enum Rarity
 {
     COMMON,
     UNCOMMON,
