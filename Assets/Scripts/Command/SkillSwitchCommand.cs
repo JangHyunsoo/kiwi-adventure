@@ -13,7 +13,7 @@ public class SkillSwitchCommand : Command
 
     public override void activate()
     {
-        SkillInventory.instance.castingSkillAction(key_code_);
+        SkillManager.instance.castingSkillAction(key_code_);
 
     }
 }

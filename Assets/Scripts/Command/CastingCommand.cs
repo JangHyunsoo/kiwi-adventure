@@ -14,12 +14,12 @@ public class CastingCommand : Command
         {
             player_casting.setIsCasting(true);
             player_casting.loadSkillCommand();
-            SkillInventory.instance.setCommand(player_casting.isCasting());
+            SkillManager.instance.setCommand(player_casting.isCasting());
         }
         else
         {
             player_casting.setIsCasting(false);
-            SkillInventory.instance.setCommand(player_casting.isCasting());
+            SkillManager.instance.setCommand(player_casting.isCasting());
         }
     }
     

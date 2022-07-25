@@ -105,7 +105,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                SkillInventory.instance.updateSkillInfoCard(this);
+                SkillManager.instance.updateSkillInfoCard(this);
             }
         }
     }
@@ -125,6 +125,6 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             DragSkillInventorySlot.instance.skill_slot.clearSlot();
         }
 
-        SkillInventory.instance.updateEquipmentSlot();
+        SkillManager.instance.updateEquipmentSlot();
     }
 }

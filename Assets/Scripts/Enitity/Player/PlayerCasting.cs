@@ -22,10 +22,10 @@ public class PlayerCasting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SkillInventory.instance.getCurrSkill().activate(transform.position, Utility.getScreenMousePos(), tag);
+            SkillManager.instance.getCurrSkill().activate(transform.position, Utility.getScreenMousePos(), tag);
             is_reload_ = false;
             is_casting_ = false;
-            SkillInventory.instance.setCommand(false);
+            SkillManager.instance.setCommand(false);
         }
     }
 
@@ -41,7 +41,7 @@ public class PlayerCasting : MonoBehaviour
 
     public void loadSkillCommand()
     {
-        cur_command_arr_ = SkillInventory.instance.getCurrSkill().skill_data.command;
+        cur_command_arr_ = SkillManager.instance.getCurrSkill().skill_data.command;
     }
 
     public bool compareSkillCommand(int _command_code)

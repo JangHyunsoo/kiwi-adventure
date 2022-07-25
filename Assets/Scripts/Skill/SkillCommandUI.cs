@@ -37,7 +37,7 @@ public class SkillCommandUI : MonoBehaviour
 
     private void loadSkillCommand()
     {
-        cur_skill_command_arr_ = SkillInventory.instance.getCurrSkill().skill_data.command;
+        cur_skill_command_arr_ = SkillManager.instance.getCurrSkill().skill_data.command;
     }
 
     private void setSkillCommandSprite()

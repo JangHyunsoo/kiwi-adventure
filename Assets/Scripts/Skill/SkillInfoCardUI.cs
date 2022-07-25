@@ -86,4 +86,31 @@ public class SkillInfoCardUI : MonoBehaviour
         curr_skill_element_dust_count_.text = curr_slot_.skill.skill_recipe_data.element_dust_count.ToString();
         create_btn_.gameObject.SetActive(curr_slot_.skill.level == 0);
     }
+
+    public void createSkill()
+    {
+        SkillSlot curr_slot = curr_slot_;
+        Skill curr_skill = curr_slot_.skill;
+
+        if (!ItemInventory.instance.checkItems(curr_skill.skill_recipe_data.toDictionary()))
+        {
+            Debug.Log("cannot create skill");
+        }
+        else
+        {
+            ItemInventory.instance.useItems(curr_skill.skill_recipe_data.toDictionary());
+            Skill max_skill = SkillManager.instance.searchSkillMaxLevel(curr_skill.skill_data.skill_no);
+            if (curr_skill == max_skill)
+            {
+                curr_skill.level++;
+            }
+            else
+            {
+                max_skill.level++;
+                curr_slot.clearSlot();
+            }
+            Debug.Log("create " + curr_skill.skill_data.skill_name);
+        }
+        SkillManager.instance.updateSkillUI();
+    }
 }

@@ -1,0 +1,126 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SkillManager : MonoBehaviour
+{
+    private static SkillManager _instance;
+    public static SkillManager instance
+    {
+        get
+        {
+            if (_instance == null) { return null; }
+            else { return _instance; }
+        }
+    }
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private bool skill_book_activated_;
+
+    [SerializeField]
+    private GameObject skill_book_go_;
+
+    [SerializeField]
+    private SkillInventoryUI skill_inventory_ui_;
+
+    [SerializeField]
+    private SkillInfoCardUI skill_info_card_;
+    
+    [SerializeField]
+    private SkillSliderUI skill_slider_ui_;
+
+    [SerializeField]
+    private SkillCommandUI skill_command_ui_;
+
+    private int curr_skill_index_ = 0;
+    public int curr_skill_index { get => curr_skill_index_; }
+
+    public void init()
+    {
+        skill_inventory_ui_.init();
+        skill_slider_ui_.init();
+        skill_command_ui_.init();
+        updateEquipmentSlot();
+    }
+
+    public void OpenInventory()
+    {
+        skill_book_activated_ = true;
+        skill_book_go_.SetActive(true);
+    }
+
+    public void addSkill(Skill _skill)
+    {
+        skill_inventory_ui_.AcquireSkillToHave(_skill);
+    }
+
+    public void CloseInventory()
+    {
+        skill_book_activated_ = false;
+        skill_book_go_.SetActive(false);
+    }
+
+    public void updateEquipmentSlot()
+    {
+        skill_slider_ui_.updateSkillImage();
+    }
+
+    public void updateSkillInfoCard(SkillSlot _slot)
+    {
+        skill_info_card_.setSkill(_slot);
+    }
+
+    public void moveCurrSkillCursor(int _idx)
+    {
+        curr_skill_index_ = _idx;
+    }
+
+    public void castingSkillAction(int _key_code)
+    {
+        skill_slider_ui_.rotateCurrntSkill(_key_code);
+    }
+
+    public Skill getEquipmentSkill(int _idx)
+    {
+        return skill_inventory_ui_.getEquipmentSkill(_idx);
+    }
+
+    public Skill getCurrSkill()
+    {
+        return skill_inventory_ui_.getEquipmentSkill(curr_skill_index_);
+    }
+
+    public Skill searchSkillMaxLevel(int _no)
+    {
+        return skill_inventory_ui_.searchSkillMaxLevel(_no);
+    }
+
+    // start and end 분리하기... 
+    public void setCommand(bool _is_casting)
+    {
+        if (_is_casting) 
+        {
+            skill_command_ui_.setCommandSprite();
+        }
+
+        skill_command_ui_.setCondition(_is_casting);
+    }
+
+    public void updateSkillUI()
+    {
+        skill_inventory_ui_.updateSkillSlot();
+        skill_slider_ui_.updateSkillImage();
+        skill_info_card_.updateSkillInfo();
+    }
+}

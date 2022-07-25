@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerManager.instance.init();
         StageManager.instance.init();
-        SkillInventory.instance.init();
+        SkillManager.instance.init();
         ItemInventory.instance.init();
         InputManager.instance.init();
     }

@@ -66,7 +66,7 @@ public class SkillSliderUI : MonoBehaviour
 
     private void Update()
     {
-        int target_skill_index = SkillInventory.instance.curr_skill_index;
+        int target_skill_index = SkillManager.instance.curr_skill_index;
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -110,7 +110,7 @@ public class SkillSliderUI : MonoBehaviour
     {
         for (int i = 0; i < SKILL_SIZE_; i++)
         {
-            var skill = SkillInventory.instance.getEquipmentSkill(i);
+            var skill = SkillManager.instance.getEquipmentSkill(i);
             if (skill == null)
             {
                 skill_slot_image_cp_arr_[i].setIconImageSprite(null_skill_sprite_);
@@ -229,7 +229,7 @@ public class SkillSliderUI : MonoBehaviour
 
     public void rotateCurrntSkill(int _target_skill_num)
     {
-        int cur_skill_num = SkillInventory.instance.curr_skill_index;
+        int cur_skill_num = SkillManager.instance.curr_skill_index;
         int value = _target_skill_num - cur_skill_num;
 
         if (value > 2)
@@ -242,7 +242,7 @@ public class SkillSliderUI : MonoBehaviour
         }
 
         rotateSkillCircleByStep(value);
-        SkillInventory.instance.moveCurrSkillCursor(_target_skill_num);
+        SkillManager.instance.moveCurrSkillCursor(_target_skill_num);
     }
 
     public void rotateSkillCircleByStep(int _step)

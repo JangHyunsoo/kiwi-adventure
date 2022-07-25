@@ -2,34 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillInventory : MonoBehaviour
+public class SkillInventoryUI : MonoBehaviour
 {
-    private static SkillInventory _instance;
-    public static SkillInventory instance
-    {
-        get
-        {
-            if (_instance == null) { return null; }
-            else { return _instance; }
-        }
-    }
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private bool skill_book_activated_;
-
-    [SerializeField]
-    private GameObject skill_book_go_;
     [SerializeField]
     private GameObject have_slot_parent_;
     [SerializeField]
@@ -38,35 +12,20 @@ public class SkillInventory : MonoBehaviour
     private SkillSlot[] have_skill_slot_arr_;
     private SkillSlot[] equipment_skill_slot_arr_;
 
-    [SerializeField]
-    private SkillInfoCardUI skill_info_card_;
-    
-    [SerializeField]
-    private SkillSliderUI skill_slider_ui_;
-
-    [SerializeField]
-    private SkillCommandUI skill_command_ui_;
-
-    private int curr_skill_index_ = 0;
-    public int curr_skill_index { get => curr_skill_index_; }
-
     public void init()
     {
         setupHaveSlot();
         setupEquipmentSlot();
-        skill_slider_ui_.init();
-        skill_command_ui_.init();
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         AcquireSkillToHave(SkillDataBase.instance.getSkill(1, 0));
         AcquireSkillToEquipment(SkillDataBase.instance.getSkill(0, 1));
-        updateEquipmentSlot();
     }
 
     private void setupHaveSlot()
     {
         have_skill_slot_arr_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
-        for(int i = 0; i < have_skill_slot_arr_.Length; i++)
+        for (int i = 0; i < have_skill_slot_arr_.Length; i++)
         {
             have_skill_slot_arr_[i].slot_no = i;
         }
@@ -82,17 +41,6 @@ public class SkillInventory : MonoBehaviour
         }
     }
 
-    public void OpenInventory()
-    {
-        skill_book_activated_ = true;
-        skill_book_go_.SetActive(true);
-    }
-
-    public void CloseInventory()
-    {
-        skill_book_activated_ = false;
-        skill_book_go_.SetActive(false);
-    }
 
     public void AcquireSkillToHave(Skill _skill)
     {
@@ -118,29 +66,8 @@ public class SkillInventory : MonoBehaviour
         }
     }
 
-    public Skill getCurrSkill()
-    {
-        return equipment_skill_slot_arr_[curr_skill_index_].skill;
-    }
-
-    public Skill getEquipmentSkill(int _idx)
-    {
-        return equipment_skill_slot_arr_[_idx].skill;
-    }
-
-    public void updateEquipmentSlot()
-    {
-        skill_slider_ui_.updateSkillImage();
-    }
-
-    public void updateSkillInfoCard(SkillSlot _slot)
-    {
-        skill_info_card_.setSkill(_slot);
-    }
-
     public void updateSkillSlot()
     {
-
         for (int i = 0; i < have_skill_slot_arr_.Length; i++)
         {
             if (have_skill_slot_arr_[i].skill != null)
@@ -148,37 +75,22 @@ public class SkillInventory : MonoBehaviour
                 have_skill_slot_arr_[i].updateSkill();
             }
         }
+
+        for (int i = 0; i < equipment_skill_slot_arr_.Length; i++)
+        {
+            if (equipment_skill_slot_arr_[i].skill != null)
+            {
+                equipment_skill_slot_arr_[i].updateSkill();
+            }
+        }
     }
 
-    public void createSkill()
+    public Skill getEquipmentSkill(int _idx)
     {
-        SkillSlot curr_slot = skill_info_card_.curr_slot;
-        Skill curr_skill = skill_info_card_.curr_slot.skill;
-
-        if (!ItemInventory.instance.checkItems(curr_skill.skill_recipe_data.toDictionary()))
-        {
-            Debug.Log("cannot create skill");
-        }
-        else
-        {
-            ItemInventory.instance.useItems(curr_skill.skill_recipe_data.toDictionary());
-            Skill max_skill = searchSkillMaxLevel(curr_skill.skill_data.skill_no);
-            if(curr_skill == max_skill)
-            {
-                curr_skill.level++;
-            }
-            else
-            {
-                max_skill.level++;
-                curr_slot.clearSlot();
-            }
-            updateSkillSlot();
-            Debug.Log("create " + curr_skill.skill_data.skill_name);
-        }
-        skill_info_card_.updateSkillInfo();
+        return equipment_skill_slot_arr_[_idx].skill;
     }
 
-    private Skill searchSkillMaxLevel(int _no)
+    public Skill searchSkillMaxLevel(int _no)
     {
         List<Skill> result = new List<Skill>();
 
@@ -197,14 +109,14 @@ public class SkillInventory : MonoBehaviour
         {
             if (have_skill_slot_arr_[i].skill != null)
             {
-                if(have_skill_slot_arr_[i].skill.skill_data.skill_no == _no)
+                if (have_skill_slot_arr_[i].skill.skill_data.skill_no == _no)
                 {
                     result.Add(have_skill_slot_arr_[i].skill);
                 }
             }
         }
 
-        result.Sort(delegate (Skill one, Skill other) 
+        result.Sort(delegate (Skill one, Skill other)
         {
             if (one.level < other.level) return 1;
             else if (one.level > other.level) return -1;
@@ -247,26 +159,5 @@ public class SkillInventory : MonoBehaviour
 
         have_skill_slot_arr_[_idx1].updateSkill();
         have_skill_slot_arr_[_idx2].updateSkill();
-    }   
-
-    public void moveCurrSkillCursor(int _idx)
-    {
-        curr_skill_index_ = _idx;
-    }
-
-    public void castingSkillAction(int _key_code)
-    {
-        skill_slider_ui_.rotateCurrntSkill(_key_code);
-    }
-
-    // start and end 분리하기... 
-    public void setCommand(bool _is_casting)
-    {
-        if (_is_casting) 
-        {
-            skill_command_ui_.setCommandSprite();
-        }
-
-        skill_command_ui_.setCondition(_is_casting);
     }
 }
