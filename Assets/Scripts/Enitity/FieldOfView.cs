@@ -19,7 +19,6 @@ public class FieldOfView : MonoBehaviour
         target = PlayerManager.instance.player.transform;
     }
 
-
     private void Update()
     {
         int ray_count = 100;

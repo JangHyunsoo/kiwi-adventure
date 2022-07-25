@@ -12,6 +12,7 @@ public class SkillRecipeData : ScriptableObject
     public int fire_element_count;
     public int photon_element_count;
     public int element_dust_count;
+
     public int[] toArray()
     {
         return new int[6] { air_element_count, aqua_element_count, earth_element_count, 

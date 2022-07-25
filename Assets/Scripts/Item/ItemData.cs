@@ -15,11 +15,6 @@ public class ItemData : ScriptableObject
     private int item_code_;
     public int item_code { get => item_code_; set => item_code_ = value; }
     [SerializeField]
-    private int item_amount_;
-    public int item_amount { get => item_amount_; set => item_amount_ = value; }
-    [SerializeField]
     private Sprite item_sprite_;
     public Sprite item_sprite { get => item_sprite_; set => item_sprite_ = value; }
-
-    
 }

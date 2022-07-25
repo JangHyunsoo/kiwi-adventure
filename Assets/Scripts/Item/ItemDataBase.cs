@@ -29,19 +29,18 @@ public class ItemDataBase : MonoBehaviour
     }
 
     [SerializeField]
-    private ItemData[] item_datas_;
+    private ItemData[] item_data_arr_;
 
     public void init()
     {
-        Array.Sort(item_datas_, compare);
+        // not required
+        Array.Sort(item_data_arr_, compare);
     }
 
     public ItemData getItemData(int _index_num)
     {
-        return item_datas_[_index_num];
+        return item_data_arr_[_index_num];
     }
-
-
 
     private int compare(ItemData _one, ItemData _other) 
     {
@@ -57,5 +56,10 @@ public class ItemDataBase : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    public DropItemData getDropItemData(int _index, int _amount)
+    {
+        return new DropItemData(item_data_arr_[_index], _amount);
     }
 }

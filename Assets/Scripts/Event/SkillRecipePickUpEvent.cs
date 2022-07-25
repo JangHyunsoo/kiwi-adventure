@@ -12,7 +12,7 @@ public class SkillRecipePickUpEvent : InteractionEvent
         SkillInventory.instance.AcquireSkillToHave(SkillDataBase.instance.getSkill(skill_data_.skill_no, 0));
     }
 
-    public void setRandomSkillData(SkillRarity _skill_rarity)
+    public void setRandomSkillData(Rarity _skill_rarity)
     {
         // load radom skill data at skilldb 
     }
