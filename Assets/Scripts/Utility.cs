@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum Direction
 {
@@ -52,7 +54,6 @@ public enum KeyCommand
     FIVE,
     SIX
 }
-
 
 public class Utility
 {
@@ -124,6 +125,11 @@ public class Utility
                 return i;
         }
         return -1;
+    }
+
+    public static T getRandomValueInArray<T>(T[] _array)
+    {
+        return _array[Random.Range(0, _array.Length)];
     }
 }
 

@@ -33,6 +33,7 @@ public class Chest : MonoBehaviour
     public Chest(Rarity _min_rarity)
     {
         min_rarity_ = _min_rarity;
+        setSkillRecipe();
         setFixedItem();
         setRandomItem();
         setItem();
@@ -41,6 +42,7 @@ public class Chest : MonoBehaviour
     public Chest(Rarity _min_rarity, int[] _fixed_item)
     {
         min_rarity_ = _min_rarity;
+        setSkillRecipe();
         item_amount_arr_ = _fixed_item;
         setRandomItem();
         setItem(); 
@@ -56,7 +58,7 @@ public class Chest : MonoBehaviour
     private void setSkillRecipe()
     {
         calculSkillRarityByMinRarity();
-        // load SkillData for rarity 
+        setRandomItem();
     }
 
     private void calculSkillRarityByMinRarity()
@@ -79,7 +81,8 @@ public class Chest : MonoBehaviour
 
     private void setRandomItem()
     {
-        // plus random item amount in item_amount_arr_
+        int random_index = Utility.getRandomValueInArray(SkillDataBase.instance.getSkillIndexArrayByRarity(rarity_));
+        skill_recipe_ = SkillDataBase.instance.getSkillRecipeData(random_index);
     }
 
     private void setItem()
@@ -95,6 +98,11 @@ public class Chest : MonoBehaviour
         Debug.Log(drop_item_data_list.Count);
     }
 
+    public SkillRecipeData getSkillRecipe()
+    {
+        return skill_recipe_;
+    }
+
     public DropItemData getItem(int _index)
     {
         return drop_item_data_list[_index];
@@ -105,13 +113,8 @@ public class Chest : MonoBehaviour
         is_open_ = _value;
     }
 
-    public void debug()
+    public int getItemCount()
     {
-        Debug.Log(drop_item_data_list[0].item_data.name);
-
-
-        Debug.Log(drop_item_data_list[1].item_data.name);
-        Debug.Log(drop_item_data_list[2].item_data.name);
+        return drop_item_data_list.Count;
     }
-
 }
