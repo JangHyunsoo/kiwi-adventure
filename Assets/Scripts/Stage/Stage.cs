@@ -9,8 +9,8 @@ public class Stage : MonoBehaviour
     [SerializeField]
     private GameObject room_prefab_;
     
-    private Transform[,] room_transform_2d_;
-    private Room[,] room_component_2d_;
+    private Dictionary<Vector2Int, Transform> room_transform_dic_;
+    private Dictionary<Vector2Int, Room> room_component_dic_;
     private bool[,] room_exist_2d_;
     private Vector2[,] real_pos_2d_;
     private bool[,] done_open_door_2d_;
@@ -40,8 +40,8 @@ public class Stage : MonoBehaviour
 
     private void initRoomData()
     {
-        room_transform_2d_ = new Transform[map_width_size_, map_height_size_];
-        room_component_2d_ = new Room[map_width_size_, map_height_size_];
+        room_transform_dic_ = new Dictionary<Vector2Int, Transform>();
+        room_component_dic_ = new Dictionary<Vector2Int, Room>();
         real_pos_2d_ = new Vector2[map_width_size_, map_height_size_];
         room_exist_2d_ = new bool[map_width_size_, map_height_size_];
         done_open_door_2d_ = new bool[map_width_size_, map_height_size_];
@@ -63,11 +63,11 @@ public class Stage : MonoBehaviour
     {
         if (isExist(_pos)) return; // 수정해야함.
 
-        room_transform_2d_[_pos.x, _pos.y] = Instantiate(room_prefab_, real_pos_2d_[_pos.x, _pos.y], Quaternion.identity).transform;
-        room_component_2d_[_pos.x, _pos.y] = room_transform_2d_[_pos.x, _pos.y].GetComponent<Room>();
-        room_component_2d_[_pos.x, _pos.y].createRoom();
-        room_transform_2d_[_pos.x, _pos.y].name = _pos.x.ToString() + ", " + _pos.y.ToString();
-        room_transform_2d_[_pos.x, _pos.y].SetParent(gameObject.transform);
+        room_transform_dic_[_pos] = Instantiate(room_prefab_, real_pos_2d_[_pos.x, _pos.y], Quaternion.identity).transform;
+        room_component_dic_[_pos] = room_transform_dic_[_pos].GetComponent<Room>();
+        room_component_dic_[_pos].createRoom();
+        room_transform_dic_[_pos].name = _pos.x.ToString() + ", " + _pos.y.ToString();
+        room_transform_dic_[_pos].SetParent(gameObject.transform);
         room_exist_2d_[_pos.x, _pos.y] = true;
         curr_count_++;
     }
@@ -174,7 +174,7 @@ public class Stage : MonoBehaviour
 
     private void openRoomDoor(Vector2Int _pos)
     {
-        Room room = room_component_2d_[_pos.x, _pos.y];
+        Room room = room_component_dic_[_pos];
 
         foreach (Direction dir in Enum.GetValues(typeof(Direction)))
         {
@@ -224,7 +224,7 @@ public class Stage : MonoBehaviour
 
     public void clearRoom(Vector2Int _pos)
     {
-        room_component_2d_[_pos.x, _pos.y].clear();
+        room_component_dic_[_pos].clear();
         cleared_room_2d_[_pos.x, _pos.y] = true;
     }
 
@@ -235,6 +235,6 @@ public class Stage : MonoBehaviour
 
     public void startBattle(Vector2Int _pos)
     {
-        room_component_2d_[_pos.x, _pos.y].startRoom();
+        room_component_dic_[_pos].startRoom();
     }
 }
