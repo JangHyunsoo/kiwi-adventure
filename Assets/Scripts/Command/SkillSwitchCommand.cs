@@ -13,7 +13,7 @@ public class SkillSwitchCommand : Command
 
     public override void activate()
     {
+        PlayerManager.instance.player_casting.failSkill();
         SkillManager.instance.castingSkillAction(key_code_);
-
     }
 }

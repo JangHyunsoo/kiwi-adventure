@@ -22,9 +22,7 @@ public class Command
         }
     }
 
-    public virtual void init()
-    {
-    }
+    public virtual void init(){}
 
     public virtual void activate() { }
 
