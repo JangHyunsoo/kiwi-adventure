@@ -84,15 +84,13 @@ public class EnemyManager : MonoBehaviour
         return target_enemy_arr_.Contains(_enemy);
     }
 
-    public void Update()
+    public bool isTargetEnemeyuEnmpty()
     {
-        if (target_enemy_arr_.Count != 0) {
-            enemy_hp_gauge_.updateHpGauge(target_enemy_arr_[0].getHpPersent());
-            enemy_hp_gauge_.gameObject.SetActive(true);
-        }
-        else
-        {
-            enemy_hp_gauge_.gameObject.SetActive(false);
-        }
+        return target_enemy_arr_.Count == 0;
+    }
+
+    public List<EnemyEntity> getTargetEnemy()
+    {
+        return target_enemy_arr_;
     }
 }

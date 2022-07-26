@@ -46,7 +46,7 @@ public class SkillManager : MonoBehaviour
         skill_inventory_ui_.init();
         skill_slider_ui_.init();
         skill_command_ui_.init();
-        updateEquipmentSlot();
+        updateSkillUI();
     }
 
     public void setSkillInventoryActivate(bool _condition)
@@ -92,17 +92,6 @@ public class SkillManager : MonoBehaviour
     public Skill searchSkillMaxLevel(int _no)
     {
         return skill_inventory_ui_.searchSkillMaxLevel(_no);
-    }
-
-    // start and end 분리하기... 
-    public void setCommand(bool _is_casting)
-    {
-        if (_is_casting) 
-        {
-            skill_command_ui_.setCommandSprite();
-        }
-
-        skill_command_ui_.setCondition(_is_casting);
     }
 
     public void updateSkillUI()

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SkillInfoCardUI : MonoBehaviour
 {
-    private SkillSlot curr_slot_;
+    private SkillSlot curr_slot_ = null;
     public SkillSlot curr_slot { get => curr_slot_; }
     [SerializeField]
     private Image curr_skill_image_;
@@ -43,7 +43,7 @@ public class SkillInfoCardUI : MonoBehaviour
 
     public void updateSkillInfo()
     {
-        if(curr_slot.skill == null)
+        if(curr_slot_ == null)
         {
             clearSkillInfo();
         }
@@ -51,6 +51,11 @@ public class SkillInfoCardUI : MonoBehaviour
         {
             updateSkill();
         }
+    }
+
+    private void Update()
+    {
+        updateSkillInfo();
     }
 
     public void clearSkillInfo()
@@ -111,6 +116,7 @@ public class SkillInfoCardUI : MonoBehaviour
             }
             Debug.Log("create " + curr_skill.skill_data.skill_name);
         }
-        SkillManager.instance.updateSkillUI();
+
+        curr_slot_ = null;
     }
 }

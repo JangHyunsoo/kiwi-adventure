@@ -26,6 +26,14 @@ public class SkillCommandUI : MonoBehaviour
 
     private void Update()
     {
+        bool condition = PlayerManager.instance.player_casting.isCasting();
+
+        if(condition && !condition_)
+        {
+            setCommandSprite();
+        }
+        condition_ = condition;
+        
         updatePosition();
     }
 
@@ -68,10 +76,4 @@ public class SkillCommandUI : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, curr_target_pos_, Time.deltaTime * ui_move_speed_);
     }
-
-    public void setCondition(bool _value)
-    {
-        condition_ = _value;
-    }
-
 }

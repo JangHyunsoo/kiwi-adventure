@@ -13,13 +13,10 @@ public class CastingCommand : Command
         if (!player_casting.isCasting())
         {
             player_casting.setIsCasting(true);
-            player_casting.loadSkillCommand();
-            SkillManager.instance.setCommand(player_casting.isCasting());
         }
         else
         {
             player_casting.setIsCasting(false);
-            SkillManager.instance.setCommand(player_casting.isCasting());
         }
     }
     

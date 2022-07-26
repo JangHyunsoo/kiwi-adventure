@@ -92,6 +92,7 @@ public class SkillSliderUI : MonoBehaviour
         }
 
         rotateCurrntSkill(target_skill_index);
+        updateSkillImage();
         updateSkillSlotPos();
         updateScale();
         updateBolderLine();

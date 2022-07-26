@@ -12,6 +12,11 @@ public class PlayerCasting : MonoBehaviour
 
     private void Update()
     {
+        if(cur_command_arr_ == null && is_casting_)
+        {
+            loadSkillCommand();
+        }
+
         if (is_reload_)
         {
             fireSkill();
@@ -25,7 +30,6 @@ public class PlayerCasting : MonoBehaviour
             SkillManager.instance.getCurrSkill().activate(transform.position, Utility.getScreenMousePos(), tag);
             is_reload_ = false;
             is_casting_ = false;
-            SkillManager.instance.setCommand(false);
         }
     }
 
@@ -68,6 +72,7 @@ public class PlayerCasting : MonoBehaviour
     {
         command_idx_ = 0;
         is_casting_ = false;
+        cur_command_arr_ = null;
     }
 
     public void readySkill()
@@ -75,5 +80,6 @@ public class PlayerCasting : MonoBehaviour
         is_reload_ = true;
         command_idx_ = 0;
         is_casting_ = false;
+        cur_command_arr_ = null;
     }
 }
