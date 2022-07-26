@@ -6983,8 +6983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab1801f2a584554086caa24f04aa32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  have_slot_parent_: {fileID: 196501358}
-  equipment_slot_parent_: {fileID: 1102374572}
+  have_slot_parent_: {fileID: 597516376}
+  equipment_slot_parent_: {fileID: 840547940}
 --- !u!1 &1398671638
 GameObject:
   m_ObjectHideFlags: 0
@@ -10700,7 +10700,7 @@ Transform:
   m_Children:
   - {fileID: 1137333521}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1914657710
 BoxCollider2D:
