@@ -53,6 +53,11 @@ public class SkillInfoCardUI : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        updateSkillInfo();
+    }
+
     public void clearSkillInfo()
     {
         curr_skill_image_.sprite = null;
@@ -111,6 +116,7 @@ public class SkillInfoCardUI : MonoBehaviour
             }
             Debug.Log("create " + curr_skill.skill_data.skill_name);
         }
-        SkillManager.instance.updateSkillUI();
+
+        curr_slot_ = null;
     }
 }

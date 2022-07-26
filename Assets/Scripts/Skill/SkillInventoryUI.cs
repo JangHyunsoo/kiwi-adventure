@@ -14,6 +14,11 @@ public class SkillInventoryUI : MonoBehaviour
 
     private bool is_activate_ = false;
 
+    private void Update()
+    {
+        updateSkillSlot();
+    }
+
     public void init()
     {
         setupHaveSlot();
