@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class SkillRecipePickUpEvent : InteractionEvent
 {
-    private SkillData skill_data_; // 드랍되있는 스프라이트 바꾸는 용
-    public SkillData skill_data;
+    private SkillRecipeData skill_recipe_data_;
+    public SkillRecipeData skill_recipe_data;
 
     public override void activate()
     {
-        SkillManager.instance.addSkill(SkillDataBase.instance.getSkill(skill_data_.skill_no, 0));
+        SkillManager.instance.addSkill(SkillDataBase.instance.getSkill(skill_recipe_data_.skill_no, 0));
+        Destroy(gameObject);
     }
 
-    public void setRandomSkillData(Rarity _skill_rarity)
+    public void updateSkillRecipe(SkillRecipeData _skill_recipe_data)
     {
-        // load radom skill data at skilldb 
+        skill_recipe_data_ = _skill_recipe_data;
     }
 }

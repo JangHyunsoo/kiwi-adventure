@@ -9,6 +9,8 @@ public class ChestEvent : InteractionEvent
     private Transform drop_parent_tr_;
     [SerializeField]
     private GameObject drop_item_prefab_;
+    [SerializeField]
+    private GameObject drop_recipe_prefab_;
 
     [SerializeField]
     public Transform[] drop_pos;
@@ -17,7 +19,6 @@ public class ChestEvent : InteractionEvent
     {
         if(!chest_.is_opne)
         {
-            chest_.debug();
             openChest();
         }
     }
@@ -28,11 +29,24 @@ public class ChestEvent : InteractionEvent
         drop_pos = Utility.getChildsTransform(drop_parent_tr_);
     }
 
+
     private void openChest()
     {
-        for (int i = 0; i < drop_pos.Length; i++)
+        dropSkillRecipe();
+        dropItem();
+    }
+
+    private void dropSkillRecipe()
+    {
+        var obj = GameObject.Instantiate(drop_recipe_prefab_, drop_pos[0].position, Quaternion.identity);
+        obj.GetComponent<SkillRecipePickUpEvent>().updateSkillRecipe(chest_.getSkillRecipe());
+    }
+
+    private void dropItem()
+    {
+        for (int i = 0; i < chest_.getItemCount(); i++)
         {
-            var obj = GameObject.Instantiate(drop_item_prefab_, drop_pos[i].position, Quaternion.identity);
+            var obj = GameObject.Instantiate(drop_item_prefab_, drop_pos[i + 1].position, Quaternion.identity);
             obj.GetComponent<ItemPickUpEvent>().updataItem(chest_.getItem(i));
         }
 

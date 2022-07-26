@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SkillRecipeData : ScriptableObject
 {
-    public SkillData skill_data;
+    public int skill_no;
     public int air_element_count;
     public int aqua_element_count;
     public int earth_element_count;

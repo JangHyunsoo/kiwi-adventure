@@ -30,8 +30,11 @@ public class SkillDataBase : MonoBehaviour
 
     [SerializeField]
     private SkillData[] skill_data_list;
+
     [SerializeField]
     private SkillRecipeData[] skill_recipe_data_list;
+
+    private Dictionary<Rarity, int[]> skill_rarity_dic_ = new Dictionary<Rarity, int[]>();
 
     private List<Skill> skill_list = new List<Skill>();
 
@@ -41,8 +44,10 @@ public class SkillDataBase : MonoBehaviour
     {
         Array.Sort<SkillData>(skill_data_list, compareSkillNumber);
         Array.Sort<SkillRecipeData>(skill_recipe_data_list, compareSkillReecipeNumber);
+        iunitSkillIndexArrayByRarity();
         addSkill(new FireBall());
         addSkill(new PoisonFleid());
+
     }
 
     private void addSkill(SkillAction _skill_action)
@@ -60,9 +65,28 @@ public class SkillDataBase : MonoBehaviour
 
     private int compareSkillReecipeNumber(SkillRecipeData _one, SkillRecipeData _other)
     {
-        return compareSkillNumber(_one.skill_data, _other.skill_data);
+        if (_one.skill_no > _other.skill_no) return 1;
+        else if (_one.skill_no < _other.skill_no) return -1;
+        else return 0;
     }
-    
+
+    private void iunitSkillIndexArrayByRarity()
+    {
+        foreach (Rarity rarity in Enum.GetValues(typeof(Rarity)))
+        {
+            List<int> skill_index_arr = new List<int>();
+            for (int i = 0; i < skill_data_list.Length; i++)
+            {
+                if (skill_data_list[i].skill_rarity == rarity)
+                {
+                    skill_index_arr.Add(skill_data_list[i].skill_no);
+                }
+            }
+            skill_rarity_dic_[rarity] = skill_index_arr.ToArray();
+        }
+    }
+
+
     public SkillData getSkillData(int _no)
     {
         return skill_data_list[_no];
@@ -76,5 +100,9 @@ public class SkillDataBase : MonoBehaviour
         Skill skill = skill_list[_no];
         skill.level = _level;
         return new Skill(skill);
+    }
+    public int[] getSkillIndexArrayByRarity(Rarity _rarity)
+    {
+        return skill_rarity_dic_[_rarity];
     }
 }
