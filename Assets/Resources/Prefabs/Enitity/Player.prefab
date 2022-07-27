@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1313755421659091326}
   - component: {fileID: 1313755421659091325}
   - component: {fileID: 166237910386151204}
-  - component: {fileID: 1725609261891385048}
+  - component: {fileID: 4577014552890133625}
   - component: {fileID: 5846808516440556807}
   - component: {fileID: 2833250500594075206}
   - component: {fileID: 5625741754132252284}
@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 1313755421659091322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.39866, y: 1.6270483, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 6289091404385615532}
   m_Father: {fileID: 0}
@@ -79,15 +79,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ffbbee746a2d15547bbb4899a6f5ae99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.96, y: 0.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &166237910386151204
@@ -110,9 +110,9 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &1725609261891385048
-CircleCollider2D:
+  m_Constraints: 4
+--- !u!61 &4577014552890133625
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,9 +124,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0814625, y: -0.012959927}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.96, y: 0.96}
+    newSize: {x: 0.96, y: 0.96}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.24164939, y: 0.22313482}
+  m_EdgeRadius: 0
 --- !u!114 &5846808516440556807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86662794622d98e438e7bf1b82a12fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  temp: 0
 --- !u!114 &5625741754132252284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,9 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0579e17d7a7d8144b8726c4fed994a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _command_idx: 0
-  _isCasting: 0
-  _isReload: 0
 --- !u!114 &2690043117303392032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1704c2ffcb1be464c82729f4cbc0ba6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detection_point_: {fileID: 0}
+  detection_distance_: 0.2
   detection_layer:
     serializedVersion: 2
     m_Bits: 1088
