@@ -20,12 +20,8 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private void Update()
     {
-        Skill now_skill = SkillManager.instance.getSkill(slot_no_, is_equipment_slot);
-        if (skill_ != now_skill)
-        {
-            skill_ = now_skill;
-            updateSkill();
-        }
+        skill_ = SkillManager.instance.getSkill(slot_no_, is_equipment_slot);
+        updateSkill();
     }
 
     private void setColor(float _alpha)
@@ -122,21 +118,6 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private void ChangeSlot()
     {
-        /*
-        Skill temp = skill;
-
-        addSkill(DragSkillInventorySlot.instance.skill_slot.skill_);
-
-        if(temp != null)
-        {
-            DragSkillInventorySlot.instance.skill_slot.addSkill(temp);
-        }
-        else
-        {
-            DragSkillInventorySlot.instance.skill_slot.clearSlot();
-        }
-        */
-
         SkillManager.instance.swapSkillSlot(this, DragSkillInventorySlot.instance.skill_slot);
     }
 }

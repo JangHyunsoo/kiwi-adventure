@@ -88,6 +88,7 @@ public class SkillInventory : MonoBehaviour
             else
             {
                 max_skill.level++;
+                clearSkill(_no, _is_eqiupment);
             }
         }
     }
@@ -133,6 +134,8 @@ public class SkillInventory : MonoBehaviour
         Skill one_skill = getSkill(_one.slot_no, _one.is_equipment_slot);
         Skill other_skill = getSkill(_other.slot_no, _other.is_equipment_slot);
 
+        setSkill(one_skill, _other.slot_no, _other.is_equipment_slot);
+        setSkill(other_skill, _one.slot_no, _one.is_equipment_slot);
     }
 
     public Skill getSkill(int no_, bool is_eq)
@@ -141,10 +144,15 @@ public class SkillInventory : MonoBehaviour
         return have_skill_arr_[no_];
     }
 
-    public void setSkill(Skill _skill, int no_, bool is_eq)
+    public void setSkill(Skill _skill, int no_, bool _is_eq)
     {
-        if (is_eq) eqiupment_skill_arr_[no_] = _skill;
+        if (_is_eq) eqiupment_skill_arr_[no_] = _skill;
         else have_skill_arr_[no_] = _skill;
+    }
+
+    public void clearSkill(int no_, bool _is_eq)
+    {
+        setSkill(null, no_, _is_eq);
     }
 
     public void sortSkill()

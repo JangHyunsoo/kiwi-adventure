@@ -84,12 +84,12 @@ public class SkillManager : MonoBehaviour
 
     public Skill getEquipmentSkill(int _idx)
     {
-        return skill_inventory_ui_.getEquipmentSkill(_idx);
+        return skill_inventory_.getEquipmentSkill(_idx);
     }
 
     public Skill getCurrSkill()
     {
-        return skill_inventory_ui_.getEquipmentSkill(curr_skill_index_);
+        return skill_inventory_.getEquipmentSkill(curr_skill_index_);
     }
 
     public Skill searchSkillMaxLevel(int _no)
