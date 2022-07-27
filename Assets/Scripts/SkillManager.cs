@@ -28,21 +28,24 @@ public class SkillManager : MonoBehaviour
 
     [SerializeField]
     private SkillInventoryUI skill_inventory_ui_;
-
     [SerializeField]
     private SkillInfoCardUI skill_info_card_;
-    
     [SerializeField]
     private SkillSliderUI skill_slider_ui_;
-
     [SerializeField]
     private SkillCommandUI skill_command_ui_;
 
+    [SerializeField]
+    private SkillInventory skill_inventory_;
+
     private int curr_skill_index_ = 0;
     public int curr_skill_index { get => curr_skill_index_; }
+    public int have_skill_count { get => skill_inventory_.have_skill_slot_count; }
+    public int eqiupment_skill_count { get => skill_inventory_.eqiupment_skill_slot_count; }
 
     public void init()
     {
+        skill_inventory_.init();
         skill_inventory_ui_.init();
         skill_slider_ui_.init();
         skill_command_ui_.init();
@@ -56,7 +59,7 @@ public class SkillManager : MonoBehaviour
 
     public void addSkill(Skill _skill)
     {
-        skill_inventory_ui_.AcquireSkillToHave(_skill);
+        skill_inventory_.addSkillToHave(_skill);
     }
 
     public void updateEquipmentSlot()
@@ -91,7 +94,27 @@ public class SkillManager : MonoBehaviour
 
     public Skill searchSkillMaxLevel(int _no)
     {
-        return skill_inventory_ui_.searchSkillMaxLevel(_no);
+        return skill_inventory_.searchSkillMaxLevel(_no);
+    }
+
+    public void swapSkillSlot(SkillSlot _one, SkillSlot _other)
+    {
+        skill_inventory_.swapSkillSlot(_one, _other);
+    }
+
+    public Skill getSkill(int _no, bool _is_equipment)
+    {
+        return skill_inventory_.getSkill(_no, _is_equipment);
+    }
+
+    public void setSkill(Skill _skill, int _no, bool _is_equipment)
+    {
+        skill_inventory_.setSkill(null, _no, _is_equipment);
+    }
+
+    public void createSkillBySlot(int _no, bool _is_equipment)
+    {
+        skill_inventory_.createSkill(_no, _is_equipment);
     }
 
     public void updateSkillUI()

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
-    private Skill skill_;
+    private Skill skill_ = null;
     private int slot_no_;
 
     [SerializeField]
@@ -15,7 +15,18 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private bool is_equipment_slot_ = false;
 
     public int slot_no { get => slot_no_; set => slot_no_ = value; }
+    public bool is_equipment_slot { get => is_equipment_slot_; }
     public Skill skill { get => skill_; set => skill_ = value; }
+
+    private void Update()
+    {
+        Skill now_skill = SkillManager.instance.getSkill(slot_no_, is_equipment_slot);
+        if (skill_ != now_skill)
+        {
+            skill_ = now_skill;
+            updateSkill();
+        }
+    }
 
     private void setColor(float _alpha)
     {
@@ -88,7 +99,6 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             if (is_equipment_slot_ && !DragSkillInventorySlot.instance.skill_slot.skill.is_known)
             {
-                Debug.Log("cannot move");
                 return;
             }
             else
@@ -112,6 +122,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     private void ChangeSlot()
     {
+        /*
         Skill temp = skill;
 
         addSkill(DragSkillInventorySlot.instance.skill_slot.skill_);
@@ -124,5 +135,8 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             DragSkillInventorySlot.instance.skill_slot.clearSlot();
         }
+        */
+
+        SkillManager.instance.swapSkillSlot(this, DragSkillInventorySlot.instance.skill_slot);
     }
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class SkillInventoryUI : MonoBehaviour
 {
     [SerializeField]
+    private GameObject slot_prefab_;
+
+    [SerializeField]
     private GameObject have_slot_parent_;
     [SerializeField]
     private GameObject equipment_slot_parent_;
@@ -14,23 +17,22 @@ public class SkillInventoryUI : MonoBehaviour
 
     private bool is_activate_ = false;
 
-    private void Update()
-    {
-        updateSkillSlot();
-    }
-
     public void init()
     {
         setupHaveSlot();
         setupEquipmentSlot();
-        AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
-        AcquireSkillToHave(SkillDataBase.instance.getSkill(0, 0));
-        AcquireSkillToHave(SkillDataBase.instance.getSkill(1, 0));
-        AcquireSkillToEquipment(SkillDataBase.instance.getSkill(0, 1));
     }
 
     private void setupHaveSlot()
     {
+        int have_slot_count = SkillManager.instance.have_skill_count;
+
+        for(int i = 0; i < have_slot_count; i++)
+        {
+            GameObject slot = GameObject.Instantiate(slot_prefab_);
+            slot.transform.SetParent(have_slot_parent_.transform);
+        }
+
         have_skill_slot_arr_ = have_slot_parent_.GetComponentsInChildren<SkillSlot>();
         for (int i = 0; i < have_skill_slot_arr_.Length; i++)
         {
@@ -40,36 +42,19 @@ public class SkillInventoryUI : MonoBehaviour
 
     private void setupEquipmentSlot()
     {
+        int equipment_slot_count = SkillManager.instance.eqiupment_skill_count;
+
+        for (int i = 0; i < equipment_slot_count; i++)
+        {
+            GameObject slot = GameObject.Instantiate(slot_prefab_);
+            slot.transform.SetParent(equipment_slot_parent_.transform);
+        }
+
         equipment_skill_slot_arr_ = equipment_slot_parent_.GetComponentsInChildren<SkillSlot>();
         for (int i = 0; i < equipment_skill_slot_arr_.Length; i++)
         {
             equipment_skill_slot_arr_[i].slot_no = i;
             equipment_skill_slot_arr_[i].setupEquipmentSlot();
-        }
-    }
-
-
-    public void AcquireSkillToHave(Skill _skill)
-    {
-        for (int i = 0; i < have_skill_slot_arr_.Length; i++)
-        {
-            if (have_skill_slot_arr_[i].skill == null)
-            {
-                have_skill_slot_arr_[i].addSkill(_skill);
-                return;
-            }
-        }
-    }
-
-    public void AcquireSkillToEquipment(Skill _skill)
-    {
-        for (int i = 0; i < equipment_skill_slot_arr_.Length; i++)
-        {
-            if (equipment_skill_slot_arr_[i].skill == null)
-            {
-                equipment_skill_slot_arr_[i].addSkill(_skill);
-                return;
-            }
         }
     }
 
