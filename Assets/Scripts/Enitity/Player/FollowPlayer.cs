@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
+    [SerializeField]
     private Transform target_;
     private Vector3 target_pos_;
     private Vector3 follow_pos_;
-    
+
     void Start()
     {
     }
@@ -29,8 +30,15 @@ public class FollowPlayer : MonoBehaviour
 
     void followTargetPos()
     {
-        follow_pos_ = Vector3.Lerp(transform.position, target_pos_, Time.deltaTime * 5f);
+        //var player_speed = PlayerManager.instance.player.cur_speed * 2f;
+        //
+        //if (Vector3.Distance(target_pos_, transform.position) < player_speed * Time.deltaTime)
+        //{
+        //    follow_pos_ = target_pos_;
+        //}
+        //else
+        //{
+        follow_pos_ = Vector3.Lerp(transform.position, target_pos_, Time.deltaTime * 1000f);
+        //}
     }
-
-
 }

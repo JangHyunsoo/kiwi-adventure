@@ -26,6 +26,10 @@ public class PlayerManager : MonoBehaviour
     private PlayerInteraction player_interaction_;
     private PlayerCasting player_casting_;
 
+    [SerializeField]
+    private Animator player_animator_;
+    public Animator player_animator { get => player_animator_; }
+
     public GameObject player_go { get => player_go_; }
     public PlayerEntity player { get => player_entity_; }
     public PlayerMovement player_controller { get => player_movement_; }
@@ -56,6 +60,7 @@ public class PlayerManager : MonoBehaviour
         player_entity_ = player_go_.GetComponent<PlayerEntity>();
         player_interaction_ = player_go_.GetComponent<PlayerInteraction>();
         player_casting_ = player_go.GetComponent<PlayerCasting>();
+        player_animator_ = player_go_.GetComponent<Animator>();
         player_go_.GetComponent<SpriteRenderer>().sprite = player_entity_.status_data.obj_sprite;
         player_interaction.init();
         player_movement_.init();
