@@ -27,7 +27,6 @@ public class SkillInventory : MonoBehaviour
                     skill.updateCoolTime();
                 }
             }
-
         }
 
         foreach (var skill in have_skill_arr_)
@@ -38,7 +37,8 @@ public class SkillInventory : MonoBehaviour
                 {
                     skill.updateCoolTime();
                 }
-            }        }
+            }        
+        }
     }
 
     public void init()
