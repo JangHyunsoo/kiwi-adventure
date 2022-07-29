@@ -18,6 +18,7 @@ public class Effect
     public virtual void sequenceActivate(Entity _entity, int _stack)
     {
     }
+   
 }
 
 public class TickHpEffect : Effect
