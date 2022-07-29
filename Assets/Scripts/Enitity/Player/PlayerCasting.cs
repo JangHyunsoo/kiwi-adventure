@@ -8,7 +8,10 @@ public class PlayerCasting : MonoBehaviour
     private bool is_casting_ = false;
     private bool is_reload_ = false;
 
-    private int[] cur_command_arr_; 
+    private int[] cur_command_arr_;
+
+    [SerializeField]
+    private Transform skill_fire_tr_;
 
     private void Update()
     {
@@ -27,7 +30,7 @@ public class PlayerCasting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SkillManager.instance.getCurrSkill().activate(transform.position, Utility.getScreenMousePos(), tag);
+            SkillManager.instance.getCurrSkill().activate(skill_fire_tr_.position, Utility.getScreenMousePos(), tag);
             is_reload_ = false;
             is_casting_ = false;
         }

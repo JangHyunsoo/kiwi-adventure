@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private bool is_move_;
     private Queue<Vector3> reserved_position_queue_ = new Queue<Vector3>();
 
-
+    [SerializeField]
+    private Transform skill_fire_rot_;
 
 
     public void init()
@@ -93,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
             Vector2 dir = (_target_pos - transform.position).normalized * Time.deltaTime * _speed;
             rb_.MovePosition(rb_.position + dir);
             PlayerManager.instance.player_go.GetComponent<SpriteRenderer>().flipX = dir.x > 0;
+            skill_fire_rot_.rotation = Quaternion.Euler(new Vector3(0f, dir.x > 0 ? 180f : 0f, 0f));
         }
     }
 
