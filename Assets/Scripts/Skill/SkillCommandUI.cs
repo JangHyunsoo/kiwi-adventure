@@ -22,7 +22,7 @@ public class SkillCommandUI : MonoBehaviour
     private const int MAX_COMMAND_SIZE_ = 10;
     private int[] cur_skill_command_arr_;
 
-    private Vector3 curr_target_pos_ {get => (condition_) ? activate_target_tr_.position : unactivate_target_tr_.position;}
+    private Vector3 curr_target_pos_ {get => PlayerManager.instance.player_casting.isCasting() ? activate_target_tr_.position : unactivate_target_tr_.position;}
 
     private void Update()
     {
@@ -45,7 +45,10 @@ public class SkillCommandUI : MonoBehaviour
 
     private void loadSkillCommand()
     {
-        cur_skill_command_arr_ = SkillManager.instance.getCurrSkill().skill_data.command;
+        if(SkillManager.instance.getCurrSkill() != null)
+        {
+            cur_skill_command_arr_ = SkillManager.instance.getCurrSkill().skill_data.command;
+        }
     }
 
     private void setSkillCommandSprite()

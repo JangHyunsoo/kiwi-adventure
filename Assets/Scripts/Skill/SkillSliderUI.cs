@@ -92,6 +92,7 @@ public class SkillSliderUI : MonoBehaviour
         }
 
         rotateCurrntSkill(target_skill_index);
+        updateSkillCoolTime();
         updateSkillImage();
         updateSkillSlotPos();
         updateScale();
@@ -128,6 +129,22 @@ public class SkillSliderUI : MonoBehaviour
         skill_slot_pos_parent_.rotation = Quaternion.Lerp(skill_slot_pos_parent_.rotation, target_rotation_, Time.deltaTime * move_speed_);
     }
 
+    private void updateSkillCoolTime()
+    {
+        for (int i = 0; i < SKILL_SIZE_; i++)
+        {
+            var skill = SkillManager.instance.getEquipmentSkill(i);
+            if (skill == null)
+            {
+                skill_slot_image_cp_arr_[i].setCoolTimeValue(0f);
+            }
+            else
+            {
+                skill_slot_image_cp_arr_[i].setCoolTimeValue(skill.getCooltiemAmount());
+            }
+        }
+    }
+
     private void updateScale()
     {
         for (int i = 0; i < SKILL_SIZE_; i++)
@@ -159,6 +176,7 @@ public class SkillSliderUI : MonoBehaviour
             }
         }
     }
+
 
     private void rotateNext()
     {

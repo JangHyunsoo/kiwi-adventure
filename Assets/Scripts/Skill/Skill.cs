@@ -13,8 +13,12 @@ public class Skill
     public SkillRecipeData skill_recipe_data { get => skill_recipe_data_; set => skill_recipe_data_ = value; }
 
     private int level_ = 0;
+    private float curr_cooltime_ = 0f;
+
     public int level { get { return level_; } set { level_ = value; } }
     public bool is_known { get => level_ != 0; }
+    public bool is_ready { get => curr_cooltime_ <= 0; }
+
 
     public Skill(SkillData _skill_data, SkillRecipeData _skill_recipe_data, SkillAction _skill_action)
     {
@@ -34,6 +38,30 @@ public class Skill
 
     public void activate(Vector3 _my_pos, Vector3 _target_pos, string _team)
     {
+        startCoolTime();
         skill_action.activate(skill_data.projectile, _my_pos, _target_pos, _team);
+    }
+
+    public void startCoolTime()
+    {
+        curr_cooltime_ = skill_data_.cool_time;
+    }
+
+    public void updateCoolTime()
+    {
+        if (curr_cooltime_ <= 0)
+        {
+            curr_cooltime_ = 0;
+            return;
+        }
+
+        curr_cooltime_ -= Time.deltaTime;
+    }
+
+    public float getCooltiemAmount()
+    {
+        float amount = curr_cooltime_ / skill_data.cool_time;
+        if (amount > 0) return amount;
+        else return 0f;
     }
 }

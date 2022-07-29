@@ -10,13 +10,16 @@ public class CastingCommand : Command
     {
         var player_casting = PlayerManager.instance.player_casting;
 
-        if (!player_casting.isCasting())
+        if(SkillManager.instance.getCurrSkill() != null)
         {
-            player_casting.setIsCasting(true);
-        }
-        else
-        {
-            player_casting.setIsCasting(false);
+            if (!player_casting.isCasting())
+            {
+                player_casting.setIsCasting(true);
+            }
+            else
+            {
+                player_casting.setIsCasting(false);
+            }
         }
     }
     

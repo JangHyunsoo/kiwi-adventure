@@ -18,8 +18,7 @@ public class Entity : MonoBehaviour
 
     public float cur_speed { get => slow_value * status_data.speed; }
 
-
-    protected float cooltime_value_;
+    protected float cooltime_value_ = 1f;
     public float cooltime_value { get => cooltime_value_; set => cooltime_value_ = value; }
 
     public virtual void init()

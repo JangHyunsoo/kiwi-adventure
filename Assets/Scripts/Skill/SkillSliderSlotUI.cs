@@ -9,6 +9,8 @@ public class SkillSliderSlotUI : MonoBehaviour
     public Image background_image { get => background_image_; }
     private Image icon_image_;
     public Image icon_image { get => icon_image_; }
+    private Image cool_item_image_;
+    public Image cool_item_image { get => cool_item_image_; }
     private Image bolder_line_image_;
     public Image bolder_line_image { get => bolder_line_image_; }
 
@@ -17,7 +19,8 @@ public class SkillSliderSlotUI : MonoBehaviour
         var images = GetComponentsInChildren<Image>();
         background_image_ = images[0];
         icon_image_ = images[1];
-        bolder_line_image_ = images[2];
+        cool_item_image_ = images[2];
+        bolder_line_image_ = images[3];
     }
 
     public void setIconImageSprite(Sprite _sprite)
@@ -28,6 +31,11 @@ public class SkillSliderSlotUI : MonoBehaviour
     public void setBolderLineColor(Color _color)
     {
         bolder_line_image_.color = _color;
+    }
+
+    public void setCoolTimeValue(float _value)
+    {
+        cool_item_image_.fillAmount = _value;
     }
 
 }

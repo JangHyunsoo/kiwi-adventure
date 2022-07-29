@@ -16,6 +16,31 @@ public class SkillInventory : MonoBehaviour
     public int eqiupment_skill_slot_count { get => eqiupment_skill_slot_count_; }
     public int have_skill_slot_count { get => have_skill_slot_count_; }
 
+    private void Update()
+    {
+        foreach (Skill skill in eqiupment_skill_arr_)
+        {
+            if(skill != null)
+            {
+                if (!skill.is_ready)
+                {
+                    skill.updateCoolTime();
+                }
+            }
+
+        }
+
+        foreach (var skill in have_skill_arr_)
+        {
+            if (skill != null)
+            {
+                if (!skill.is_known && !skill.is_ready)
+                {
+                    skill.updateCoolTime();
+                }
+            }        }
+    }
+
     public void init()
     {
         initHaveSlot();
