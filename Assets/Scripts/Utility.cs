@@ -127,6 +127,13 @@ public class Utility
         return -1;
     }
 
+    public static int modNumber(int _idx, int _max, int _value)
+    {
+        int result = (_idx - _value) % _max;
+        if (result < 0) result += _max;
+        return result;
+    }
+
     public static T getRandomValueInArray<T>(T[] _array)
     {
         return _array[Random.Range(0, _array.Length)];
