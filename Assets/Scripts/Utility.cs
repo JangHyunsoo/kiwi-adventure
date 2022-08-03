@@ -55,6 +55,13 @@ public enum KeyCommand
     SIX
 }
 
+public enum ProjectileType
+{
+    MOVE,
+    FIELD
+}
+
+
 public class Utility
 {
     public static string ProjectileTag = "Projectile";

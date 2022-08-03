@@ -19,27 +19,29 @@ public class Skill
     public bool is_known { get => level_ != 0; }
     public bool is_ready { get => curr_cooltime_ <= 0; }
 
-
     public Skill(SkillData _skill_data, SkillRecipeData _skill_recipe_data, SkillAction _skill_action)
     {
-        this.skill_data = _skill_data;
-        this.skill_action = _skill_action;
-        this.skill_recipe_data = _skill_recipe_data;
+        skill_data_ = _skill_data;
+        skill_action_ = _skill_action;
+        skill_recipe_data_ = _skill_recipe_data;
+        skill_action_.setProjectile(_skill_data);
         level_ = 0;
     }
 
+    
     public Skill(Skill _skill)
     {
-        this.skill_data = _skill.skill_data;
-        this.skill_action = _skill.skill_action;
-        this.skill_recipe_data = _skill.skill_recipe_data;
+        skill_data_ = _skill.skill_data;
+        skill_action_ = _skill.skill_action;
+        skill_recipe_data_ = _skill.skill_recipe_data;
+        skill_action_.setProjectile(_skill.skill_data);
         level_ = _skill.level;
     }
 
     public void activate(Vector3 _my_pos, Vector3 _target_pos, string _team)
     {
         startCoolTime();
-        skill_action.activate(skill_data.projectile, _my_pos, _target_pos, _team);
+        skill_action.activate(_my_pos, _target_pos, _team);
     }
 
     public void startCoolTime()
@@ -60,7 +62,7 @@ public class Skill
 
     public float getCooltiemAmount()
     {
-        float amount = curr_cooltime_ / skill_data.cool_time;
+        float amount = curr_cooltime_ / skill_data_.cool_time;
         if (amount > 0) return amount;
         else return 0f;
     }

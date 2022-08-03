@@ -4523,6 +4523,8 @@ MonoBehaviour:
   skill_recipe_data_list:
   - {fileID: 11400000, guid: 2ef37a0f7c9bf9c45b9e2898508cd8e0, type: 2}
   - {fileID: 11400000, guid: 6767c399eafec824d8ad16cd053a1adc, type: 2}
+  move_projectile_: {fileID: 2561323377551847569, guid: 890109b32815dc6449ba1f0ad516d628, type: 3}
+  field_projectile_: {fileID: 0}
 --- !u!4 &1182317648
 Transform:
   m_ObjectHideFlags: 0

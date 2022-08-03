@@ -38,13 +38,20 @@ public class SkillDataBase : MonoBehaviour
 
     private List<Skill> skill_list = new List<Skill>();
 
+    [SerializeField]
+    private GameObject move_projectile_;
+    public GameObject move_projectile { get => move_projectile_; }
+    [SerializeField]
+    private GameObject field_projectile_;
+    public GameObject field_projectile { get => field_projectile_; }
+
     private int count_ = 0;
 
     public void init()
     {
         Array.Sort<SkillData>(skill_data_list, compareSkillNumber);
         Array.Sort<SkillRecipeData>(skill_recipe_data_list, compareSkillReecipeNumber);
-        iunitSkillIndexArrayByRarity();
+        initSkillIndexArrayByRarity();
         addSkill(new FireBall());
         addSkill(new PoisonFleid());
 
@@ -70,7 +77,7 @@ public class SkillDataBase : MonoBehaviour
         else return 0;
     }
 
-    private void iunitSkillIndexArrayByRarity()
+    private void initSkillIndexArrayByRarity()
     {
         foreach (Rarity rarity in Enum.GetValues(typeof(Rarity)))
         {
@@ -85,7 +92,6 @@ public class SkillDataBase : MonoBehaviour
             skill_rarity_dic_[rarity] = skill_index_arr.ToArray();
         }
     }
-
 
     public SkillData getSkillData(int _no)
     {
