@@ -4517,10 +4517,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44f11ff237152444b050c71aec8e131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill_data_list:
+  skill_data_arr_:
   - {fileID: 11400000, guid: 827a5f5e59376ad4093bdd5ff0c444e2, type: 2}
   - {fileID: 11400000, guid: 28b2e412db2d538438a089b780c91a87, type: 2}
-  skill_recipe_data_list:
+  skill_recipe_data_arr_:
   - {fileID: 11400000, guid: 2ef37a0f7c9bf9c45b9e2898508cd8e0, type: 2}
   - {fileID: 11400000, guid: 6767c399eafec824d8ad16cd053a1adc, type: 2}
 --- !u!4 &1182317648
@@ -5607,6 +5607,7 @@ Transform:
   - {fileID: 673876793}
   - {fileID: 1182317648}
   - {fileID: 73768412}
+  - {fileID: 1545325927}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5929,6 +5930,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528775033}
   m_CullTransparentMesh: 1
+--- !u!1 &1545325926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1545325927}
+  - component: {fileID: 1545325928}
+  m_Layer: 0
+  m_Name: ProjectileDataBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1545325927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545325926}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -741.94745, y: -670.22314, z: 2907.2632}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1490210270}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1545325928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545325926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2929b53c613ae0d4ab8e8609e86c06f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile_object_arr_:
+  - {fileID: 6545432837217087913, guid: b1649a6b956768a4e8017a58b41593a4, type: 3}
 --- !u!1 &1558056477
 GameObject:
   m_ObjectHideFlags: 0

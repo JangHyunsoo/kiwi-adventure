@@ -5,46 +5,48 @@ using UnityEngine;
 
 public class Skill
 {
-    private SkillData skill_data_;
-    public SkillData skill_data { get => skill_data_; set => skill_data_ = value; }
-    private SkillAction skill_action_;
-    public SkillAction skill_action { get => skill_action_; set => skill_action_ = value; }
-    private SkillRecipeData skill_recipe_data_;
-    public SkillRecipeData skill_recipe_data { get => skill_recipe_data_; set => skill_recipe_data_ = value; }
-
+    private int skill_no_;
+    public int skill_no { get => skill_no_; }
     private int level_ = 0;
-    private float curr_cooltime_ = 0f;
-
     public int level { get { return level_; } set { level_ = value; } }
+    private float curr_cooltime_ = 0f;
+    
+    public SkillData skill_data;
+    public SkillAction skill_action;
+    public SkillRecipeData skill_recipe_data;
+
+
     public bool is_known { get => level_ != 0; }
     public bool is_ready { get => curr_cooltime_ <= 0; }
 
 
-    public Skill(SkillData _skill_data, SkillRecipeData _skill_recipe_data, SkillAction _skill_action)
+    public Skill(int _skill_no)
     {
-        this.skill_data = _skill_data;
-        this.skill_action = _skill_action;
-        this.skill_recipe_data = _skill_recipe_data;
+        skill_no_ = _skill_no;
+        skill_data = SkillDataBase.instance.getSkillData(skill_no_);
+        skill_action = SkillDataBase.instance.getSkillAction(skill_no);
+        skill_recipe_data = SkillDataBase.instance.getSkillRecipeData(skill_no_);
         level_ = 0;
     }
 
     public Skill(Skill _skill)
     {
-        this.skill_data = _skill.skill_data;
-        this.skill_action = _skill.skill_action;
-        this.skill_recipe_data = _skill.skill_recipe_data;
+        skill_no_ = _skill.skill_no;
+        skill_data = SkillDataBase.instance.getSkillData(skill_no_);
+        skill_action = SkillDataBase.instance.getSkillAction(skill_no);
+        skill_recipe_data = SkillDataBase.instance.getSkillRecipeData(skill_no_);
         level_ = _skill.level;
     }
 
     public void activate(Vector3 _my_pos, Vector3 _target_pos, string _team)
     {
         startCoolTime();
-        skill_action.activate(skill_data.projectile, _my_pos, _target_pos, _team);
+        skill_action.activate(_my_pos, _target_pos, _team);
     }
 
     public void startCoolTime()
     {
-        curr_cooltime_ = skill_data_.cool_time;
+        curr_cooltime_ = skill_data.cool_time;
     }
 
     public void updateCoolTime()

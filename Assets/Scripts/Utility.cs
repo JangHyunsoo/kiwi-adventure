@@ -127,6 +127,11 @@ public class Utility
         return -1;
     }
 
+    public static Quaternion getDirecitonToRotation(Vector3 _vec)
+    {
+        return Quaternion.Euler(new Vector3(0f, 0f, Mathf.Atan2(_vec.y, _vec.x)));
+    }
+
     public static T getRandomValueInArray<T>(T[] _array)
     {
         return _array[Random.Range(0, _array.Length)];
