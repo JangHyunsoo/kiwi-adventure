@@ -127,6 +127,12 @@ public class Utility
         return -1;
     }
 
+    public static int modNumber(int _num, int _max, int _cal)
+    {
+        int result = (_num + _cal) % _max;
+        return result < 0 ? result + _max : result;
+    }
+
     public static Quaternion getDirecitonToRotation(Vector3 _vec)
     {
         return Quaternion.Euler(new Vector3(0f, 0f, Mathf.Atan2(_vec.y, _vec.x)));
