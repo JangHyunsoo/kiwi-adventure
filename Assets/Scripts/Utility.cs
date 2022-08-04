@@ -135,8 +135,14 @@ public class Utility
 
     public static Quaternion getDirecitonToRotation(Vector3 _vec)
     {
-        return Quaternion.Euler(new Vector3(0f, 0f, Mathf.Atan2(_vec.y, _vec.x)));
+        return Quaternion.Euler(new Vector3(0f, 0f, getDegreeFromRadian(Mathf.Atan2(_vec.y, _vec.x))));
     }
+    
+    public static float getDegreeFromRadian(float _radian)
+    {
+        return _radian * 180 / Mathf.PI;
+    }
+
 
     public static T getRandomValueInArray<T>(T[] _array)
     {

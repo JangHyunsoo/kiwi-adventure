@@ -14,12 +14,12 @@ public class MoveProjectile : Projectile
     public override void init()
     {
         direction_ = (target_pos_ - transform.position).normalized;
-        transform.rotation = Utility.getDirecitonToRotation(target_pos_);
+        transform.rotation = Utility.getDirecitonToRotation(direction_);
     }
     public override void activate()
     {
         current_skill_distance += Time.deltaTime * skill_data_.projectile_speed;
-        transform.Translate(direction_ * Time.deltaTime * skill_data_.projectile_speed);
+        transform.position += (direction_ * Time.deltaTime * skill_data_.projectile_speed);
 
         if(skill_data_.casting_range < current_skill_distance)
         {
