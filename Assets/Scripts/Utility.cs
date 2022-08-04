@@ -127,11 +127,9 @@ public class Utility
         return -1;
     }
 
-    public static int modNumber(int _idx, int _max, int _value)
+    public static Quaternion getDirecitonToRotation(Vector3 _vec)
     {
-        int result = (_idx - _value) % _max;
-        if (result < 0) result += _max;
-        return result;
+        return Quaternion.Euler(new Vector3(0f, 0f, Mathf.Atan2(_vec.y, _vec.x)));
     }
 
     public static T getRandomValueInArray<T>(T[] _array)

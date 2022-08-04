@@ -5,24 +5,23 @@ using UnityEngine;
 public class MoveProjectile : Projectile
 {
     private Vector3 direction_;
-
-    private double delay_time_;
-    private double current_delay_time_ = 0d;
+    
+    private double current_skill_distance = 0d;
 
     [SerializeField]
     private bool is_crash_with_object_ = true;
 
     public override void init()
     {
-        delay_time_ = 5d;
         direction_ = (target_pos_ - transform.position).normalized;
+        transform.rotation = Utility.getDirecitonToRotation(target_pos_);
     }
     public override void activate()
     {
-        transform.Translate(direction_ * Time.deltaTime * 10f);
-        current_delay_time_ += Time.deltaTime;
+        current_skill_distance += Time.deltaTime * skill_data_.projectile_speed;
+        transform.Translate(direction_ * Time.deltaTime * skill_data_.projectile_speed);
 
-        if(delay_time_ < current_delay_time_)
+        if(skill_data_.casting_range < current_skill_distance)
         {
             Destroy(gameObject);
         }
@@ -30,7 +29,7 @@ public class MoveProjectile : Projectile
 
     protected virtual void onHit(Collider2D collision)
     {
-        collision.GetComponent<Entity>().hitDamage(1);
+        collision.GetComponent<Entity>().hitDamage(skill_data_.skill_damage);
         Destroy(gameObject);
     }
 

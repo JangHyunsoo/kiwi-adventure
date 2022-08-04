@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField]
+    protected int skill_no_;
+    public int skill_no { get => skill_no_; }
+    protected SkillData skill_data_;
     protected string team_;
-    protected int damage_;
     protected Vector3 my_pos_;
     protected Vector3 target_pos_;
 
     public string team { get { return team_; } }
 
-    private void Start()
+    public virtual void Start()
     {
+        skill_data_ = SkillDataBase.instance.getSkillData(skill_no_);
         init();
     }
     private void Update()

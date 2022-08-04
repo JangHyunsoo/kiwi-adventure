@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         SkillDataBase.instance.init();
         ItemDataBase.instance.init();
+        ProjectileDataBase.instance.init();
     }
 
     public void setTimeScale(float _value)
