@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestScript : MonoBehaviour
+public class SkillEquipmentScrollUI : MonoBehaviour
 {
     private int curr_book_index_ = 3;
     private int curr_skill_index_ = 1;
@@ -15,19 +15,22 @@ public class TestScript : MonoBehaviour
     private Transform[] skill_position_arr_;
     private Transform[] skill_book_panel_tr_arr_;
 
+    private SkillEquipmentBookSlotUI[] skill_book_slot_cp_arr_;
+
     private const int REAL_BOOK_SIZE = 6;
     private const int SKILL_BOOK_SIZE = 3;
 
     [SerializeField]
-    private float ui_speed_ = 3f;
+    private float ui_speed_ = 0.5f;
 
     private int[] real_idx_book_data_arr_ = { 0, 1, 2, 0, 1, 2 };
-    private int[] real_idx_pos_arr_ = { 0, 1, 2, 3, 4 };
+    private int[] real_idx_pos_arr_ = { 0, 1, 2, 3, 4, 5 };
 
-    private void init()
+    public void init()
     {
         skill_position_arr_ = Utility.getChildsTransform(skill_positions_parent_);
         skill_book_panel_tr_arr_ = Utility.getChildsTransform(skill_book_panels_tr_parent_);
+        skill_book_slot_cp_arr_ = skill_book_panels_tr_parent_.GetComponentsInChildren<SkillEquipmentBookSlotUI>();
     }
 
     void Update()
@@ -50,20 +53,21 @@ public class TestScript : MonoBehaviour
         {
             updateSkillBookPosition(i);
             updateSkillBookScale(i);
-
         }
     }
 
     private void updateSkillBookPosition(int _idx)
     {
-        Transform curr_book_tr_ = skill_book_panel_tr_arr_[_idx];
-        curr_book_tr_.position = Vector3.Lerp(curr_book_tr_.position, skill_position_arr_[real_idx_pos_arr_[_idx]].position, Time.deltaTime * ui_speed_);
+        int real_pos = real_idx_pos_arr_[_idx];
+        Transform curr_book_tr_ = skill_book_panel_tr_arr_[real_pos];
+        curr_book_tr_.position = Vector3.Lerp(curr_book_tr_.position, skill_position_arr_[_idx].position, Time.deltaTime * ui_speed_);
     }
 
     private void updateSkillBookScale(int _idx)
     {
-        Transform curr_book_tr_ = skill_book_panel_tr_arr_[_idx];
-        if (curr_book_index_ == _idx)
+        int real_pos = real_idx_pos_arr_[_idx];
+        Transform curr_book_tr_ = skill_book_panel_tr_arr_[real_pos];
+        if (curr_book_index_ == real_pos)
         {
             curr_book_tr_.localScale = Vector3.Lerp(curr_book_tr_.localScale, Vector3.one * 1.25f, Time.deltaTime * ui_speed_);
         }
@@ -73,16 +77,30 @@ public class TestScript : MonoBehaviour
         }
     }
 
-    private void moveLeft()
+    public void moveLeft()
     {
         curr_book_index_ = Utility.modNumber(curr_book_index_, REAL_BOOK_SIZE, -1);
-        
-
+        moveLeftArr();
     }
-
-    private void moveRight()
+    
+    public void moveLeftArr()
     {
+        int real_pos_last_value = real_idx_pos_arr_[0];
+        int real_book_last_value = real_idx_book_data_arr_[0];
+        int real_pos_curr_value;
+        int real_book_curr_value;
 
-    }    
+        skill_book_panel_tr_arr_[real_idx_pos_arr_[0]].position = skill_book_panel_tr_arr_[real_idx_pos_arr_[REAL_BOOK_SIZE - 1]].position;
+
+        for (int i = REAL_BOOK_SIZE - 1; i >= 0; i--)
+        {
+            real_pos_curr_value = real_idx_pos_arr_[i];
+            real_book_curr_value = real_idx_book_data_arr_[i];
+            real_idx_pos_arr_[i] = real_pos_last_value;
+            real_idx_book_data_arr_[i] = real_book_last_value;
+            real_pos_last_value = real_pos_curr_value;
+            real_book_last_value = real_book_curr_value;
+        }
+    }
 }
 

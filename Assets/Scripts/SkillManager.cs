@@ -31,7 +31,7 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private SkillInfoCardUI skill_info_card_;
     [SerializeField]
-    private SkillSliderUI skill_slider_ui_;
+    private SkillEquipmentScrollUI skill_equipment_scroll_ui_;
     [SerializeField]
     private SkillCommandUI skill_command_ui_;
 
@@ -47,7 +47,7 @@ public class SkillManager : MonoBehaviour
     {
         skill_inventory_.init();
         skill_inventory_ui_.init();
-        skill_slider_ui_.init();
+        skill_equipment_scroll_ui_.init();
         skill_command_ui_.init();
         updateSkillUI();
     }
@@ -62,11 +62,6 @@ public class SkillManager : MonoBehaviour
         skill_inventory_.addSkillToHave(_skill);
     }
 
-    public void updateEquipmentSlot()
-    {
-        skill_slider_ui_.updateSkillImage();
-    }
-
     public void updateSkillInfoCard(SkillSlot _slot)
     {
         skill_info_card_.setSkill(_slot);
@@ -79,7 +74,7 @@ public class SkillManager : MonoBehaviour
 
     public void castingSkillAction(int _key_code)
     {
-        skill_slider_ui_.rotateCurrntSkill(_key_code);
+
     }
 
     public Skill getEquipmentSkill(int _idx)
@@ -120,7 +115,6 @@ public class SkillManager : MonoBehaviour
     public void updateSkillUI()
     {
         skill_inventory_ui_.updateSkillSlot();
-        skill_slider_ui_.updateSkillImage();
         skill_info_card_.updateSkillInfo();
     }
 }

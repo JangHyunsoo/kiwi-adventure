@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillSliderSlotUI : MonoBehaviour
+public class SkillEquipmentSkillSlotUI : MonoBehaviour
 {
     private Image background_image_;
     public Image background_image { get => background_image_; }
