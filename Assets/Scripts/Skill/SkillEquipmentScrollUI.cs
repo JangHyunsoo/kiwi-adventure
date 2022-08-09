@@ -5,16 +5,18 @@ using UnityEngine;
 public class SkillEquipmentScrollUI : MonoBehaviour
 {
     private int curr_book_index_ = 3;
-    private int curr_skill_index_ = 1;
 
     [SerializeField]
     private Transform skill_positions_parent_;
     [SerializeField]
     private Transform skill_book_panels_tr_parent_;
 
+    [SerializeField]
     private Transform[] skill_position_arr_;
+    [SerializeField]
     private Transform[] skill_book_panel_tr_arr_;
 
+    [SerializeField]
     private SkillEquipmentBookSlotUI[] skill_book_slot_cp_arr_;
 
     private const int REAL_BOOK_SIZE = 6;
@@ -31,6 +33,11 @@ public class SkillEquipmentScrollUI : MonoBehaviour
         skill_position_arr_ = Utility.getChildsTransform(skill_positions_parent_);
         skill_book_panel_tr_arr_ = Utility.getChildsTransform(skill_book_panels_tr_parent_);
         skill_book_slot_cp_arr_ = skill_book_panels_tr_parent_.GetComponentsInChildren<SkillEquipmentBookSlotUI>();
+        for (int i = 0; i < skill_book_slot_cp_arr_.Length; i++)
+        {
+            skill_book_slot_cp_arr_[i].init();
+            skill_book_slot_cp_arr_[i].setBookNo(real_idx_book_data_arr_[i]);
+        }
     }
 
     void Update()
@@ -53,6 +60,7 @@ public class SkillEquipmentScrollUI : MonoBehaviour
         {
             updateSkillBookPosition(i);
             updateSkillBookScale(i);
+            updateSkillBookImage(i);
         }
     }
 
@@ -77,9 +85,14 @@ public class SkillEquipmentScrollUI : MonoBehaviour
         }
     }
 
+    private void updateSkillBookImage(int _idx)
+    {
+        skill_book_slot_cp_arr_[_idx].updateSkillSlots();
+    }
+
     public void moveLeft()
     {
-        curr_book_index_ = Utility.modNumber(curr_book_index_, REAL_BOOK_SIZE, -1);
+        curr_book_index_ = Utility.modNumber(curr_book_index_, REAL_BOOK_SIZE, 1);
         moveLeftArr();
     }
     

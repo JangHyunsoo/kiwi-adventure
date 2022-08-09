@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -38,6 +39,29 @@ public enum Rarity
     LEGENDARY
 }
 
+public enum ElementalType
+{
+    FIRE,
+    ICE,
+    WATER,
+    ELECTRIC,
+    EARTH,
+    DARK
+}
+
+public enum SkillBookOption
+{
+    FIRE_DAMAGE,
+    ICE_DAMAGE,
+    WATER_DAMAGE,
+    ELETRIC_DAMAGE,
+    EARTH_DAMAGE,
+    DARK_DAMAMGE,
+    COOL_TIME,
+    CRITICAL_CHANCE,
+    CRITICAL_DAMAGE
+}
+
 public enum KeyActionType
 {
     DOWN,
@@ -53,6 +77,17 @@ public enum KeyCommand
     FOUR,
     FIVE,
     SIX
+}
+
+public struct ElementalData
+{
+    public ElementalType elemental_type;
+    public float elemental_value;
+    public ElementalData(ElementalType _elemental_type, float _elemental_value)
+    {
+        elemental_type = _elemental_type;
+        elemental_value = _elemental_value;
+    }
 }
 
 public class Utility
@@ -143,6 +178,13 @@ public class Utility
         return _radian * 180 / Mathf.PI;
     }
 
+    public static int[] getShuffleArray(int _size)
+    {
+        int[] shuffle_arr = Enumerable.Range(0, _size).ToArray();
+        System.Random random = new System.Random();
+        shuffle_arr = shuffle_arr.OrderBy(x => random.Next()).ToArray();
+        return shuffle_arr;
+    }
 
     public static T getRandomValueInArray<T>(T[] _array)
     {

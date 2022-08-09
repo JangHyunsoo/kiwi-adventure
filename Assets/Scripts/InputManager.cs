@@ -45,15 +45,12 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private KeyCode skill_key_6_ = KeyCode.D;
     [SerializeField]
-    private KeyCode skill_index_key_1_ = KeyCode.Alpha1;
+    private KeyCode skill_switch_key_1_ = KeyCode.Alpha1;
+    private KeyCode skill_switch_key_2_ = KeyCode.Alpha2;
+    private KeyCode skill_switch_key_3_ = KeyCode.Alpha3;
+
     [SerializeField]
-    private KeyCode skill_index_key_2_ = KeyCode.Alpha2;
-    [SerializeField]
-    private KeyCode skill_index_key_3_ = KeyCode.Alpha3;
-    [SerializeField]
-    private KeyCode skill_index_key_4_ = KeyCode.Alpha4;
-    [SerializeField]
-    private KeyCode skill_index_key_5_ = KeyCode.Alpha5;
+    private KeyCode switch_skill_book_key_ = KeyCode.Tab;
     [SerializeField]
     private KeyCode skill_book_activate_ = KeyCode.K;
 
@@ -77,10 +74,9 @@ public class InputManager : MonoBehaviour
         key_command_dic_[skill_key_4_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_4_, 3);
         key_command_dic_[skill_key_5_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_5_, 4);
         key_command_dic_[skill_key_6_] = new SkillKeyCommand(KeyActionType.DOWN, skill_key_6_, 5);
-        key_command_dic_[skill_index_key_1_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_index_key_1_, 0);
-        key_command_dic_[skill_index_key_2_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_index_key_2_, 1);
-        key_command_dic_[skill_index_key_3_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_index_key_3_, 2);
-        key_command_dic_[skill_index_key_4_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_index_key_4_, 3);
-        key_command_dic_[skill_index_key_5_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_index_key_5_, 4);
+        key_command_dic_[skill_switch_key_1_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_switch_key_1_, 0);
+        key_command_dic_[skill_switch_key_2_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_switch_key_2_, 1);
+        key_command_dic_[skill_switch_key_3_] = new SkillSwitchCommand(KeyActionType.DOWN, skill_switch_key_3_, 2);
+        key_command_dic_[switch_skill_book_key_] = new SwitchSkillBookCommand(switch_skill_book_key_);
     }
 }

@@ -90,6 +90,6 @@ public class ItemInventory : MonoBehaviour
 
     private void updateDisplay()
     {
-        element_display_cp_.updateElementDisplay();
+        // element_display_cp_.updateElementDisplay();
     }
 }

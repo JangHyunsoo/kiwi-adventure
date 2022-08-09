@@ -14,6 +14,6 @@ public class SkillSwitchCommand : Command
     public override void activate()
     {
         PlayerManager.instance.player_casting.failSkill();
-        SkillManager.instance.castingSkillAction(key_code_);
+        SkillManager.instance.switchSkill(key_code_);
     }
 }

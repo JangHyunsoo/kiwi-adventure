@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class SkillInfoCardUI : MonoBehaviour
 {
-    private SkillSlot curr_slot_ = null;
-    public SkillSlot curr_slot { get => curr_slot_; }
+    private int slot_no_;
+    private int book_no_;
+    private Skill curr_skill_;
+
     [SerializeField]
     private Image curr_skill_image_;
     [SerializeField]
@@ -35,15 +37,22 @@ public class SkillInfoCardUI : MonoBehaviour
     [SerializeField]
     private Transform create_btn_;
 
-    public void setSkill(SkillSlot _slot)
+    private void Update()
     {
-        curr_slot_ = _slot;
+        curr_skill_ = SkillManager.instance.getSkill(slot_no_, book_no_);
         updateSkillInfo();
+    }
+
+    public void setSlotNo(int _slot_no, int _book_no)
+    {
+        slot_no_ = _slot_no;
+        book_no_ = _book_no;
+        curr_skill_ = SkillManager.instance.getSkill(_slot_no, _book_no);
     }
 
     public void updateSkillInfo()
     {
-        if(curr_slot_ == null)
+        if (curr_skill_ == null)
         {
             clearSkillInfo();
         }
@@ -51,11 +60,6 @@ public class SkillInfoCardUI : MonoBehaviour
         {
             updateSkill();
         }
-    }
-
-    private void Update()
-    {
-        updateSkillInfo();
     }
 
     public void clearSkillInfo()
@@ -77,24 +81,24 @@ public class SkillInfoCardUI : MonoBehaviour
 
     private void updateSkill()
     {
-        curr_skill_image_.sprite = curr_slot_.skill.skill_data.skill_image;
-        curr_skill_name_.text = curr_slot_.skill.skill_data.skill_name;
-        curr_skill_cost_.text = curr_slot_.skill.skill_data.skill_cost.ToString();
-        curr_skill_cooltime_.text = curr_slot_.skill.skill_data.cool_time.ToString();
-        curr_skill_damage_.text = curr_slot_.skill.skill_data.skill_damage.ToString();
-        curr_skill_level_.text = curr_slot_.skill.level.ToString();
-        curr_skill_air_element_count_.text = curr_slot_.skill.skill_recipe_data.air_element_count.ToString();
-        curr_skill_aqua_element_count_.text = curr_slot_.skill.skill_recipe_data.aqua_element_count.ToString();
-        curr_skill_earth_element_count_.text = curr_slot_.skill.skill_recipe_data.earth_element_count.ToString();
-        curr_skill_fire_element_count_.text = curr_slot_.skill.skill_recipe_data.fire_element_count.ToString();
-        curr_skill_photon_element_count_.text = curr_slot_.skill.skill_recipe_data.photon_element_count.ToString();
-        curr_skill_element_dust_count_.text = curr_slot_.skill.skill_recipe_data.element_dust_count.ToString();
-        create_btn_.gameObject.SetActive(curr_slot_.skill.level == 0);
+        curr_skill_image_.sprite = curr_skill_.skill_data.skill_image;
+        curr_skill_name_.text = curr_skill_.skill_data.skill_name;
+        curr_skill_cost_.text = curr_skill_.skill_data.skill_cost.ToString();
+        curr_skill_cooltime_.text = curr_skill_.skill_data.cool_time.ToString();
+        curr_skill_damage_.text = curr_skill_.skill_data.skill_damage.ToString();
+        curr_skill_level_.text = curr_skill_.level.ToString();
+        curr_skill_air_element_count_.text = curr_skill_.skill_recipe_data.air_element_count.ToString();
+        curr_skill_aqua_element_count_.text = curr_skill_.skill_recipe_data.aqua_element_count.ToString();
+        curr_skill_earth_element_count_.text = curr_skill_.skill_recipe_data.earth_element_count.ToString();
+        curr_skill_fire_element_count_.text = curr_skill_.skill_recipe_data.fire_element_count.ToString();
+        curr_skill_photon_element_count_.text = curr_skill_.skill_recipe_data.photon_element_count.ToString();
+        curr_skill_element_dust_count_.text = curr_skill_.skill_recipe_data.element_dust_count.ToString();
+        create_btn_.gameObject.SetActive(curr_skill_.level == 0);
     }
 
     public void createSkill()
     {
-        SkillManager.instance.createSkillBySlot(curr_slot_.slot_no, curr_slot_.is_equipment_slot);
-        curr_slot_ = null;
+        SkillManager.instance.createSkillBySlot(slot_no_, book_no_);
+        curr_skill_ = null;
     }
 }

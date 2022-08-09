@@ -4,23 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
+public class SkillInventorySkillSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
     private Skill skill_ = null;
     private int slot_no_;
-
-    [SerializeField]
+    private int book_no_ = -1;
     private Image skill_image_;
 
-    private bool is_equipment_slot_ = false;
-
-    public int slot_no { get => slot_no_; set => slot_no_ = value; }
-    public bool is_equipment_slot { get => is_equipment_slot_; }
+    public int slot_no { get => slot_no_; }
+    public int book_no { get => book_no_; }
+    public bool is_equipment_slot { get => book_no_ != -1; }
     public Skill skill { get => skill_; set => skill_ = value; }
+
+    public void init()
+    {
+        skill_image_ = GetComponentsInChildren<Image>()[2];
+    }
 
     private void Update()
     {
-        skill_ = SkillManager.instance.getSkill(slot_no_, is_equipment_slot);
+        skill_ = SkillManager.instance.getSkill(slot_no_, book_no_);
         updateSkill();
     }
 
@@ -31,14 +34,14 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         skill_image_.color = color;
     }
 
-    public void setupEquipmentSlot()
+    public void setSlotNo(int _no)
     {
-        is_equipment_slot_ = true;
+        slot_no_ = _no;
     }
 
-    public bool getIsEquipmentSlot()
+    public void setBookSlot(int _no)
     {
-        return is_equipment_slot_;
+        book_no_ = _no;
     }
 
     public void addSkill(Skill _skill)
@@ -62,7 +65,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         skill_ = null;
         skill_image_.sprite = null;
-        setColor(1);
+        setColor(0);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -93,7 +96,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         if (DragSkillInventorySlot.instance.skill_slot != null)
         {
-            if (is_equipment_slot_ && !DragSkillInventorySlot.instance.skill_slot.skill.is_known)
+            if (is_equipment_slot && !DragSkillInventorySlot.instance.skill_slot.skill.is_known)
             {
                 return;
             }
@@ -111,7 +114,7 @@ public class SkillSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                SkillManager.instance.updateSkillInfoCard(this);
+                SkillManager.instance.updateSkillInfoCard(slot_no_, book_no_);
             }
         }
     }
