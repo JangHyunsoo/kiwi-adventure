@@ -51,8 +51,10 @@ public class SkillDataBase : MonoBehaviour
     {
         List<SkillAction> skill_action_list = new List<SkillAction>();
         
-        skill_action_list.Add(new FireBallSkillAction(1));
-        skill_action_list.Add(new PoisonFleidSkillAction(2));
+        skill_action_list.Add(new FireBallSkillAction(0));
+        skill_action_list.Add(new IceSpearSkillAction(1));
+        skill_action_list.Add(new DropIceSkillAction(2));
+
 
         skill_action_data_arr_ = skill_action_list.ToArray();
         Array.Sort<SkillAction>(skill_action_data_arr_, compareSkillActionNumber);
@@ -63,7 +65,7 @@ public class SkillDataBase : MonoBehaviour
         skill_arr_ = new Skill[skill_data_arr_.Length];
         for (int i = 0; i < skill_data_arr_.Length; i++)
         {
-            skill_arr_[i] = new Skill(i + 1);
+            skill_arr_[i] = new Skill(i);
         }
     }
 
@@ -85,12 +87,12 @@ public class SkillDataBase : MonoBehaviour
 
     public SkillData getSkillData(int _skill_no)
     {
-        return skill_data_arr_[_skill_no - 1];
+        return skill_data_arr_[_skill_no];
     }
 
     public SkillRecipeData getSkillRecipeData(int _skill_no)
     {
-        return skill_recipe_data_arr_[_skill_no - 1];
+        return skill_recipe_data_arr_[_skill_no];
     }
 
     public Skill getSkill(int _no, int _level)
@@ -101,7 +103,7 @@ public class SkillDataBase : MonoBehaviour
     }
     public SkillAction getSkillAction(int _skill_no)
     {
-        return skill_action_data_arr_[_skill_no - 1];
+        return skill_action_data_arr_[_skill_no];
     }
 
     public int[] getSkillIndexArrayByRarity(Rarity _rarity)

@@ -10,6 +10,7 @@ public class SkillRecipeData : ScriptableObject
     public int aqua_element_count;
     public int earth_element_count;
     public int fire_element_count;
+    public int ice_element_count;
     public int photon_element_count;
     public int element_dust_count;
 

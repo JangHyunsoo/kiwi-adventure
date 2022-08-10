@@ -30,6 +30,11 @@ public enum ItemType
     UNCOUNTABLE
 }
 
+public enum ProjectileType
+{
+    MOVE_CIRCLE = 0,
+    MOVE_BOX
+}
 
 public enum Rarity
 {

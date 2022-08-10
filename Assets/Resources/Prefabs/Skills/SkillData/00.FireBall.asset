@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4704f86fc0c1f014cb20dba338fe6f0a, type: 3}
+  m_Name: 00.FireBall
+  m_EditorClassIdentifier: 
+  skill_no: 0
+  skill_rarity: 0
+  projectile_type: 0
+  skill_name: "\uD30C\uC774\uC5B4\uBCFC"
+  skill_image: {fileID: 21300000, guid: 3b0cde1f83c972946869c4a236296121, type: 3}
+  command: 0000000001000000
+  command_length: 020000000200000002000000
+  casting_range:
+  - 10
+  - 10
+  - 10
+  projectile_size:
+  - {x: 3, y: 3}
+  - {x: 3, y: 3}
+  - {x: 3, y: 3}
+  projectile_speed:
+  - 5
+  - 5
+  - 5
+  cool_time:
+  - 3
+  - 3
+  - 3
+  skill_cost: 010000000100000001000000
+  skill_damage: 030000000300000003000000
+  projectile_sprite: {fileID: 21300000, guid: efd7c19bf4e028d42a6117a67dde1ef9, type: 3}
+  projectile_animation_cilp: {fileID: 7400000, guid: b866d232caee56a438e29e16a3fa9f7c, type: 2}

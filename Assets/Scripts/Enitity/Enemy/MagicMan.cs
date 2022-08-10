@@ -43,8 +43,8 @@ public class MagicMan : EnemyEntity
         base.init();
         sprite_renderer = GetComponent<SpriteRenderer>();
         rigidbody_ = GetComponent<Rigidbody2D>();
-        skills_.Add(SkillDataBase.instance.getSkill(0, 0));
-        skills_.Add(SkillDataBase.instance.getSkill(0, 0));
+        skills_.Add(SkillDataBase.instance.getSkill(0, 1));
+        skills_.Add(SkillDataBase.instance.getSkill(0, 1));
     }
 
     public void Update()

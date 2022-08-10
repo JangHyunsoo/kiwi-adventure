@@ -10,7 +10,7 @@ public class Skill
     private int level_ = 0;
     public int level { get { return level_; } set { level_ = value; } }
     private float curr_cooltime_ = 0f;
-    
+
     public SkillData skill_data;
     public SkillAction skill_action;
     public SkillRecipeData skill_recipe_data;
@@ -41,12 +41,12 @@ public class Skill
     public void activate(Vector3 _my_pos, Vector3 _target_pos, string _team)
     {
         startCoolTime();
-        skill_action.activate(_my_pos, _target_pos, _team);
+        skill_action.activate(level - 1, _my_pos, _target_pos, _team);
     }
 
     public void startCoolTime()
     {
-        curr_cooltime_ = skill_data.cool_time;
+        curr_cooltime_ = skill_data.cool_time[level];
     }
 
     public void updateCoolTime()
@@ -62,7 +62,7 @@ public class Skill
 
     public float getCooltiemAmount()
     {
-        float amount = curr_cooltime_ / skill_data.cool_time;
+        float amount = curr_cooltime_ / skill_data.cool_time[level];
         if (amount > 0) return amount;
         else return 0f;
     }
