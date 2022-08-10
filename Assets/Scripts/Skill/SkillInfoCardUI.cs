@@ -81,12 +81,14 @@ public class SkillInfoCardUI : MonoBehaviour
 
     private void updateSkill()
     {
+        int curr_level = curr_skill_.level;
+
         curr_skill_image_.sprite = curr_skill_.skill_data.skill_image;
         curr_skill_name_.text = curr_skill_.skill_data.skill_name;
-        curr_skill_cost_.text = curr_skill_.skill_data.skill_cost.ToString();
-        curr_skill_cooltime_.text = curr_skill_.skill_data.cool_time.ToString();
-        curr_skill_damage_.text = curr_skill_.skill_data.skill_damage.ToString();
-        curr_skill_level_.text = curr_skill_.level.ToString();
+        curr_skill_cost_.text = curr_skill_.skill_data.skill_cost[curr_level].ToString();
+        curr_skill_cooltime_.text = curr_skill_.skill_data.cool_time[curr_level].ToString();
+        curr_skill_damage_.text = curr_skill_.skill_data.skill_damage[curr_level].ToString();
+        curr_skill_level_.text = curr_level.ToString();
         curr_skill_air_element_count_.text = curr_skill_.skill_recipe_data.air_element_count.ToString();
         curr_skill_aqua_element_count_.text = curr_skill_.skill_recipe_data.aqua_element_count.ToString();
         curr_skill_earth_element_count_.text = curr_skill_.skill_recipe_data.earth_element_count.ToString();
