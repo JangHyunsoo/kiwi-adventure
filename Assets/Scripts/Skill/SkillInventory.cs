@@ -46,11 +46,10 @@ public class SkillInventory : MonoBehaviour
     {
         initHaveSkillSlot();
         initEquipmentSlot();
-        addSkillToHave(SkillDataBase.instance.getSkill(0, 1));
+        addSkillToEquipment(SkillDataBase.instance.getSkill(0, 1));
         addSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         addSkillToHave(SkillDataBase.instance.getSkill(1, 0));
         addSkillToHave(SkillDataBase.instance.getSkill(2, 0));
-
     }
 
     private void initHaveSkillSlot()
@@ -80,6 +79,22 @@ public class SkillInventory : MonoBehaviour
             {
                 have_skill_arr_[i] = _skill;
                 return;
+            }
+        }
+    }
+
+    public void addSkillToEquipment(Skill _skill)
+    {
+        for (int book_idx = 0; book_idx < eqiupment_skill_book_arr_.Length; book_idx++)
+        {
+            for (int skill_idx = 0; skill_idx < eqiupment_skill_book_arr_[book_idx].skill_size; skill_idx++)
+            {
+                Skill curr_skill = getSkill(skill_idx, book_idx);
+                if (curr_skill == null)
+                {
+                    setSkill(_skill, skill_idx, book_idx);
+                    return;
+                }
             }
         }
     }

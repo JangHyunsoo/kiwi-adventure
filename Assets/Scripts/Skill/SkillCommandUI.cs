@@ -20,7 +20,7 @@ public class SkillCommandUI : MonoBehaviour
     private Transform[] skill_command_tr_arr_;
     private Image[] skill_command_image_arr_;
     private const int MAX_COMMAND_SIZE_ = 10;
-    private int[] cur_skill_command_arr_;
+    private int[] cur_skill_command_arr_ = new int[0];
 
     private Vector3 curr_target_pos_ {get => PlayerManager.instance.player_casting.isCasting() ? activate_target_tr_.position : unactivate_target_tr_.position;}
 
@@ -35,6 +35,7 @@ public class SkillCommandUI : MonoBehaviour
         condition_ = condition;
         
         updatePosition();
+        updateCommandColor();
     }
 
     public void init()
@@ -78,5 +79,23 @@ public class SkillCommandUI : MonoBehaviour
     public void updatePosition()
     {
         transform.position = Vector3.Lerp(transform.position, curr_target_pos_, Time.deltaTime * ui_move_speed_);
+    }
+
+    public void updateCommandColor()
+    {
+        int command_idx = PlayerManager.instance.player_casting.command_idx;
+        
+
+        for (int i = 0; i < cur_skill_command_arr_.Length; i++)
+        {
+            if (i < command_idx)
+            {
+                skill_command_image_arr_[i].color = Color.red;
+            }
+            else
+            {
+                skill_command_image_arr_[i].color = Color.white;
+            }
+        }
     }
 }

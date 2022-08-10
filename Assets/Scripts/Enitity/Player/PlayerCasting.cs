@@ -13,6 +13,8 @@ public class PlayerCasting : MonoBehaviour
     [SerializeField]
     private Transform skill_fire_tr_;
 
+    public int command_idx { get => command_idx_; }
+
     private void Update()
     {
         if(cur_command_arr_ == null && is_casting_)
@@ -48,6 +50,10 @@ public class PlayerCasting : MonoBehaviour
     public void setIsCasting(bool _value)
     {
         is_casting_ = _value;
+        if(is_casting_ == true)
+        {
+            command_idx_ = 0;
+        }
     }
 
     public void loadSkillCommand()
@@ -77,7 +83,6 @@ public class PlayerCasting : MonoBehaviour
 
     public void failSkill()
     {
-        command_idx_ = 0;
         is_reload_ = false;
         is_casting_ = false;
         cur_command_arr_ = null;
@@ -86,7 +91,6 @@ public class PlayerCasting : MonoBehaviour
     public void readySkill()
     {
         is_reload_ = true;
-        command_idx_ = 0;
         is_casting_ = false;
         cur_command_arr_ = null;
     }
