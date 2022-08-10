@@ -10,21 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4704f86fc0c1f014cb20dba338fe6f0a, type: 3}
-<<<<<<< HEAD:Assets/Resources/Prefabs/Skills/SkillData/fireball.asset
-  m_Name: fireball
-=======
   m_Name: 02.DropIce
->>>>>>> feature/fix-skill-struct-ver2:Assets/Resources/Prefabs/Skills/SkillData/02.DropIce.asset
   m_EditorClassIdentifier: 
   skill_no: 0
   skill_rarity: 0
-  projectile: {fileID: 0}
-  skill_name: 
-  skill_image: {fileID: 0}
-  command: 
-  command_length: 
-  casting_range: []
-  projectile_speed: []
-  cool_time: []
-  skill_cost: 
-  skill_damage: 
+  projectile: {fileID: 1835675157510142202, guid: 7bd7731bc50221d4ab1dad2a8676536e, type: 3}
+  skill_name: "\uC5BC\uC74C \uB5A8\uAD6C\uAE30"
+  skill_image: {fileID: 21300000, guid: f60535fb650db9e4c8a1691650de12e8, type: 3}
+  command: 010000000200000005000000
+  command_length: 030000000300000003000000
+  casting_range:
+  - 5
+  - 5
+  - 5
+  projectile_speed:
+  - 5
+  - 5
+  - 5
+  cool_time:
+  - 1
+  - 1
+  - 1
+  skill_cost: 030000000300000003000000
+  skill_damage: 050000000500000005000000
