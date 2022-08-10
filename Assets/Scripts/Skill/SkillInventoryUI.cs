@@ -26,7 +26,6 @@ public class SkillInventoryUI : MonoBehaviour
 
     private void setupHaveSlot()
     {
-
         have_skill_slot_arr_ = have_skill_slot_parent_.GetComponentsInChildren<SkillInventorySkillSlotUI>();
 
         for (int i = 0; i < have_skill_slot_arr_.Length; i++)

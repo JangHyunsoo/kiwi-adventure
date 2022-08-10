@@ -25,7 +25,7 @@ public class SkillEquipmentScrollUI : MonoBehaviour
     [SerializeField]
     private float ui_speed_ = 0.5f;
 
-    private int[] real_idx_book_data_arr_ = { 0, 1, 2, 0, 1, 2 };
+    private int[] real_idx_book_data_arr_ = { 1, 2, 0, 1, 2, 0 };
     private int[] real_idx_pos_arr_ = { 0, 1, 2, 3, 4, 5 };
 
     public void init()

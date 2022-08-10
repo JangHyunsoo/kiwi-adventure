@@ -8,22 +8,46 @@ public class SkillBookData : ScriptableObject
     [System.Serializable]
     public class RandValue
     {
-        [SerializeField] private SkillBookOption option_type;
-        [SerializeField] private float min_value_ = 1f;
-        [SerializeField] private float max_value_ = 1f;
+        [SerializeField] 
+        private SkillBookOption option_type_;
+        [SerializeField] 
+        private float min_value_ = 1f;
+        [SerializeField] 
+        private float max_value_ = 1f;
+
+        public SkillBookOption option_type { get => option_type_; }
+
         public float getRand()
         {
-            return Random.RandomRange(min_value_, max_value_);
+            return (float)System.Math.Round(Random.RandomRange(min_value_, max_value_), 1);
         }
     }
     [SerializeField]
     private int skill_book_no_;
     [SerializeField]
-    private RandValue[] option_rand_value_arr_;
+    private string skill_book_name_;
+    [SerializeField]
+    private string skill_book_info_;
+    [SerializeField]
+    private RandValue[] essential_option_rand_value_arr_;
+    [SerializeField]
+    private RandValue[] additional_option_rand_value_arr_;
+    [SerializeField]
+    private int additional_option_size_;
     [SerializeField]
     private int skill_slot_size_ = 3;
     [SerializeField]
-    private Sprite skill_book_sprite_;
+    private Color skill_book_color_ = Color.white;
+    //private Sprite skill_book_sprite_;
+
+    public int skill_book_no { get => skill_book_no_; }
+    public string skill_book_name { get => skill_book_name_; }
+    public string skill_book_info { get => skill_book_info_; }
+    public RandValue[] essential_option_rand_value_arr { get => essential_option_rand_value_arr_; }
+    public RandValue[] additional_option_rand_value_arr { get => additional_option_rand_value_arr_; }
+    public int additional_option_size { get => additional_option_size_; }
+    public int skill_slot_size { get => skill_slot_size_; }
+    public Color skill_book_color { get => skill_book_color_; }
 
     /*
     private void initOptionRandValue()

@@ -29,18 +29,19 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     private SkillInventoryUI skill_inventory_ui_;
     [SerializeField]
-    private SkillInfoCardUI skill_info_card_;
+    private SkillInfoCardUI skill_info_card_ui_;
+    [SerializeField]
+    private SkillBookInfoCardUI skill_book_info_card_ui_;
     [SerializeField]
     private SkillEquipmentScrollUI skill_equipment_scroll_ui_;
     [SerializeField]
     private SkillCommandUI skill_command_ui_;
-
     [SerializeField]
     private SkillInventory skill_inventory_;
 
     private int BOOK_SIZE = 3;
 
-    private int curr_book_index_ = 0;
+    private int curr_book_index_ = 1;
     private int curr_skill_index_ = 0;
     public int curr_skill_index { get => curr_skill_index_; }
     public int curr_book_index { get => curr_book_index_; }
@@ -66,7 +67,16 @@ public class SkillManager : MonoBehaviour
 
     public void updateSkillInfoCard(int _slot_no, int _book_no)
     {
-        skill_info_card_.setSlotNo(_slot_no, _book_no);
+        skill_info_card_ui_.gameObject.active = true;
+        skill_book_info_card_ui_.gameObject.active = false;
+        skill_info_card_ui_.setSlotNo(_slot_no, _book_no);
+    }
+
+    public void updateSkillBookInfoCard(int _book_no)
+    {
+        skill_info_card_ui_.gameObject.active = false;
+        skill_book_info_card_ui_.gameObject.active = true;
+        skill_book_info_card_ui_.setBookNo(_book_no);
     }
 
     public void moveCurrSkillCursor(int _idx)

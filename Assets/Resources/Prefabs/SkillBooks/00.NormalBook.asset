@@ -13,6 +13,37 @@ MonoBehaviour:
   m_Name: 00.NormalBook
   m_EditorClassIdentifier: 
   skill_book_no_: 0
-  option_rand_value_arr_: []
+  skill_book_name_: NormalBook
+  skill_book_info_: NormalBook
+  essential_option_rand_value_arr_: []
+  additional_option_rand_value_arr_:
+  - option_type_: 0
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 1
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 2
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 3
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 4
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 5
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 6
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 7
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 8
+    min_value_: 0.8
+    max_value_: 1.2
+  additional_option_size_: 4
   skill_slot_size_: 3
-  skill_book_sprite_: {fileID: 0}
+  skill_book_color_: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
