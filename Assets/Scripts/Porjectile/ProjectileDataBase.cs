@@ -26,28 +26,14 @@ public class ProjectileDataBase : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    
+
     [SerializeField]
     private GameObject[] projectile_object_arr_;
 
-    private Dictionary<int, int> projectile_dic_ = new Dictionary<int, int>();
+    public void init() { }
 
-    public void init()
+    public GameObject getProjectile(ProjectileType _projectile_type)
     {
-        setDictioanry();
+        return projectile_object_arr_[(int)_projectile_type];
     }
-
-    private void setDictioanry()
-    {
-        for(int i = 0; i < projectile_object_arr_.Length; i++)
-        {
-            projectile_dic_[projectile_object_arr_[i].GetComponent<Projectile>().skill_no] = i;
-        }
-    }
-
-    public GameObject getProjectile(int _skill_no)
-    {
-        return projectile_object_arr_[projectile_dic_[_skill_no]];
-    }
-
 }
