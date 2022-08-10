@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skill_no: 1
   skill_rarity: 0
-  projectile_type: 1
+  projectile: {fileID: 3205498869262857983, guid: 9eb1fa21091554944b2a334614d3f9cc, type: 3}
   skill_name: "\uC544\uC774\uC2A4 \uC2A4\uD53C\uC5B4"
   skill_image: {fileID: 21300000, guid: f60535fb650db9e4c8a1691650de12e8, type: 3}
   command: 0100000005000000
@@ -23,10 +23,6 @@ MonoBehaviour:
   - 15
   - 15
   - 15
-  projectile_size:
-  - {x: 0.32, y: 0.052299827}
-  - {x: 0.32, y: 0.052299827}
-  - {x: 0.32, y: 0.052299827}
   projectile_speed:
   - 7
   - 7
@@ -37,5 +33,3 @@ MonoBehaviour:
   - 3
   skill_cost: 030000000300000003000000
   skill_damage: 040000000400000004000000
-  projectile_sprite: {fileID: 21300000, guid: 234c9d4033d858746a8538cd5ef9c204, type: 3}
-  projectile_animation_cilp: {fileID: 7400000, guid: a6d02cd9e26ac4b4e85db5a94f91155d, type: 2}

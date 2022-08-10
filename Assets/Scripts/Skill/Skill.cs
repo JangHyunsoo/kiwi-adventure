@@ -46,7 +46,7 @@ public class Skill
 
     public void startCoolTime()
     {
-        curr_cooltime_ = skill_data.cool_time[level];
+        curr_cooltime_ = skill_data.cool_time[level - 1];
     }
 
     public void updateCoolTime()

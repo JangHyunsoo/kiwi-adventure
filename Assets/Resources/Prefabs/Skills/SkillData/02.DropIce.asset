@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4704f86fc0c1f014cb20dba338fe6f0a, type: 3}
   m_Name: 02.DropIce
   m_EditorClassIdentifier: 
-  skill_no: 0
+  skill_no: 2
   skill_rarity: 0
   projectile: {fileID: 1835675157510142202, guid: 7bd7731bc50221d4ab1dad2a8676536e, type: 3}
   skill_name: "\uC5BC\uC74C \uB5A8\uAD6C\uAE30"
