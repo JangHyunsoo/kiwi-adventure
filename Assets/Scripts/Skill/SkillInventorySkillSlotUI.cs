@@ -8,13 +8,13 @@ public class SkillInventorySkillSlotUI : MonoBehaviour, IBeginDragHandler, IDrag
 {
     private Skill skill_ = null;
     private int slot_no_;
-    private int book_no_ = -1;
+    private SkillSlotType slot_type_ = SkillSlotType.HAVE;
     private Image skill_image_;
 
     public int slot_no { get => slot_no_; }
-    public int book_no { get => book_no_; }
-    public bool is_equipment_slot { get => book_no_ != -1; }
-    public Skill skill { get => skill_; set => skill_ = value; }
+    public SkillSlotType slot_type { get => slot_type_; }
+    public bool is_equipment_slot { get => slot_type_ != SkillSlotType.HAVE; }
+    public Skill skill { get => skill_; }
 
     public void init()
     {
@@ -23,8 +23,26 @@ public class SkillInventorySkillSlotUI : MonoBehaviour, IBeginDragHandler, IDrag
 
     private void Update()
     {
-        skill_ = SkillManager.instance.getSkill(slot_no_, book_no_);
+        skill_ = SkillManager.instance.getSkill(slot_no_, slot_type_);
         updateSkill();
+    }
+
+    private void updateSkill()
+    {
+        if (skill == null) clearSlot();
+        else
+        {
+            skill_image_.sprite = skill_.skill_data.skill_image;
+            if (skill_.is_known) setColor(1);
+            else setColor(0.3f);
+        }
+    }
+
+    private void clearSlot()
+    {
+        skill_ = null;
+        skill_image_.sprite = null;
+        setColor(0);
     }
 
     private void setColor(float _alpha)
@@ -39,40 +57,17 @@ public class SkillInventorySkillSlotUI : MonoBehaviour, IBeginDragHandler, IDrag
         slot_no_ = _no;
     }
 
-    public void setBookSlot(int _no)
+    public void setBookSlot(SkillSlotType _slot_type)
     {
-        book_no_ = _no;
-    }
-
-    public void addSkill(Skill _skill)
-    {
-        skill_ = _skill;
-        updateSkill();
-    }
-
-    public void updateSkill()
-    {
-        if (skill == null) clearSlot();
-        else
-        {
-            skill_image_.sprite = skill_.skill_data.skill_image;
-            if (skill_.is_known) setColor(1);
-            else setColor(0.3f);
-        }
-    }
-
-    public void clearSlot()
-    {
-        skill_ = null;
-        skill_image_.sprite = null;
-        setColor(0);
+        slot_type_ = _slot_type;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         if(skill_ != null)
         {
-            DragSkillInventorySlot.instance.skill_slot = this;
+            DragSkillInventorySlot.instance.setSlotNo(slot_no_);
+            DragSkillInventorySlot.instance.setBookNo(slot_type_);
             DragSkillInventorySlot.instance.DragSetSkill(skill_image_);
             DragSkillInventorySlot.instance.transform.position = eventData.position;
         }
@@ -89,14 +84,15 @@ public class SkillInventorySkillSlotUI : MonoBehaviour, IBeginDragHandler, IDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         DragSkillInventorySlot.instance.setColor(0);
-        DragSkillInventorySlot.instance.skill_slot = null;
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (DragSkillInventorySlot.instance.skill_slot != null)
+        Skill curr_skill = DragSkillInventorySlot.instance.getSkill();
+
+        if (curr_skill != null)
         {
-            if (is_equipment_slot && !DragSkillInventorySlot.instance.skill_slot.skill.is_known)
+            if (is_equipment_slot && !curr_skill.is_known)
             {
                 return;
             }
@@ -114,13 +110,13 @@ public class SkillInventorySkillSlotUI : MonoBehaviour, IBeginDragHandler, IDrag
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                SkillManager.instance.updateSkillInfoCard(slot_no_, book_no_);
+                SkillManager.instance.updateSkillInfoCard(slot_no_, slot_type_);
             }
         }
     }
 
     private void ChangeSlot()
     {
-        SkillManager.instance.swapSkillSlot(this, DragSkillInventorySlot.instance.skill_slot);
+        SkillManager.instance.swapSkillSlot(slot_no_, slot_type_, DragSkillInventorySlot.instance.slot_no, DragSkillInventorySlot.instance.slot_type);
     }
 }

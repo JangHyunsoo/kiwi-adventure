@@ -7,8 +7,6 @@ public class SkillInventoryUI : MonoBehaviour
     [SerializeField]
     private GameObject have_skill_slot_parent_;
     [SerializeField]
-    private GameObject have_skill_recipe_slot_parent_;
-    [SerializeField]
     private GameObject equipment_book_slot_parent_;
 
     [SerializeField]
@@ -42,7 +40,7 @@ public class SkillInventoryUI : MonoBehaviour
         for (int i = 0; i < equipment_book_slot_arr_.Length; i++)
         {
             equipment_book_slot_arr_[i].init();
-            equipment_book_slot_arr_[i].setSkillBookNo(i);
+            equipment_book_slot_arr_[i].setSkillBookNo((SkillSlotType)i);
         }
     }
 

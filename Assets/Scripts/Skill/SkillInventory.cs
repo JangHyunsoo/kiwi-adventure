@@ -10,6 +10,9 @@ public class SkillInventory : MonoBehaviour
     [SerializeField]
     private int have_skill_slot_count_ = 45;
 
+    // private Skill[] skill_arr_; // Ω∫≈≥ Ω∫ø“ ¿Œµ¶ΩÃ»≠
+    // private KeyValuePair<SkillSlotType, int>[] skill_slot_index_;
+
     [SerializeField]
     private SkillBook[] eqiupment_skill_book_arr_;
     [SerializeField]
@@ -20,11 +23,11 @@ public class SkillInventory : MonoBehaviour
 
     private void Update()
     {
-        for (int book_idx = 0; book_idx < eqiupment_skill_book_arr_.Length; book_idx++)
+        for (SkillSlotType slot_type = SkillSlotType.ONE; slot_type <= SkillSlotType.TREE; slot_type++)
         {
-            for (int skill_idx = 0; skill_idx < eqiupment_skill_book_arr_[book_idx].skill_size; skill_idx++)
+            for (int skill_idx = 0; skill_idx < eqiupment_skill_book_arr_[(int)slot_type].skill_size; skill_idx++)
             {
-                Skill curr_skill = getSkill(skill_idx, book_idx);
+                Skill curr_skill = getSkill(skill_idx, slot_type);
                 if (curr_skill != null)
                 {
                     curr_skill.updateCoolTime();
@@ -34,7 +37,7 @@ public class SkillInventory : MonoBehaviour
 
         for (int i = 0; i < have_skill_arr_.Length; i++)
         {
-            Skill curr_skill = getSkill(i, -1);
+            Skill curr_skill = getSkill(i, SkillSlotType.HAVE);
             if (curr_skill != null)
             {
                 curr_skill.updateCoolTime();
@@ -85,23 +88,23 @@ public class SkillInventory : MonoBehaviour
 
     public void addSkillToEquipment(Skill _skill)
     {
-        for (int book_idx = 0; book_idx < eqiupment_skill_book_arr_.Length; book_idx++)
+        for (SkillSlotType slot_type = SkillSlotType.ONE; slot_type <= SkillSlotType.TREE; slot_type++)
         {
-            for (int skill_idx = 0; skill_idx < eqiupment_skill_book_arr_[book_idx].skill_size; skill_idx++)
+            for (int skill_idx = 0; skill_idx < eqiupment_skill_book_arr_[(int)slot_type].skill_size; skill_idx++)
             {
-                Skill curr_skill = getSkill(skill_idx, book_idx);
+                Skill curr_skill = getSkill(skill_idx, slot_type);
                 if (curr_skill == null)
                 {
-                    setSkill(_skill, skill_idx, book_idx);
+                    setSkill(_skill, skill_idx, slot_type);
                     return;
                 }
             }
         }
     }
 
-    public void createSkill(int _slot_no, int _book_no)
+    public void createSkill(int _slot_no)
     {
-        Skill curr_skill = getSkill(_slot_no, _book_no);
+        Skill curr_skill = getSkill(_slot_no, SkillSlotType.HAVE);
 
         if (!ItemInventory.instance.checkItems(curr_skill.skill_recipe_data.toDictionary()))
         {
@@ -110,33 +113,35 @@ public class SkillInventory : MonoBehaviour
         else
         {
             ItemInventory.instance.useItems(curr_skill.skill_recipe_data.toDictionary());
-            Skill max_skill = SkillManager.instance.searchSkillMaxLevel(curr_skill.skill_data.skill_no);
-            if (curr_skill == max_skill)
+            var max_slot = SkillManager.instance.searchSkillMaxLevel(curr_skill.skill_data.skill_no);
+            if (_slot_no == max_slot.Value && SkillSlotType.HAVE == max_slot.Key)
             {
                 curr_skill.level++;
             }
             else
             {
-                max_skill.level++;
-                clearSkill(_slot_no, _book_no);
+                getSkill(max_slot.Value, max_slot.Key).level++;
+                clearSkill(_slot_no, SkillSlotType.HAVE);
             }
         }
     }
 
-    public Skill searchSkillMaxLevel(int _no)
+    public KeyValuePair<SkillSlotType, int> searchSkillMaxLevel(int _no)
     {
-        List<Skill> result = new List<Skill>();
+        KeyValuePair<SkillSlotType, int> max_slot = new KeyValuePair<SkillSlotType, int>(SkillSlotType.HAVE, -1);
+        int max_level = -1;
 
-        for (int book_idx = 0; book_idx < eqiupment_skill_book_arr_.Length; book_idx++)
+        for (SkillSlotType slot_type = SkillSlotType.ONE; slot_type <= SkillSlotType.TREE; slot_type++)
         {
-            for(int skill_idx = 0; skill_idx < eqiupment_skill_book_arr_[book_idx].skill_size; skill_idx++)
+            for(int skill_idx = 0; skill_idx < eqiupment_skill_book_arr_[(int)slot_type].skill_size; skill_idx++)
             {
-                Skill curr_skill = getSkill(skill_idx, book_idx);
+                Skill curr_skill = getSkill(skill_idx, slot_type);
                 if (curr_skill != null)
                 {
-                    if (curr_skill.skill_data.skill_no == _no)
+                    if (curr_skill.skill_data.skill_no == _no && curr_skill.level > max_level)
                     {
-                        result.Add(curr_skill);
+                        max_slot = new KeyValuePair<SkillSlotType, int>(slot_type, skill_idx);
+                        max_level = curr_skill.level;
                     }
                 }
             }
@@ -146,47 +151,41 @@ public class SkillInventory : MonoBehaviour
         {
             if (have_skill_arr_[i] != null)
             {
-                if (have_skill_arr_[i].skill_data.skill_no == _no)
+                if (have_skill_arr_[i].skill_data.skill_no == _no && have_skill_arr_[i].level > max_level)
                 {
-                    result.Add(have_skill_arr_[i]);
+                    max_slot = new KeyValuePair<SkillSlotType, int>(SkillSlotType.HAVE, i);
+                    max_level = have_skill_arr_[i].level;
                 }
             }
         }
 
-        result.Sort(delegate (Skill one, Skill other)
-        {
-            if (one.level < other.level) return 1;
-            else if (one.level > other.level) return -1;
-            else return 0;
-        });
-
-        return result[0];
+        return max_slot;
     }
 
-    public void swapSkillSlot(SkillInventorySkillSlotUI _one, SkillInventorySkillSlotUI _other)
+    public void swapSkillSlot(int _one_slot_no, SkillSlotType _one_slot_type, int _other_slot_on, SkillSlotType _other_slot_type)
     {
-        Skill one_skill = getSkill(_one.slot_no, _one.book_no);
-        Skill other_skill = getSkill(_other.slot_no, _other.book_no);
+        Skill one_skill = getSkill(_one_slot_no, _one_slot_type);
+        Skill other_skill = getSkill(_other_slot_on, _other_slot_type);
 
-        setSkill(one_skill, _other.slot_no, _other.book_no);
-        setSkill(other_skill, _one.slot_no, _one.book_no);
+        setSkill(one_skill, _other_slot_on, _other_slot_type);
+        setSkill(other_skill, _one_slot_no, _one_slot_type);
     }
 
-    public Skill getSkill(int _slot_no, int _book_no)
+    public Skill getSkill(int _slot_no, SkillSlotType _slot_type)
     {
-        if (_book_no == -1) return have_skill_arr_[_slot_no];
-        return eqiupment_skill_book_arr_[_book_no].getSkill(_slot_no);
+        if (_slot_type == SkillSlotType.HAVE) return have_skill_arr_[_slot_no];
+        return eqiupment_skill_book_arr_[(int)_slot_type].getSkill(_slot_no);
     }
 
-    public void setSkill(Skill _skill, int _slot_no, int _book_no)
+    public void setSkill(Skill _skill, int _slot_no, SkillSlotType _slot_type)
     {
-        if (_book_no == -1) have_skill_arr_[_slot_no] = _skill;
-        else eqiupment_skill_book_arr_[_book_no].setSkill(_slot_no ,_skill);
+        if (_slot_type == SkillSlotType.HAVE) have_skill_arr_[_slot_no] = _skill;
+        else eqiupment_skill_book_arr_[(int)_slot_type].setSkill(_slot_no ,_skill);
     }
 
-    public void clearSkill(int _slot_no, int _book_no)
+    public void clearSkill(int _slot_no, SkillSlotType _slot_type)
     {
-        setSkill(null, _slot_no, _book_no);
+        setSkill(null, _slot_no, _slot_type);
     }
 
     public void sortSkill()
@@ -202,13 +201,13 @@ public class SkillInventory : MonoBehaviour
         else return one.level.CompareTo(other.level);
     }
 
-    public SkillBook getEquipmentBook(int _no)
+    public SkillBook getEquipmentBook(SkillSlotType _slot_type)
     {
-        return eqiupment_skill_book_arr_[_no];
+        return eqiupment_skill_book_arr_[(int)_slot_type];
     }
 
-    public Skill getEquipmentSkill(int _slot_no, int _book_no)
+    public Skill getEquipmentSkill(int _slot_no, SkillSlotType _slot_type)
     {
-        return eqiupment_skill_book_arr_[_book_no].getSkill(_slot_no);
+        return eqiupment_skill_book_arr_[(int)_slot_type].getSkill(_slot_no);
     }
 }

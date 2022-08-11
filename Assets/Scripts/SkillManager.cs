@@ -41,10 +41,10 @@ public class SkillManager : MonoBehaviour
 
     private int BOOK_SIZE = 3;
 
-    private int curr_book_index_ = 1;
+    private SkillSlotType curr_book_index_ = SkillSlotType.TWO;
     private int curr_skill_index_ = 0;
     public int curr_skill_index { get => curr_skill_index_; }
-    public int curr_book_index { get => curr_book_index_; }
+    public SkillSlotType curr_book_index { get => curr_book_index_; }
     public int have_skill_count { get => skill_inventory_.have_skill_slot_count; }
 
     public void init()
@@ -65,18 +65,18 @@ public class SkillManager : MonoBehaviour
         skill_inventory_.addSkillToHave(_skill);
     }
 
-    public void updateSkillInfoCard(int _slot_no, int _book_no)
+    public void updateSkillInfoCard(int _slot_no, SkillSlotType _book_typye)
     {
         skill_info_card_ui_.gameObject.active = true;
         skill_book_info_card_ui_.gameObject.active = false;
-        skill_info_card_ui_.setSlotNo(_slot_no, _book_no);
+        skill_info_card_ui_.setSlotNo(_slot_no, _book_typye);
     }
 
-    public void updateSkillBookInfoCard(int _book_no)
+    public void updateSkillBookInfoCard(SkillSlotType _slot_type)
     {
         skill_info_card_ui_.gameObject.active = false;
         skill_book_info_card_ui_.gameObject.active = true;
-        skill_book_info_card_ui_.setBookNo(_book_no);
+        skill_book_info_card_ui_.setBookNo(_slot_type);
     }
 
     public void moveCurrSkillCursor(int _idx)
@@ -87,7 +87,7 @@ public class SkillManager : MonoBehaviour
     public void switchSkillBook()
     {
         curr_skill_index_ = 0;
-        curr_book_index_ = Utility.modNumber(curr_book_index_, BOOK_SIZE, 1);
+        curr_book_index_ = (SkillSlotType)Utility.modNumber((int)curr_book_index_, BOOK_SIZE, 1);
         skill_equipment_scroll_ui_.moveLeft();
     }
 
@@ -96,14 +96,14 @@ public class SkillManager : MonoBehaviour
         curr_skill_index_ = _idx;
     }
 
-    public SkillBook getEquipmentBook(int _idx)
+    public SkillBook getEquipmentBook(SkillSlotType _slot_type)
     {
-        return skill_inventory_.getEquipmentBook(_idx);
+        return skill_inventory_.getEquipmentBook(_slot_type);
     }
 
-    public Skill getEquipmentSkill(int _slot_no, int _book_no)
+    public Skill getEquipmentSkill(int _slot_no, SkillSlotType _slot_type)
     {
-        return skill_inventory_.getEquipmentSkill(_slot_no, _book_no);
+        return skill_inventory_.getEquipmentSkill(_slot_no, _slot_type);
     }
 
     public Skill getCurrSkill()
@@ -111,28 +111,28 @@ public class SkillManager : MonoBehaviour
         return getEquipmentSkill(curr_skill_index_, curr_book_index_);
     }
 
-    public Skill searchSkillMaxLevel(int _no)
+    public KeyValuePair<SkillSlotType, int> searchSkillMaxLevel(int _no)
     {
         return skill_inventory_.searchSkillMaxLevel(_no);
     }
 
-    public void swapSkillSlot(SkillInventorySkillSlotUI _one, SkillInventorySkillSlotUI _other)
+    public void swapSkillSlot(int _one_slot_no, SkillSlotType _one_slot_type, int _other_slot_on, SkillSlotType _other_slot_type)
     {
-        skill_inventory_.swapSkillSlot(_one, _other);
+        skill_inventory_.swapSkillSlot(_one_slot_no, _one_slot_type, _other_slot_on, _other_slot_type);
     }
 
-    public Skill getSkill(int _slot_no, int _book_no)
+    public Skill getSkill(int _slot_no, SkillSlotType _slot_type)
     {
-        return skill_inventory_.getSkill(_slot_no, _book_no);
+        return skill_inventory_.getSkill(_slot_no, _slot_type);
     }
 
-    public void setSkill(Skill _skill, int _slot_no, int _book_no)
+    public void setSkill(Skill _skill, int _slot_no, SkillSlotType _slot_type)
     {
-        skill_inventory_.setSkill(null, _slot_no, _book_no);
+        skill_inventory_.setSkill(null, _slot_no, _slot_type);
     }
 
-    public void createSkillBySlot(int _slot_no, int _book_no)
+    public void createSkillBySlot(int _slot_no)
     {
-        skill_inventory_.createSkill(_slot_no, _book_no);
+        skill_inventory_.createSkill(_slot_no);
     }
 }

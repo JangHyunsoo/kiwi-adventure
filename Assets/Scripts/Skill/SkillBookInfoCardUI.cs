@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SkillBookInfoCardUI : MonoBehaviour
 {
-    private int curr_book_no_ = 0;
+    private SkillSlotType slot_type_ = 0;
     private SkillBook curr_skill_book_;
 
     [SerializeField]
@@ -32,14 +32,14 @@ public class SkillBookInfoCardUI : MonoBehaviour
 
     private void Update()
     {
-        curr_skill_book_ = SkillManager.instance.getEquipmentBook(curr_book_no_);
+        curr_skill_book_ = SkillManager.instance.getEquipmentBook(slot_type_);
         updateSkillBook();
     }
 
-    public void setBookNo(int _book_no)
+    public void setBookNo(SkillSlotType _slot_type)
     {
-        curr_book_no_ = _book_no;
-        curr_skill_book_ = SkillManager.instance.getEquipmentBook(curr_book_no_);
+        slot_type_ = _slot_type;
+        curr_skill_book_ = SkillManager.instance.getEquipmentBook(slot_type_);
     }
 
     private void updateSkillBook()

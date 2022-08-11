@@ -23,11 +23,11 @@ public class SkillEquipmentSkillSlotUI : MonoBehaviour
         bolder_line_image_ = images[3];
     }
 
-    public void updateSkillSlot(int _slot_no, int _book_no)
+    public void updateSkillSlot(int _slot_no, SkillSlotType _slot_type)
     {
-        Skill curr_skill = SkillManager.instance.getEquipmentSkill(_slot_no, _book_no);
+        Skill curr_skill = SkillManager.instance.getEquipmentSkill(_slot_no, _slot_type);
 
-        if (_slot_no == SkillManager.instance.curr_skill_index && _book_no == SkillManager.instance.curr_book_index)
+        if (_slot_no == SkillManager.instance.curr_skill_index && _slot_type == SkillManager.instance.curr_book_index)
         {
             bolder_line_image_.color = Color.green;
         }

@@ -44,6 +44,14 @@ public enum Rarity
     LEGENDARY
 }
 
+public enum SkillSlotType
+{
+    HAVE = -1,
+    ONE = 0,
+    TWO = 1,
+    TREE = 2
+}
+
 public enum ElementalType
 {
     FIRE,

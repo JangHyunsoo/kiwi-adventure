@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SkillInfoCardUI : MonoBehaviour
 {
     private int slot_no_;
-    private int book_no_;
+    private SkillSlotType slot_type_;
     private Skill curr_skill_;
 
     [SerializeField]
@@ -39,15 +39,15 @@ public class SkillInfoCardUI : MonoBehaviour
 
     private void Update()
     {
-        curr_skill_ = SkillManager.instance.getSkill(slot_no_, book_no_);
+        curr_skill_ = SkillManager.instance.getSkill(slot_no_, slot_type_);
         updateSkillInfo();
     }
 
-    public void setSlotNo(int _slot_no, int _book_no)
+    public void setSlotNo(int _slot_no, SkillSlotType _slot_type)
     {
         slot_no_ = _slot_no;
-        book_no_ = _book_no;
-        curr_skill_ = SkillManager.instance.getSkill(_slot_no, _book_no);
+        slot_type_ = _slot_type;
+        curr_skill_ = SkillManager.instance.getSkill(_slot_no, _slot_type);
     }
 
     public void updateSkillInfo()
@@ -100,7 +100,7 @@ public class SkillInfoCardUI : MonoBehaviour
 
     public void createSkill()
     {
-        SkillManager.instance.createSkillBySlot(slot_no_, book_no_);
+        SkillManager.instance.createSkillBySlot(slot_no_);
         curr_skill_ = null;
     }
 }

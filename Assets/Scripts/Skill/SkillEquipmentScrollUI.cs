@@ -36,7 +36,7 @@ public class SkillEquipmentScrollUI : MonoBehaviour
         for (int i = 0; i < skill_book_slot_cp_arr_.Length; i++)
         {
             skill_book_slot_cp_arr_[i].init();
-            skill_book_slot_cp_arr_[i].setBookNo(real_idx_book_data_arr_[i]);
+            skill_book_slot_cp_arr_[i].setBookNo((SkillSlotType)real_idx_book_data_arr_[i]);
         }
     }
 
