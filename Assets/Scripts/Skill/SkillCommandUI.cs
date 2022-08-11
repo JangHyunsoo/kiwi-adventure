@@ -22,7 +22,7 @@ public class SkillCommandUI : MonoBehaviour
     private const int MAX_COMMAND_SIZE_ = 10;
     private int[] cur_skill_command_arr_ = new int[0];
 
-    private Vector3 curr_target_pos_ {get => PlayerManager.instance.player_casting.isCasting() ? activate_target_tr_.position : unactivate_target_tr_.position;}
+    private Vector3 curr_target_pos_ {get => PlayerManager.instance.player_casting.isCasting() || PlayerManager.instance.player_casting.isReload() ? activate_target_tr_.position : unactivate_target_tr_.position;}
 
     private void Update()
     {

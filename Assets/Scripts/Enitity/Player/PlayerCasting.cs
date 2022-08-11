@@ -46,6 +46,11 @@ public class PlayerCasting : MonoBehaviour
     {
         return is_casting_;
     }
+
+    public bool isReload()
+    {
+        return is_reload_;
+    }
     
     public void setIsCasting(bool _value)
     {
