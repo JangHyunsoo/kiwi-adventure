@@ -19,7 +19,6 @@ public class Skill
     public bool is_known { get => level_ != 0; }
     public bool is_ready { get => curr_cooltime_ <= 0; }
 
-
     public Skill(int _skill_no)
     {
         skill_no_ = _skill_no;
@@ -28,13 +27,8 @@ public class Skill
         skill_recipe_data = SkillDataBase.instance.getSkillRecipeData(skill_no_);
         level_ = 0;
     }
-
-    public Skill(Skill _skill)
+    public Skill(Skill _skill) : this(_skill.skill_no)
     {
-        skill_no_ = _skill.skill_no;
-        skill_data = SkillDataBase.instance.getSkillData(skill_no_);
-        skill_action = SkillDataBase.instance.getSkillAction(skill_no);
-        skill_recipe_data = SkillDataBase.instance.getSkillRecipeData(skill_no_);
         level_ = _skill.level;
     }
 

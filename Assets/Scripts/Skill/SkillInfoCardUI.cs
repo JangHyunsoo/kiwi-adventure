@@ -85,7 +85,6 @@ public class SkillInfoCardUI : MonoBehaviour
 
         curr_skill_image_.sprite = curr_skill_.skill_data.skill_image;
         curr_skill_name_.text = curr_skill_.skill_data.skill_name;
-        curr_skill_cost_.text = curr_skill_.skill_data.skill_cost[curr_level].ToString();
         curr_skill_cooltime_.text = curr_skill_.skill_data.cool_time[curr_level].ToString();
         curr_skill_damage_.text = curr_skill_.skill_data.skill_damage[curr_level].ToString();
         curr_skill_level_.text = curr_level.ToString();

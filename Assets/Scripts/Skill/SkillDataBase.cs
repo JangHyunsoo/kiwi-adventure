@@ -32,7 +32,6 @@ public class SkillDataBase : MonoBehaviour
     private SkillData[] skill_data_arr_;
     [SerializeField]
     private SkillRecipeData[] skill_recipe_data_arr_;
-
     private SkillAction[] skill_action_data_arr_;
 
     private Skill[] skill_arr_;
@@ -44,7 +43,7 @@ public class SkillDataBase : MonoBehaviour
         Array.Sort<SkillRecipeData>(skill_recipe_data_arr_, compareSkillReecipeNumber);
         initSkillAction();
         initSkill();
-        iunitSkillIndexArrayByRarity();
+        initSkillIndexArrayByRarity();
     }
 
     private void initSkillAction()
@@ -54,7 +53,6 @@ public class SkillDataBase : MonoBehaviour
         skill_action_list.Add(new FireBallSkillAction(0));
         skill_action_list.Add(new IceSpearSkillAction(1));
         skill_action_list.Add(new DropIceSkillAction(2));
-
 
         skill_action_data_arr_ = skill_action_list.ToArray();
         Array.Sort<SkillAction>(skill_action_data_arr_, compareSkillActionNumber);
@@ -69,7 +67,7 @@ public class SkillDataBase : MonoBehaviour
         }
     }
 
-    private void iunitSkillIndexArrayByRarity()
+    private void initSkillIndexArrayByRarity()
     {
         foreach (Rarity rarity in Enum.GetValues(typeof(Rarity)))
         {
@@ -101,6 +99,7 @@ public class SkillDataBase : MonoBehaviour
         skill.level = _level;
         return new Skill(skill);
     }
+
     public SkillAction getSkillAction(int _skill_no)
     {
         return skill_action_data_arr_[_skill_no];
