@@ -38,6 +38,8 @@ public class SkillDataBase : MonoBehaviour
     private Skill[] skill_arr_;
     private Dictionary<Rarity, int[]> skill_rarity_dic_ = new Dictionary<Rarity, int[]>();
 
+    public int skill_count { get => skill_data_arr_.Length; }
+
     public void init()
     {
         Array.Sort<SkillData>(skill_data_arr_, compareSkillNumber);

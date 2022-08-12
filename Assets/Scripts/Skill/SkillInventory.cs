@@ -21,30 +21,6 @@ public class SkillInventory : MonoBehaviour
     public int eqiupment_skill_book_count { get => equipment_skiil_book_count_; }
     public int have_skill_slot_count { get => have_skill_slot_count_; }
 
-    private void Update()
-    {
-        for (SkillSlotType slot_type = SkillSlotType.ONE; slot_type <= SkillSlotType.TREE; slot_type++)
-        {
-            for (int skill_idx = 0; skill_idx < eqiupment_skill_book_arr_[(int)slot_type].skill_size; skill_idx++)
-            {
-                Skill curr_skill = getSkill(skill_idx, slot_type);
-                if (curr_skill != null)
-                {
-                    curr_skill.updateCoolTime();
-                }
-            }
-        }
-
-        for (int i = 0; i < have_skill_arr_.Length; i++)
-        {
-            Skill curr_skill = getSkill(i, SkillSlotType.HAVE);
-            if (curr_skill != null)
-            {
-                curr_skill.updateCoolTime();
-            }
-        }
-    }
-
     public void init()
     {
         initHaveSkillSlot();

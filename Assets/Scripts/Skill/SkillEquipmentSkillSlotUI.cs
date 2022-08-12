@@ -40,7 +40,7 @@ public class SkillEquipmentSkillSlotUI : MonoBehaviour
         {
             icon_image.color = Color.white;
             icon_image_.sprite = curr_skill.skill_data.skill_image;
-            cool_item_image_.fillAmount = curr_skill.getCooltiemAmount();
+            cool_item_image_.fillAmount = SkillManager.instance.getSkillCoolTimeAmount(curr_skill.skill_no);
         }
         else
         {

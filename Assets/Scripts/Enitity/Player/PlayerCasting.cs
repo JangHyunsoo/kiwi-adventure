@@ -33,9 +33,10 @@ public class PlayerCasting : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Skill curr_skill = SkillManager.instance.getCurrSkill();
-            if (curr_skill.is_ready)
+            if (SkillManager.instance.isCurrSkillReady())
             {
-                SkillManager.instance.getCurrSkill().activate(skill_fire_tr_.position, Utility.getScreenMousePos(), tag);
+                curr_skill.activate(skill_fire_tr_.position, Utility.getScreenMousePos(), tag);
+                SkillManager.instance.startCurrSkillCoolTime();
                 is_reload_ = false;
                 is_casting_ = false;
             }

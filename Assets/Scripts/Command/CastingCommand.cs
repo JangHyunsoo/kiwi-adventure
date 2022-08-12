@@ -12,7 +12,7 @@ public class CastingCommand : Command
 
 
         if (SkillManager.instance.getCurrSkill() == null) return;
-        if (!SkillManager.instance.getCurrSkill().is_ready) return;
+        if (!SkillManager.instance.isCurrSkillReady()) return;
 
         if (!player_casting.isCasting())
         {

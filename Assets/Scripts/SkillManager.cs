@@ -38,6 +38,8 @@ public class SkillManager : MonoBehaviour
     private SkillCommandUI skill_command_ui_;
     [SerializeField]
     private SkillInventory skill_inventory_;
+    [SerializeField]
+    private SkillCoolTimeTable skill_cooltime_table_;
 
     private int BOOK_SIZE = 3;
 
@@ -50,6 +52,7 @@ public class SkillManager : MonoBehaviour
     public void init()
     {
         skill_inventory_.init();
+        skill_cooltime_table_.init();
         skill_inventory_ui_.init();
         skill_equipment_scroll_ui_.init();
         skill_command_ui_.init();
@@ -134,5 +137,21 @@ public class SkillManager : MonoBehaviour
     public void createSkillBySlot(int _slot_no)
     {
         skill_inventory_.createSkill(_slot_no);
+    }
+
+    public void startCurrSkillCoolTime()
+    {
+        Skill curr_skill = getCurrSkill();
+        skill_cooltime_table_.startCoolTime(curr_skill.skill_no, curr_skill.skill_data.cool_time[curr_skill.level]);
+    }
+
+    public bool isCurrSkillReady()
+    {
+        return skill_cooltime_table_.isReady(getCurrSkill().skill_no);
+    }
+
+    public float getSkillCoolTimeAmount(int _skill_no)
+    {
+        return skill_cooltime_table_.getSkillCoolTimeAmount(_skill_no);
     }
 }
