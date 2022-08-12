@@ -11,12 +11,11 @@ public class Projectile : MonoBehaviour
     protected string team_;
     protected Vector3 my_pos_;
     protected Vector3 target_pos_;
-    protected float projectile_damage_;
     protected int skill_level_ = 0;
 
-    protected bool is_ready = true;
-    protected bool is_end = false; 
-
+    protected bool is_ready_ = true;
+    protected bool is_crash_ = false;
+    protected bool is_end_ = false;
 
     public string team { get { return team_; } }
 
@@ -25,30 +24,66 @@ public class Projectile : MonoBehaviour
         skill_data_ = SkillDataBase.instance.getSkillData(skill_no_);
         init();
     }
+
     private void Update()
     {
         activate();
     }
+
     public virtual void init() { }
-    public virtual void activate() { }
-    
-    public void setLevel(int _level)
+    public virtual void activate()
     {
-        skill_level_ = _level;
+        if (!is_ready_ && !is_crash_)
+        {
+            openingAction();
+        }
+
+        if (is_crash_)
+        {
+            destroyAction();
+        }
     }
 
-    public void setTeam(string _team)
+    public void setProjectile(int _level, Vector3 _my_pos, Vector3 _target_pos, string _team)
     {
+        skill_level_ = _level;
         team_ = _team;
-    }
-    public void setPosition(Vector3 _my_pos, Vector3 _target_pos)
-    {
         my_pos_ = _my_pos;
         target_pos_ = _target_pos;
     }
 
+    public virtual void openingAction() { }
+    public virtual void destroyAction()
+    {
+        GetComponent<Animator>().SetBool("is_end", is_crash_);
+    }
+    public virtual void collisionEntity(Collider2D _collision) { }
+    public virtual void collisionWall() { }
+
+    public void OnTriggerEnter2D(Collider2D _collision)
+    {
+        if (!is_ready_)
+        {
+            if (_collision.tag != team_)
+            {
+                switch (_collision.tag)
+                {
+                    case "Player":
+                    case "Monster":
+                        collisionEntity(_collision);
+                        break;
+                    case "Wall":
+                        collisionWall();
+                        break;
+                }
+            }
+        }
+    }
+
+
+
     public void endReady()
     {
-        is_ready = false;
+        is_ready_ = false;
     }
 }

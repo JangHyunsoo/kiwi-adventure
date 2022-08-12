@@ -15,6 +15,5 @@ public class SkillData : ScriptableObject
     public float[] casting_range;
     public float[] projectile_speed;
     public float[] cool_time;
-    public int[] skill_cost;
     public int[] skill_damage;
 }

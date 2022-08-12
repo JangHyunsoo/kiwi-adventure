@@ -6,59 +6,37 @@ public class MoveProjectile : Projectile
 {
     private Vector3 direction_;
     private double current_skill_distance = 0d;
-    private bool is_crash_with_object_ = true;
 
     public override void init()
     {
         direction_ = (target_pos_ - transform.position).normalized;
         transform.rotation = Utility.getDirecitonToRotation(direction_);
+        is_ready_ = false;
     }
-    public override void activate() 
+
+    public override void openingAction()
     {
         current_skill_distance += Time.deltaTime * skill_data_.projectile_speed[skill_level_];
         transform.position += (direction_ * Time.deltaTime * skill_data_.projectile_speed[skill_level_]);
 
-        if(skill_data_.casting_range[skill_level_] < current_skill_distance)
+        if (skill_data_.casting_range[skill_level_] < current_skill_distance)
         {
-            Destroy(gameObject);
+            is_crash_ = true;
         }
     }
 
-    protected virtual void onHit(Collider2D collision)
+    public override void collisionEntity(Collider2D _collision)
     {
-        collision.GetComponent<Entity>().hitDamage(skill_data_.skill_damage[skill_level_]);
+        _collision.GetComponent<Entity>().hitDamage(skill_data_.skill_damage[skill_level_]);
+        is_crash_ = true;
+    }
+
+    public override void destroyAction()
+    {
         Destroy(gameObject);
     }
 
-    protected virtual void onCrashObject() { }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Wall")
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else if(collision.tag == "Object")
-        {
-            if (is_crash_with_object_)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            else
-            {
-                onCrashObject();
-            }
-        }
 
-        if (collision.tag != team_)
-        {
-            if (collision.tag == "Player" || collision.tag == "Monster")
-            {
-                onHit(collision);
-            }
-        }
-    }
 
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Á¦°Å 
 public class ProjectileDataBase : MonoBehaviour
 {
     private static ProjectileDataBase _instance;
