@@ -35,8 +35,4 @@ public class MoveProjectile : Projectile
     {
         Destroy(gameObject);
     }
-
-
-
-
 }

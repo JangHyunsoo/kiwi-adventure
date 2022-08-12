@@ -55,6 +55,7 @@ public class SkillDataBase : MonoBehaviour
         skill_action_list.Add(new FireBallSkillAction(0));
         skill_action_list.Add(new IceSpearSkillAction(1));
         skill_action_list.Add(new DropIceSkillAction(2));
+        skill_action_list.Add(new FrostyWindSkillAction(3));
 
         skill_action_data_arr_ = skill_action_list.ToArray();
         Array.Sort<SkillAction>(skill_action_data_arr_, compareSkillActionNumber);

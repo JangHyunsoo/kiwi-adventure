@@ -31,10 +31,12 @@ public class Projectile : MonoBehaviour
     }
 
     public virtual void init() { }
+
     public virtual void activate()
     {
         if (!is_ready_ && !is_crash_)
         {
+            GetComponent<Collider2D>().enabled = true;
             openingAction();
         }
 
@@ -58,30 +60,30 @@ public class Projectile : MonoBehaviour
         GetComponent<Animator>().SetBool("is_end", is_crash_);
     }
     public virtual void collisionEntity(Collider2D _collision) { }
-    public virtual void collisionWall() { }
-
-    public void OnTriggerEnter2D(Collider2D _collision)
+    public virtual void collisionWall()
     {
-        if (!is_ready_)
+
+        Destroy(gameObject);
+    }
+    
+
+    public void OnTriggerStay2D(Collider2D _collision)
+    {
+        Debug.Log(_collision.name);
+        if (_collision.tag != team_)
         {
-            if (_collision.tag != team_)
+            switch (_collision.tag)
             {
-                switch (_collision.tag)
-                {
-                    case "Player":
-                    case "Monster":
-                        collisionEntity(_collision);
-                        break;
-                    case "Wall":
-                        collisionWall();
-                        break;
-                }
+                case "Player":
+                case "Monster":
+                    collisionEntity(_collision);
+                    break;
+                case "Wall":
+                    collisionWall();
+                    break;
             }
         }
     }
-
-
-
     public void endReady()
     {
         is_ready_ = false;
