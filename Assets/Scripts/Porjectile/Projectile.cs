@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         init();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         activate();
     }

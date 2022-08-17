@@ -16024,11 +16024,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd54b810c03a6184ea34cbd0893bdae6, type: 2}
   - {fileID: 11400000, guid: 289230ebe97c32842b9081e7f1ba1ebb, type: 2}
   - {fileID: 11400000, guid: 21c037ab538791242b6beb12c5a20df1, type: 2}
+  - {fileID: 11400000, guid: 1facce7e4a5c61f44a72cf0009fed4e5, type: 2}
   skill_recipe_data_arr_:
   - {fileID: 11400000, guid: 2ef37a0f7c9bf9c45b9e2898508cd8e0, type: 2}
   - {fileID: 11400000, guid: ef2243470005942499d3b458345aea0b, type: 2}
   - {fileID: 11400000, guid: 61a2346da6d73aa49b0fc767a73fee62, type: 2}
   - {fileID: 11400000, guid: b9b8dcbdb0a020d4fa6d4fba2396c2b0, type: 2}
+  - {fileID: 11400000, guid: 63c9477f050b5b34f8f7a778aa031958, type: 2}
 --- !u!4 &1182317648
 Transform:
   m_ObjectHideFlags: 0

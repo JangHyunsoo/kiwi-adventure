@@ -65,12 +65,12 @@ public class PlayerManager : MonoBehaviour
         player_interaction.init();
         player_movement_.init();
         player_entity_.init();
-        player_movement_.clear();
+        player_movement_.stopMove();
     }
     public void movePosition(Vector2 _vec)
     {
         player_go_.transform.position = _vec;
-        player_movement_.clear();
+        player_movement_.stopMove();
     }
     public void hitDamage(int _damage)
     {

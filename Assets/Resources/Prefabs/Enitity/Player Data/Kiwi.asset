@@ -16,4 +16,4 @@ MonoBehaviour:
   obj_name_: Kiwi
   level_: 1
   max_hp_: 50
-  speed_: 20
+  speed_: 3

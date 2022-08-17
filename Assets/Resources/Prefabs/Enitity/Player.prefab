@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 5625741754132252284}
   - component: {fileID: 2690043117303392032}
   - component: {fileID: -6004287319106269254}
+  - component: {fileID: -8538877518184521543}
   - component: {fileID: 7619733258804284073}
   m_Layer: 8
   m_Name: Player
@@ -242,6 +243,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_move_: 0
   skill_fire_rot_: {fileID: 5914919942384020804}
+--- !u!114 &-8538877518184521543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313755421659091322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4740d783eec4f264d8fa76fc64edd9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &7619733258804284073
 Animator:
   serializedVersion: 3

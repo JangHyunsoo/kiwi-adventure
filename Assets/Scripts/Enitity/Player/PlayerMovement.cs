@@ -2,39 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : EntityMovement
 {
-    private Rigidbody2D rb_;
-    private Vector3 target_pos_;
     private bool is_freeze_ = true;
     private bool is_empty_ = true;
-    [SerializeField]
-    private bool is_move_;
+
     private Queue<Vector3> reserved_position_queue_ = new Queue<Vector3>();
 
     [SerializeField]
     private Transform skill_fire_rot_;
 
-
-    public void init()
+    public override void init()
     {
-        rb_ = GetComponent<Rigidbody2D>();
-        target_pos_ = transform.position;
+        base.init();
         StartCoroutine(delay(1f));
     }
 
     private void Update()
     {
-
-        is_move_ = target_pos_ != transform.position;
-        if (is_freeze_) return;
-
         moveCommand();
 
         is_empty_ = reserved_position_queue_.Count == 0;
 
         PlayerManager.instance.player_animator.SetBool("isRun", is_move_);
+    }
 
+
+    public override void move()
+    {
+        if (is_freeze_) return;
 
         if (is_empty_)
         {
@@ -55,20 +51,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void moveCommand()
+    private void moveCommand()
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
             if (Input.GetMouseButtonDown(1))
             {
-                calTargetPos();
+                target_pos_ = Utility.getScreenMousePos();
                 reserved_position_queue_.Enqueue(target_pos_);
             }
         }
         else if (Input.GetMouseButtonDown(1))
         {
             reserved_position_queue_.Clear();
-            calTargetPos();
+            target_pos_ = Utility.getScreenMousePos();
         }
         else if (Input.GetMouseButtonDown(2))
         {
@@ -76,37 +72,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void calTargetPos()
-    {
-        Vector3 mouse_pos_ = Input.mousePosition;
-        Vector3 trans_pos_ = Camera.main.ScreenToWorldPoint(mouse_pos_);
-        target_pos_ = new Vector3(trans_pos_.x, trans_pos_.y, 0);
-    }
-
-    private void moveToTarget(Vector3 _target_pos, float _speed)
-    {
-        if (Vector2.Distance(target_pos_, transform.position) <= Time.deltaTime * _speed)
-        {
-            rb_.MovePosition(target_pos_);
-        }
-        else
-        {
-            Vector2 dir = (_target_pos - transform.position).normalized * Time.deltaTime * _speed;
-            rb_.MovePosition(rb_.position + dir);
-            PlayerManager.instance.player_go.GetComponent<SpriteRenderer>().flipX = dir.x > 0;
-            skill_fire_rot_.rotation = Quaternion.Euler(new Vector3(0f, dir.x > 0 ? 180f : 0f, 0f));
-        }
-    }
-
-    private void stopMove()
+    public override void stopMove()
     {
         reserved_position_queue_.Clear();
         target_pos_ = transform.position;
-    }
-
-    public void clear()
-    {
-        stopMove();
     }
 
     private IEnumerator delay(float _delay_time)

@@ -5,14 +5,19 @@ using UnityEngine;
 public class FieldProjectile : Projectile
 {
     private float curr_during_time_;
+    private float collider_size_;
+
     
     public override void init()
     {
         curr_during_time_ = 0f;
+        collider_size_ = GetComponent<CircleCollider2D>().radius;
+        GetComponent<CircleCollider2D>().radius = 0f;
     }
 
     public override void openingAction()
     {
+        GetComponent<CircleCollider2D>().radius = collider_size_;
         curr_during_time_ += Time.deltaTime;
 
         if (curr_during_time_ >= skill_data_.during_time[skill_level_])

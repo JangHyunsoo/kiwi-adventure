@@ -69,7 +69,7 @@ public class MagicMan : EnemyEntity
             if (short_attack_distance >= dist)
             {
                 isAttack = true;
-                skills_[0].activate(transform.position, target.position, tag);
+                skills_[0].activate(this, target.position);
                 Color color = sprite_renderer.color;
                 color.a = 0.5f;
                 sprite_renderer.color = color;
@@ -78,7 +78,7 @@ public class MagicMan : EnemyEntity
             else if (long_attack_dictance >= dist)
             {
                 isAttack = true;
-                skills_[1].activate(transform.position, target.position, tag);
+                skills_[1].activate(this, target.position);
                 Color color = sprite_renderer.color;
                 color.a = 0.5f;
                 sprite_renderer.color = color;

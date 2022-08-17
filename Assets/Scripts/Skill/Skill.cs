@@ -29,9 +29,9 @@ public class Skill
         level_ = _skill.level;
     }
 
-    public void activate(Vector3 _my_pos, Vector3 _target_pos, string _team)
+    public void activate(Entity _entity, Vector3 _target_pos)
     {
-        skill_action.activate(level - 1, _my_pos, _target_pos, _team);
+        skill_action.activate(level - 1, _entity, _target_pos);
     }
 
     public float getCoolTime()

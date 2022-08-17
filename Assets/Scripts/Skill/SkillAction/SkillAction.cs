@@ -16,5 +16,5 @@ public abstract class SkillAction
         skill_data_ = SkillDataBase.instance.getSkillData(skill_no_);
     }
 
-    public virtual void activate(int _level, Vector3 _my_pos, Vector3 _target_pos, string _team) { }
+    public virtual void activate(int _level, Entity _entity, Vector3 _target_pos) { }
 }

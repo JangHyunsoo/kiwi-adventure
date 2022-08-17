@@ -26,7 +26,8 @@ public class SkillInventory : MonoBehaviour
         initHaveSkillSlot();
         initEquipmentSlot();
         addSkillToEquipment(SkillDataBase.instance.getSkill(0, 1));
-        addSkillToEquipment(SkillDataBase.instance.getSkill(3, 1));
+        //addSkillToEquipment(SkillDataBase.instance.getSkill(4, 1));
+        setSkill(SkillDataBase.instance.getSkill(4, 1), 0, SkillSlotType.TWO);
         addSkillToHave(SkillDataBase.instance.getSkill(0, 0));
         addSkillToHave(SkillDataBase.instance.getSkill(1, 0));
         addSkillToHave(SkillDataBase.instance.getSkill(2, 0));
