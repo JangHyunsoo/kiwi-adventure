@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/ItemBag.cs.meta
+guid: 2acef2436d8341e45a7a5ae2536d1e63
+========
+guid: f0fc503fe5de8ed479ad9cca4de7da85
+>>>>>>>> 7d11458154b0a86ad12ae203f504910c85ef6cc0:Assets/Scripts/TestSkill/Skill.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

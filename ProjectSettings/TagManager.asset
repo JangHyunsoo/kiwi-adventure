@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - RoomCollider
+  - Rooms
+  - Monster
+  - Projectile
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -11,11 +16,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Item
+  - Object
+  - Player
+  - Monster
+  - Door
   - 
   - 
   - 

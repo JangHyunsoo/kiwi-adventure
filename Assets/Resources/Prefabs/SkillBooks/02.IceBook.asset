@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06be33c7f0b0fa24f8a103117ab689f5, type: 3}
+  m_Name: 02.IceBook
+  m_EditorClassIdentifier: 
+  skill_book_no_: 2
+  skill_book_name_: IceBook
+  skill_book_info_: IceBook
+  essential_option_rand_value_arr_:
+  - option_type_: 1
+    min_value_: 1.2
+    max_value_: 2
+  - option_type_: 0
+    min_value_: 0.2
+    max_value_: 1
+  additional_option_rand_value_arr_:
+  - option_type_: 6
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 7
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 8
+    min_value_: 0.8
+    max_value_: 1.2
+  - option_type_: 2
+    min_value_: 1.2
+    max_value_: 1.6
+  additional_option_size_: 2
+  skill_slot_size_: 3
+  skill_book_color_: {r: 0.31181023, g: 0.8584906, b: 0.78611493, a: 1}
